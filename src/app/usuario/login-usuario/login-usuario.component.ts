@@ -35,7 +35,7 @@ export class LoginUsuarioComponent {
 
         if (usuarioEncontrado) {
           alert('Inicio de sesión exitoso');
-          //this.router.navigate(['/home']); 
+          this.router.navigateByUrl("home");
         } else {
           alert('Usuario o contraseña incorrectos');
         }

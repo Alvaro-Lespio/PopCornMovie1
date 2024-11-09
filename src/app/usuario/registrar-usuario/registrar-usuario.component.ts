@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrl: './registrar-usuario.component.css'
 })
 export class RegistrarUsuarioComponent{
-  
+
   fb = inject(FormBuilder);
   usuarioService = inject(UsuarioService);
   router = inject(Router);
@@ -27,12 +27,12 @@ export class RegistrarUsuarioComponent{
 
   registerUsuario() {
     if (this.formulario.invalid) return;
-    
+
     const usuario: Usuario = this.formulario.getRawValue() as Usuario;
     this.usuarioService.createUsuario(usuario).subscribe({
       next: () => {
         //alert('Registro exitoso');
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl('login');
       },
       error: (e:Error) => {
         console.error('Error al registrarse:', e);
