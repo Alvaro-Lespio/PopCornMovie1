@@ -1,12 +1,62 @@
 {
-    "usuarios": [
-
-    ],
-    "peliculas": [
-       
-    ],
-    "comentarios": [
-        
-    ]
-    
+  "usuarios": [
+    {
+      "id": "0",
+      "username": "alvaro",
+      "password": "123456",
+      "nombreCompleto": "sadasd",
+      "email": "asd@sadas"
+    },
+    {
+      "id": "0",
+      "username": "ivan",
+      "password": "123456",
+      "nombreCompleto": "sadasd",
+      "email": "asd@sadas"
+    },
+    {
+      "id": "4576",
+      "username": "alvaro",
+      "password": "1234567",
+      "nombreCompleto": "asdsad",
+      "email": "asdsa@asdsa"
+    },
+    {
+      "id": "a072",
+      "username": "ivan",
+      "password": "1234567",
+      "nombreCompleto": "asdsad",
+      "email": "asdsa@asdsa"
+    },
+    {
+      "id": "93d4",
+      "username": "ivan",
+      "password": "1234567",
+      "nombreCompleto": "asdsad",
+      "email": "asdsa@asdsa"
+    },
+    {
+      "id": "b226",
+      "username": "ivan",
+      "password": "1234567",
+      "nombreCompleto": "asdsad",
+      "email": "asdsa@asdsa"
+    },
+    {
+      "id": "a800",
+      "username": "ivan",
+      "password": "1234567",
+      "nombreCompleto": "asdsad",
+      "email": "asdsa@asdsa"
+    },
+    {
+      "id": "bd6c",
+      "username": "alvaro",
+      "password": "123456",
+      "nombreCompleto": "sadsa",
+      "email": "asdsad@awsds"
+    }
+  ],
+  "peliculas": [],
+  "comentarios": []
 }

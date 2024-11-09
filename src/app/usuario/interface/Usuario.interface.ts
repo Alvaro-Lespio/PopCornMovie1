@@ -3,7 +3,7 @@ import { PeliculaCalificada } from "../../PeliculaCalificada/interface/interface
 import { Playlist } from "../../Playlist/interface/Playlist.interface";
 
 export interface Usuario{
-    id: number;
+    id: string;
     username: string;
     password: string;
     nombreCompleto: string;
