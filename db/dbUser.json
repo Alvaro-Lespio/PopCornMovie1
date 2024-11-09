@@ -55,6 +55,20 @@
       "password": "123456",
       "nombreCompleto": "sadsa",
       "email": "asdsad@awsds"
+    },
+    {
+      "id": "5746",
+      "username": "fran",
+      "password": "123456",
+      "nombreCompleto": "franco",
+      "email": "fran@gmail.com"
+    },
+    {
+      "id": "e384",
+      "username": "gabi",
+      "password": "123456",
+      "nombreCompleto": "gabigol",
+      "email": "gabi@gol"
     }
   ],
   "peliculas": [],
