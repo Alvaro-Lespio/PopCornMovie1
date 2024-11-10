@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 export class UsuarioService {
   http = inject(HttpClient)
   baseUrl = "http://localhost:3000/usuarios"
-  
+
   constructor() { }
    // Obtener la lista de todos los usuarios
-   getUsuarios(): Observable<Usuario[]> {
+  getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.baseUrl);
   }
 
@@ -24,7 +24,7 @@ export class UsuarioService {
   // Crear un nuevo usuario
   createUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.baseUrl, usuario)
-      
+
   }
 
   // Actualizar un usuario existente
@@ -40,10 +40,10 @@ export class UsuarioService {
   // Agregar un usuario a la lista de seguidos
   followUser(currentUserId: number, followedUserId: number): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.baseUrl}/${currentUserId}`).pipe(
-      // agregar logica 
+      // agregar logica
     );
 
-    //Agregar una playlist 
+    //Agregar una playlist
 
   }
 }
