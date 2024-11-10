@@ -18,12 +18,30 @@ export class RegistrarUsuarioComponent{
   usuarioService = inject(UsuarioService);
   router = inject(Router);
 
+  usernameExists: boolean = false;
+
   formulario = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     nombreCompleto: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]]
   });
+  
+  checkUsernameExists() {
+    const username = this.formulario.value.username || '';
+    if (username.length >= 3) {
+      this.usuarioService.getUsuarios().subscribe(
+        (usuarios: Usuario[]) => {
+          this.usernameExists = usuarios.some(user => user.username === username);
+        },
+        () => {
+          this.usernameExists = false;
+        }
+      );
+    } else {
+      this.usernameExists = false;
+    }
+  }
 
   registerUsuario() {
     if (this.formulario.invalid) return;

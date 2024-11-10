@@ -11,7 +11,7 @@ export interface Usuario{
     playlists: Playlist[]; // Relación con las playlists del usuario por id
     peliculasCalificadas: PeliculaCalificada[]; // Relación con las películas calificadas por el usuario
     comentarios: Comentario[]; // Relación con los comentarios realizados por el usuario
-    usuariosSeguidos: string[]; // Lista de usuarios que sigue por id 
+    usuariosSeguidos: string[]; // Lista de usuarios que sigues por id 
     peliculasVistas: number[]; // IDs de las películas marcadas como vistas
     peliculasMeGusta: number[]; // IDs de las películas marcadas con "me gusta"
 }

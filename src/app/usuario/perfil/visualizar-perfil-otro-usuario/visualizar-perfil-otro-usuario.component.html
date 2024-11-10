@@ -1,0 +1,27 @@
+<div *ngIf="usuario">
+    <h2>Perfil de {{ usuario.username }}</h2>
+    <button (click)="alternarSeguir()">
+      {{ esUsuarioSeguido() ? 'Dejar de seguir' : 'Seguir' }}
+    </button>
+    <p><strong>Nombre completo:</strong> {{ usuario.nombreCompleto }}</p>
+    <p><strong>Email:</strong> {{ usuario.email }}</p>
+  
+    <h3>Playlists:</h3>
+    <ul *ngIf="usuario.playlists.length > 0; else noPlaylists">
+      <li *ngFor="let playlist of usuario.playlists">{{ playlist.nombre }}</li>
+    </ul>
+    <ng-template #noPlaylists>
+      <p>Este usuario no tiene playlists.</p>
+    </ng-template>
+    <h3>Seguidores</h3>
+    <ul *ngIf="usuario.usuariosSeguidos.length > 0; else noSeguidores">
+      <li>{{usuario.usuariosSeguidos.length}}</li>
+    </ul>
+    <ng-template #noSeguidores>
+      <p>Este usuario no tiene pseguidores.</p>
+    </ng-template>
+  </div>
+  
+  <div *ngIf="!usuario">
+    <p>Cargando perfil...</p>
+  </div>
