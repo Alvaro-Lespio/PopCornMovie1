@@ -10,10 +10,10 @@ import { Playlist } from '../../Playlist/interface/Playlist.interface';
 export class UsuarioService {
   http = inject(HttpClient)
   baseUrl = "http://localhost:3000/usuarios"
-  
+
   constructor() { }
    // Obtener la lista de todos los usuarios
-   getUsuarios(): Observable<Usuario[]> {
+  getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.baseUrl);
   }
 
@@ -25,7 +25,7 @@ export class UsuarioService {
   // Crear un nuevo usuario
   createUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.baseUrl, usuario)
-      
+
   }
 
   // Actualizar un usuario existente
@@ -41,6 +41,7 @@ export class UsuarioService {
 
    // Agregar una playlist a un usuario
    addPlaylistToUser(userId: string | undefined, playlist: Playlist): Observable<Usuario> {
+
 
     // Obtener el usuario por su ID
     const userById = this.getUsuarioById(userId);
