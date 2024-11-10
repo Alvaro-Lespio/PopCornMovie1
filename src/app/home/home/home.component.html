@@ -1,1 +1,7 @@
 <h1>PopCornMovies</h1>
+
+<!-- Componente de búsqueda y filtros -->
+<app-busqueda-pelicula (onBuscar)="actualizarResultadosBusqueda($event)"></app-busqueda-pelicula>
+
+<!-- Componente de listado de películas -->
+<app-listar-pelicula [peliculas]="resultadosBusqueda"></app-listar-pelicula>

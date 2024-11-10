@@ -1,1 +1,53 @@
-<p>listar-pelicula works!</p>
+<div *ngIf="peliculas && peliculas.length > 0; else mostrarListasPorDefecto">
+  <h2>Resultados de búsqueda</h2>
+  <div>
+    @for (pelicula of peliculas; track $index) {
+      <div>
+        <h3>{{ pelicula.title }}</h3>
+        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+      </div>
+    }
+  </div>
+</div>
+
+<ng-template #mostrarListasPorDefecto>
+  <h2>Películas Populares</h2>
+  <div>
+    @for (pelicula of peliculasPopulares; track $index) {
+      <div>
+        <h3>{{ pelicula.title }}</h3>
+        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+      </div>
+    }
+  </div>
+
+  <h2>Películas en Cartelera</h2>
+  <div>
+    @for (pelicula of peliculasEnCartelera; track $index) {
+      <div>
+        <h3>{{ pelicula.title }}</h3>
+        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+      </div>
+    }
+  </div>
+
+  <h2>Películas Mejor Calificadas</h2>
+  <div>
+    @for (pelicula of peliculasMejorCalificadas; track $index) {
+      <div>
+        <h3>{{ pelicula.title }}</h3>
+        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+      </div>
+    }
+  </div>
+
+  <h2>Próximos Estrenos</h2>
+  <div>
+    @for (pelicula of peliculasProximas; track $index) {
+      <div>
+        <h3>{{ pelicula.title }}</h3>
+        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+      </div>
+    }
+  </div>
+</ng-template>

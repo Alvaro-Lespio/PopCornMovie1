@@ -1,9 +1,9 @@
 export interface Pelicula{
   id: number,
-  titulo: string,
-  descripcion: string,
-  fecha_lanzamiento: string,
-  poster: string,
-  calificacion: number,
-  generos: number[],
+  title: string,
+  overview: string,
+  release_date: string,
+  poster_path: string,
+  vote_average: number,
+  genres: number[],
 }

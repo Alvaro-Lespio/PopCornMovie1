@@ -4,6 +4,8 @@ import { LoginUsuarioComponent } from './usuario/login-usuario/login-usuario.com
 import { RegistrarUsuarioComponent } from './usuario/registrar-usuario/registrar-usuario.component';
 import { AgregarPlaylistComponent } from './Playlist/agregar-playlist/agregar-playlist.component';
 import { ListarPlaylistComponent } from './Playlist/listar-playlist/listar-playlist.component';
+import { ListarPeliculaComponent } from './peliculas/listar-pelicula/listar-pelicula.component';
+import { BusquedaPeliculaComponent } from './peliculas/busqueda-pelicula/busqueda-pelicula.component';
 
 export const routes: Routes = [
 
@@ -26,6 +28,14 @@ export const routes: Routes = [
     {
         path:"playlistList",
         component:ListarPlaylistComponent
+    },
+    {
+        path:"peliculas",
+        component:ListarPeliculaComponent
+    },
+    {
+        path:"buscar",
+        component:BusquedaPeliculaComponent
     },
     {
         path:"**",
