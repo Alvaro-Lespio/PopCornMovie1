@@ -27,11 +27,27 @@ export class RegistrarUsuarioComponent{
 
   registerUsuario() {
     if (this.formulario.invalid) return;
+    const usuario: Usuario = { 
+      username: this.formulario.value.username || '',
+      password: this.formulario.value.password || '',
+      nombreCompleto: this.formulario.value.nombreCompleto || '',
+      email: this.formulario.value.email || '',
+      playlists: [], 
+      peliculasCalificadas: [],
+      comentarios: [],
+      usuariosSeguidos: [],
+      peliculasVistas: [],
+      peliculasMeGusta: []
+    };
 
-    const usuario: Usuario = this.formulario.getRawValue() as Usuario;
     this.usuarioService.createUsuario(usuario).subscribe({
-      next: () => {
-        //alert('Registro exitoso');
+      next: (nuevoUsuario: Usuario) => {
+        if(nuevoUsuario.id !== undefined){
+          localStorage.setItem('userId', nuevoUsuario.id.toString());
+        }else{
+          console.log("id undefineed")
+        }
+        
         this.router.navigateByUrl('login');
       },
       error: (e:Error) => {

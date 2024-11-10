@@ -35,6 +35,12 @@ export class LoginUsuarioComponent {
 
         if (usuarioEncontrado) {
           alert('Inicio de sesión exitoso');
+          if(usuarioEncontrado.id !== undefined){
+            localStorage.setItem('userId',usuarioEncontrado.id.toString())
+          }else{
+            return console.log("login userId error")
+          }
+          
           this.router.navigateByUrl("home");
         } else {
           alert('Usuario o contraseña incorrectos');

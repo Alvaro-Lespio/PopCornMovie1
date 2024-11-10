@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Usuario } from '../interface/Usuario.interface';
 import { Observable } from 'rxjs';
+import { Playlist } from '../../Playlist/interface/Playlist.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class UsuarioService {
   }
 
   // Obtener un usuario por ID
-  getUsuarioById(id: number): Observable<Usuario> {
+  getUsuarioById(id: string | undefined): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.baseUrl}/${id}`);
   }
 
@@ -37,13 +38,90 @@ export class UsuarioService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  // Agregar un usuario a la lista de seguidos
-  followUser(currentUserId: number, followedUserId: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.baseUrl}/${currentUserId}`).pipe(
-      // agregar logica
-    );
 
-    //Agregar una playlist
+   // Agregar una playlist a un usuario
+   addPlaylistToUser(userId: string | undefined, playlist: Playlist): Observable<Usuario> {
 
+
+    // Obtener el usuario por su ID
+    const userById = this.getUsuarioById(userId);
+  
+    // Suscribirse al observable para obtener el usuario
+    userById.subscribe({
+      next: (user: Usuario) => {
+        // Agregar la nueva playlist al array de playlists del usuario
+        user.playlists.push(playlist);
+  
+        // Actualizar el usuario con la nueva playlist
+        this.updateUsuario(user).subscribe({
+          next: () => {
+            alert('Playlist agregada exitosamente.')
+          },
+          error: (e : Error) => {
+            // Manejar errores en la actualización del usuario
+            console.error('Error al actualizar el usuario:', e.message);
+          }
+        });
+      },
+      error: (e : Error) => {
+        console.error('Error al obtener el usuario:', e.message);
+      }
+    });
+  
+    // Retornar el observable del usuario obtenido
+    return userById;
   }
+
+  // Eliminar una playlist de un usuario
+  removePlaylistFromUser(userId: string, playlistId: number): Observable<Usuario> {
+    // Obtener el usuario por su ID
+    const userById = this.getUsuarioById(userId);
+  
+    // Suscribirse al observable para obtener el usuario
+    userById.subscribe({
+      next: (user: Usuario) => {
+        // Filtrar las playlists para eliminar la que coincide con el ID proporcionado
+        user.playlists = user.playlists.filter(p => p.id !== playlistId);
+  
+        // Actualizar el usuario con la lista de playlists modificada
+        this.updateUsuario(user).subscribe({
+          next: () => {
+            alert('Playlist eliminada exitosamente.')
+          },
+          error: (e:Error) => {
+            console.error('Error:', e.message);
+          }
+        });
+      },
+      error: (e:Error) => {
+        console.error('Error:', e.message);
+      }
+    });
+  
+    // Retornar el observable del usuario obtenido
+    return userById;
+  }
+
+  //Listar playlist
+  getPlaylistsOfUser(userId: string): Observable<Playlist[]> {
+    // Crear un nuevo Observable que emitirá las playlists del usuario
+    return new Observable<Playlist[]>((observer) => {
+      // Obtener el usuario por su ID
+      this.getUsuarioById(userId).subscribe({
+        next: (user: Usuario) => {
+          //Emitir las playlists del usuario
+          observer.next(user.playlists);
+          observer.complete();
+        },
+        error: (e: Error) => {
+          console.error('Error al obtener el usuario:', e.message);
+          //Emitir el error al observer
+          observer.error(e);
+        }
+      });
+    });
+  }
+  
 }
+
+  
