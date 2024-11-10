@@ -1,5 +1,30 @@
 {
   "usuarios": [
-    
+    {
+      "id": "4860",
+      "username": "alvaro",
+      "password": "123456",
+      "nombreCompleto": "alvaro",
+      "email": "alvaro@alvaro",
+      "playlists": [],
+      "peliculasCalificadas": [],
+      "comentarios": [],
+      "usuariosSeguidos": [],
+      "peliculasVistas": [],
+      "peliculasMeGusta": []
+    },
+    {
+      "id": "2643",
+      "username": "alvaro2",
+      "password": "123456",
+      "nombreCompleto": "alvaro",
+      "email": "alvaro@alvaro",
+      "playlists": [],
+      "peliculasCalificadas": [],
+      "comentarios": [],
+      "usuariosSeguidos": [],
+      "peliculasVistas": [],
+      "peliculasMeGusta": []
+    }
   ]
 }
