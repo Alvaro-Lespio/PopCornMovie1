@@ -1,1 +1,12 @@
-<p>listar-playlist works!</p>
+<div class="playlist-container">
+    <h2>Mis Playlists</h2>
+    <div *ngIf="playlists.length === 0">No tienes playlists disponibles.</div>
+    <ul>
+      <li *ngFor="let playlist of playlists">
+        <h3>{{ playlist.nombre }}</h3>
+        <p>ID de la playlist: {{ playlist.id }}</p>
+        <button (click)="eliminarPlaylist(playlist.id)">Eliminar playlist</button>
+      </li>
+    </ul>
+  </div>
+  
