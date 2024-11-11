@@ -40,24 +40,24 @@ generos: { [key: string]: number } = {
 
 //listado de peliculas populares
 getPeliculasPopulares(): Observable<Pelicula[]>{
-  return this.http.get<ApiResponse>(`${this.urlBase}/movie/popular?api_key=${this.apiKey}&language=es`)
+  return this.http.get<ApiResponse>(`${this.urlBase}/movie/popular?api_key=${this.apiKey}&language=es&media_type=movie`)
   .pipe(map(response=>response.results));
 }
 // Películas en cartelera
 getPeliculasEnCartelera(): Observable<Pelicula[]> {
-  return this.http.get<ApiResponse>(`${this.urlBase}/movie/now_playing?api_key=${this.apiKey}&language=es`)
+  return this.http.get<ApiResponse>(`${this.urlBase}/movie/now_playing?api_key=${this.apiKey}&language=es&media_type=movie`)
   .pipe(map(response => response.results));
 }
 
 // Películas mejor calificadas
 getPeliculasMejorCalificadas(): Observable<Pelicula[]> {
-  return this.http.get<ApiResponse>(`${this.urlBase}/movie/top_rated?api_key=${this.apiKey}&language=es`)
+  return this.http.get<ApiResponse>(`${this.urlBase}/movie/top_rated?api_key=${this.apiKey}&language=es&media_type=movie`)
   .pipe(map(response => response.results));
 }
 
 // Próximos estrenos
 getPeliculasProximas(): Observable<Pelicula[]> {
-  return this.http.get<ApiResponse>(`${this.urlBase}/movie/upcoming?api_key=${this.apiKey}&language=es`)
+  return this.http.get<ApiResponse>(`${this.urlBase}/movie/upcoming?api_key=${this.apiKey}&language=es&media_type=movie`)
   .pipe(map(response => response.results));
 }
 
@@ -66,12 +66,12 @@ getPeliculasProximas(): Observable<Pelicula[]> {
   //   return this.http.get<Pelicula>(`${this.urlBase}/movie/${id}?api_key=${this.apiKey}`)
   // }
   getPeliculaById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.urlBase}/movie/${id}?api_key=${this.apiKey}&language=es`);
+    return this.http.get<any>(`${this.urlBase}/movie/${id}?api_key=${this.apiKey}&language=es&media_type=movie`)
   }
 
   //Buscar pelicula por palabra clave
   buscarPelicula(query: string): Observable<Pelicula[]>{
-    return this.http.get<ApiResponse>(`${this.urlBase}/search/movie?api_key=${this.apiKey}&query=${query}&language=es`)
+    return this.http.get<ApiResponse>(`${this.urlBase}/search/movie?api_key=${this.apiKey}&query=${query}&language=es&media_type=movie`)
     .pipe(map(response => response.results));
   }
 
@@ -82,7 +82,7 @@ getPeliculasProximas(): Observable<Pelicula[]> {
 
   //filtrar peliculas por genero, año o popularidad
   filtrarPeliculas(filtros: { genero?: string; año?: string; popularidad?: string }): Observable<Pelicula[]> {
-    let url = `${this.urlBase}/discover/movie?api_key=${this.apiKey}&language=es`;
+    let url = `${this.urlBase}/discover/movie?api_key=${this.apiKey}&language=es&media_type=movie`;
   
     // Verifica y convierte el género a su ID si corresponde
     const generoId = filtros.genero ? this.obtenerIdGenero(filtros.genero) : undefined;
