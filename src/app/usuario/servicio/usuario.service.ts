@@ -3,13 +3,14 @@ import { inject, Injectable } from '@angular/core';
 import { Usuario } from '../interface/Usuario.interface';
 import { Observable } from 'rxjs';
 import { Playlist } from '../../Playlist/interface/Playlist.interface';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
   http = inject(HttpClient)
-  baseUrl = "http://localhost:3000/usuarios"
+  baseUrl = environment.urlUser
 
   constructor() { }
    // Obtener la lista de todos los usuarios
