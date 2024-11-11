@@ -7,4 +7,11 @@
   <p><strong>Calificación:</strong> {{ pelicula.vote_average }}/10</p>
   
   <button (click)="volverALista()">Volver a la Lista</button>
+  
+  <label for="playlistSelect">Seleccionar Playlist:</label>
+  <select id="playlistSelect" [(ngModel)]="playlistId">
+    <option *ngFor="let playlist of playlists" [value]="playlist.id">{{ playlist.nombre }}</option>
+  </select>
+
+  <button (click)="addToPlaylist(pelicula.id)">Añadir a Playlist</button>
 </div>
