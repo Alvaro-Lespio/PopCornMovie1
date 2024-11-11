@@ -2,9 +2,14 @@
   <h2>Resultados de búsqueda</h2>
   <div>
     @for (pelicula of peliculas; track $index) {
-      <div (click)="verDetalle(pelicula.id)">
+      <div class="movie-card" (click)="verDetalle(pelicula.id)">
         <h3>{{ pelicula.title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+        <div class="movie-info">
+          <h3>{{pelicula.title}}</h3>
+          <p>Calificación: {{pelicula.vote_average}}</p>
+          <p>Año: {{pelicula.release_date | date:'yyyy'}}</p>
+        </div>
       </div>
     }
   </div>
@@ -14,9 +19,14 @@
   <h2>Películas Populares</h2>
   <div>
     @for (pelicula of peliculasPopulares; track $index) {
-      <div (click)="verDetalle(pelicula.id)">
+      <div class="movie-card" (click)="verDetalle(pelicula.id)">
         <h3>{{ pelicula.title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+        <div class="movie-info">
+          <h3>{{pelicula.title}}</h3>
+          <p>Calificación: {{pelicula.vote_average}}</p>
+          <p>Año: {{pelicula.release_date | date:'yyyy'}}</p>
+        </div>
       </div>
     }
   </div>
@@ -24,9 +34,14 @@
   <h2>Películas en Cartelera</h2>
   <div>
     @for (pelicula of peliculasEnCartelera; track $index) {
-      <div (click)="verDetalle(pelicula.id)">
+      <div class="movie-card" (click)="verDetalle(pelicula.id)">
         <h3>{{ pelicula.title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+        <div class="movie-info">
+          <h3>{{pelicula.title}}</h3>
+          <p>Calificación: {{pelicula.vote_average}}</p>
+          <p>Año: {{pelicula.release_date | date:'yyyy'}}</p>
+        </div>
       </div>
     }
   </div>
@@ -34,9 +49,14 @@
   <h2>Películas Mejor Calificadas</h2>
   <div>
     @for (pelicula of peliculasMejorCalificadas; track $index) {
-      <div (click)="verDetalle(pelicula.id)">
+      <div class="movie-card" (click)="verDetalle(pelicula.id)">
         <h3>{{ pelicula.title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+        <div class="movie-info">
+          <h3>{{pelicula.title}}</h3>
+          <p>Calificación: {{pelicula.vote_average}}</p>
+          <p>Año: {{pelicula.release_date | date:'yyyy'}}</p>
+        </div>
       </div>
     }
   </div>
@@ -44,9 +64,14 @@
   <h2>Próximos Estrenos</h2>
   <div>
     @for (pelicula of peliculasProximas; track $index) {
-      <div (click)="verDetalle(pelicula.id)">
+      <div class="movie-card" (click)="verDetalle(pelicula.id)">
         <h3>{{ pelicula.title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+        <div class="movie-info">
+          <h3>{{pelicula.title}}</h3>
+          <p>Calificación: {{pelicula.vote_average}}</p>
+          <p>Año: {{pelicula.release_date | date:'yyyy'}}</p>
+        </div>
       </div>
     }
   </div>

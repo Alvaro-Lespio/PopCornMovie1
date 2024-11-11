@@ -6,4 +6,5 @@ export interface Pelicula{
   poster_path: string,
   vote_average: number,
   genres: number[],
+  runtime: number
 }

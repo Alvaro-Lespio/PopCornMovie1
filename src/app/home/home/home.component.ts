@@ -13,19 +13,16 @@ import { PeliculaService } from '../../peliculas/servicio/pelicula.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  resultadosBusqueda: Pelicula[] = [];
+  resultadosBusqueda: Pelicula[] | null = null;
 
   constructor(private peliculaService: PeliculaService) {}
 
   ngOnInit(): void {
-    // Cargar todas las películas populares al inicio
-    this.peliculaService.getPeliculasPopulares().subscribe(peliculas => {
-      this.resultadosBusqueda = peliculas;
-    });
+    // vacio
   }
 
   // Método que se ejecuta cuando se realiza una búsqueda o se aplican filtros
   actualizarResultadosBusqueda(peliculas: Pelicula[]) {
-    this.resultadosBusqueda = peliculas;
+    this.resultadosBusqueda = peliculas.length > 0 ? peliculas : null;
   }
 }
