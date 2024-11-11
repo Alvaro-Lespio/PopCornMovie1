@@ -11,6 +11,7 @@ import { BusquedaPeliculaComponent } from './peliculas/busqueda-pelicula/busqued
 import { ListarPerfilesComponent } from './usuario/perfil/listar-perfiles/listar-perfiles.component';
 import { VisualizarPerfilOtroUsuarioComponent } from './usuario/perfil/visualizar-perfil-otro-usuario/visualizar-perfil-otro-usuario.component';
 import { VisualizarPerfilComponent } from './usuario/perfil/visualizar-perfil/visualizar-perfil.component';
+import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
 
 
 export const routes: Routes = [
@@ -43,6 +44,10 @@ export const routes: Routes = [
     {
         path:"buscar",
         component:BusquedaPeliculaComponent
+    },
+    {
+        path:"detalle/:id",
+        component:DetallePeliculaComponent
     },
     {
         path:"listarPerfiles",
