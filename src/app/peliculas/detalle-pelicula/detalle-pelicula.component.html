@@ -1,1 +1,10 @@
-<p>detalle-pelicula works!</p>
+<div *ngIf="pelicula">
+  <h2>{{ pelicula.title | uppercase }}</h2>
+  <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+  <p><strong>Resumen:</strong> {{ pelicula.overview }}</p>
+  <p><strong>Fecha de lanzamiento:</strong> {{ pelicula.release_date | date }}</p>
+  <p><strong>Géneros:</strong> {{ genresFormatted }}</p>
+  <p><strong>Calificación:</strong> {{ pelicula.vote_average }}/10</p>
+  
+  <button (click)="volverALista()">Volver a la Lista</button>
+</div>

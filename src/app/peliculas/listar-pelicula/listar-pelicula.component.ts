@@ -2,6 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { Pelicula } from '../interface/pelicula.interface';
 import { PeliculaService } from '../servicio/pelicula.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-pelicula',
@@ -19,12 +20,17 @@ export class ListarPeliculaComponent implements OnInit{
   peliculasProximas: Pelicula[] = [];
 
   peliculaService = inject(PeliculaService);
+  router = inject(Router);
 
   ngOnInit(): void {
     this.cargarPeliculasPopulares();
   this.cargarPeliculasEnCartelera();
   this.cargarPeliculasMejorCalificadas();
   this.cargarPeliculasProximas();
+  }
+
+  verDetalle(id: number){
+    this.router.navigate(['detalle', id]);
   }
 
   cargarPeliculasPopulares(){

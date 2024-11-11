@@ -2,7 +2,7 @@
   <h2>Resultados de búsqueda</h2>
   <div>
     @for (pelicula of peliculas; track $index) {
-      <div>
+      <div (click)="verDetalle(pelicula.id)">
         <h3>{{ pelicula.title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
       </div>
@@ -14,7 +14,7 @@
   <h2>Películas Populares</h2>
   <div>
     @for (pelicula of peliculasPopulares; track $index) {
-      <div>
+      <div (click)="verDetalle(pelicula.id)">
         <h3>{{ pelicula.title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
       </div>
@@ -24,7 +24,7 @@
   <h2>Películas en Cartelera</h2>
   <div>
     @for (pelicula of peliculasEnCartelera; track $index) {
-      <div>
+      <div (click)="verDetalle(pelicula.id)">
         <h3>{{ pelicula.title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
       </div>
@@ -34,7 +34,7 @@
   <h2>Películas Mejor Calificadas</h2>
   <div>
     @for (pelicula of peliculasMejorCalificadas; track $index) {
-      <div>
+      <div (click)="verDetalle(pelicula.id)">
         <h3>{{ pelicula.title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
       </div>
@@ -44,7 +44,7 @@
   <h2>Próximos Estrenos</h2>
   <div>
     @for (pelicula of peliculasProximas; track $index) {
-      <div>
+      <div (click)="verDetalle(pelicula.id)">
         <h3>{{ pelicula.title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
       </div>
