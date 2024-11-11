@@ -4,6 +4,7 @@
   <p><strong>Resumen:</strong> {{ pelicula.overview }}</p>
   <p><strong>Fecha de lanzamiento:</strong> {{ pelicula.release_date | date }}</p>
   <p><strong>Géneros:</strong> {{ genresFormatted }}</p>
+  <p><strong>Duración:</strong> {{ pelicula.runtime }} minutos</p>
   <p><strong>Calificación:</strong> {{ pelicula.vote_average }}/10</p>
   
   <button (click)="volverALista()">Volver a la Lista</button>

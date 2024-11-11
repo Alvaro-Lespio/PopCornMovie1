@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './listar-pelicula.component.css'
 })
 export class ListarPeliculaComponent implements OnInit{
-  @Input() peliculas: Pelicula[] = []; // Recibe las películas a mostrar
+  @Input() peliculas: Pelicula[] | null = null; // Recibe las películas a mostrar
 
   peliculasPopulares: Pelicula[] = [];
   peliculasEnCartelera: Pelicula[] = [];
@@ -23,11 +23,12 @@ export class ListarPeliculaComponent implements OnInit{
   router = inject(Router);
 
   ngOnInit(): void {
-    this.cargarPeliculasPopulares();
+    if(!this.peliculas){
+      this.cargarPeliculasPopulares();
   this.cargarPeliculasEnCartelera();
   this.cargarPeliculasMejorCalificadas();
   this.cargarPeliculasProximas();
-  }
+  }}
 
   verDetalle(id: number){
     this.router.navigate(['detalle', id]);
