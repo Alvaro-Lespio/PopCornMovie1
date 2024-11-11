@@ -43,7 +43,8 @@ export const routes: Routes = [
     {
         path:"buscar",
         component:BusquedaPeliculaComponent
-
+    },
+    {
         path:"listarPerfiles",
         component:ListarPerfilesComponent
 
