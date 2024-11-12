@@ -1,1 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-primario: #8866a3;
+  --color-secundario: #2900a6;
+  --color-terciario:  linear-gradient(to bottom, #000000, #555555);
+  --color-body:  linear-gradient(to right, #040313, #031A39);
+  --color-texto: #fff;
+  --color-fondo: #071c44;
+}
+
+
+
+.footer {
+  background-color: #020027;
+  color: var(--color-texto);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-links li {
+  margin: 0 15px;
+}
+
+.footer-links a {
+  color:var(--color-texto);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.color1{
+  color: white;
+}
+.color2{
+  color: #031A39;
+}
+
+.root{
+  background: var(--color-body);
+}

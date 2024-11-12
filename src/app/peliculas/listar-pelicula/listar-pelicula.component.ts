@@ -19,7 +19,7 @@ export class ListarPeliculaComponent implements OnInit{
   peliculasMejorCalificadas: Pelicula[] = [];
   peliculasProximas: Pelicula[] = [];
 
-  // Selecciona todos los elementos de carrusel en el HTML usando @ViewChildren
+  // Selecciona todos los elementos de carrusel en el HTML
   @ViewChildren('carousel') carousels!: QueryList<ElementRef>;
 
   // Método para desplazar hacia la izquierda

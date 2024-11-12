@@ -1,0 +1,12 @@
+.h2{
+  font-family: 'Oswald',sans-serif;
+  color: var(--color-texto);
+}
+.label{
+  font-family: 'Oswald',sans-serif;
+  color: var(--color-texto);
+}
+.error{
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+}

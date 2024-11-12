@@ -6,8 +6,19 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
-  <app-root></app-root>
+  <body class="root">
+    <app-root></app-root>
+    <footer class="footer">
+      <div class="footer-content">
+        <ul class="footer-links">
+          <li><a routerLink="/help">Ayuda</a></li>
+          <li><a routerLink="/contact">Contacto</a></li>
+          <li><a routerLink="/privacidad">Política de Privacidad</a></li>
+        </ul>
+        <p>&copy; 2024 PopCornMovie. Catálogo de Películas.</p>
+      </div>
+    </footer>
 </body>
 </html>
