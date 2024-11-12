@@ -1,0 +1,37 @@
+form{
+  justify-content: center;
+  background-color: black;
+}
+
+.divP {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--color-fondo);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.divP input[type="text"],
+.divP select,
+.divP button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 0.5rem;
+}
+
+.divP button {
+  background-color: #4a4a8e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.divP button:hover {
+  background-color: #3c3c7a;
+}

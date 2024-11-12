@@ -1,0 +1,14 @@
+.h2{
+  font-family: 'Oswald',sans-serif;
+  color: var(--color-texto);
+}
+
+.p{
+  font-family: 'Lato';
+  color: white;
+}
+
+.label{
+  font-family: 'Oswald',sans-serif;
+  color: var(--color-texto);
+}
