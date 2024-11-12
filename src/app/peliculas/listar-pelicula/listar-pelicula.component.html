@@ -1,78 +1,39 @@
 <div *ngIf="peliculas && peliculas.length > 0; else mostrarListasPorDefecto">
   <h2>Resultados de búsqueda</h2>
-  <div>
-    @for (pelicula of peliculas; track $index) {
-      <div class="movie-card" (click)="verDetalle(pelicula.id)">
+  <div class="filtered-grid">
+    <div class="movie-card" *ngFor="let pelicula of peliculas" (click)="verDetalle(pelicula.id)">
+      <h3>{{ pelicula.title }}</h3>
+      <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+      <div class="movie-info">
         <h3>{{ pelicula.title }}</h3>
-        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
-        <div class="movie-info">
-          <h3>{{pelicula.title}}</h3>
-          <p>Calificación: {{pelicula.vote_average}}</p>
-          <p>Año: {{pelicula.release_date | date:'yyyy'}}</p>
-        </div>
+        <p>Calificación: {{ pelicula.vote_average }}</p>
+        <p>Año: {{ pelicula.release_date | date: 'yyyy' }}</p>
       </div>
-    }
+    </div>
   </div>
 </div>
 
 <ng-template #mostrarListasPorDefecto>
-  <h2>Películas Populares</h2>
-  <div>
-    @for (pelicula of peliculasPopulares; track $index) {
-      <div class="movie-card" (click)="verDetalle(pelicula.id)">
-        <h3>{{ pelicula.title }}</h3>
-        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
-        <div class="movie-info">
-          <h3>{{pelicula.title}}</h3>
-          <p>Calificación: {{pelicula.vote_average}}</p>
-          <p>Año: {{pelicula.release_date | date:'yyyy'}}</p>
+  <div *ngFor="let categoria of [
+    { titulo: 'Películas Populares', peliculas: peliculasPopulares, index: 0 },
+    { titulo: 'Películas en Cartelera', peliculas: peliculasEnCartelera, index: 1 },
+    { titulo: 'Películas Mejor Calificadas', peliculas: peliculasMejorCalificadas, index: 2 },
+    { titulo: 'Próximos Estrenos', peliculas: peliculasProximas, index: 3 }
+  ]">
+    <h2>{{ categoria.titulo }}</h2>
+    <div class="carousel-container">
+      <button class="carousel-btn left" (click)="scrollLeft(categoria.index)">←</button>
+      <div class="carousel" #carousel>
+        <div *ngFor="let pelicula of categoria.peliculas" class="movie-card" (click)="verDetalle(pelicula.id)">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+          <div class="movie-info">
+            <h3>{{ pelicula.title }}</h3>
+            <p>Calificación: {{ pelicula.vote_average }}</p>
+            <p>Año: {{ pelicula.release_date | date: 'yyyy' }}</p>
+          </div>
         </div>
       </div>
-    }
-  </div>
-
-  <h2>Películas en Cartelera</h2>
-  <div>
-    @for (pelicula of peliculasEnCartelera; track $index) {
-      <div class="movie-card" (click)="verDetalle(pelicula.id)">
-        <h3>{{ pelicula.title }}</h3>
-        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
-        <div class="movie-info">
-          <h3>{{pelicula.title}}</h3>
-          <p>Calificación: {{pelicula.vote_average}}</p>
-          <p>Año: {{pelicula.release_date | date:'yyyy'}}</p>
-        </div>
-      </div>
-    }
-  </div>
-
-  <h2>Películas Mejor Calificadas</h2>
-  <div>
-    @for (pelicula of peliculasMejorCalificadas; track $index) {
-      <div class="movie-card" (click)="verDetalle(pelicula.id)">
-        <h3>{{ pelicula.title }}</h3>
-        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
-        <div class="movie-info">
-          <h3>{{pelicula.title}}</h3>
-          <p>Calificación: {{pelicula.vote_average}}</p>
-          <p>Año: {{pelicula.release_date | date:'yyyy'}}</p>
-        </div>
-      </div>
-    }
-  </div>
-
-  <h2>Próximos Estrenos</h2>
-  <div>
-    @for (pelicula of peliculasProximas; track $index) {
-      <div class="movie-card" (click)="verDetalle(pelicula.id)">
-        <h3>{{ pelicula.title }}</h3>
-        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
-        <div class="movie-info">
-          <h3>{{pelicula.title}}</h3>
-          <p>Calificación: {{pelicula.vote_average}}</p>
-          <p>Año: {{pelicula.release_date | date:'yyyy'}}</p>
-        </div>
-      </div>
-    }
+      <button class="carousel-btn right" (click)="scrollRight(categoria.index)">→</button>
+    </div>
   </div>
 </ng-template>

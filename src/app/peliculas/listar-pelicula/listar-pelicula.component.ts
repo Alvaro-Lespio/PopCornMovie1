@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Pelicula } from '../interface/pelicula.interface';
 import { PeliculaService } from '../servicio/pelicula.service';
 import { CommonModule } from '@angular/common';
@@ -18,6 +18,27 @@ export class ListarPeliculaComponent implements OnInit{
   peliculasEnCartelera: Pelicula[] = [];
   peliculasMejorCalificadas: Pelicula[] = [];
   peliculasProximas: Pelicula[] = [];
+
+  // Selecciona todos los elementos de carrusel en el HTML usando @ViewChildren
+  @ViewChildren('carousel') carousels!: QueryList<ElementRef>;
+
+  // Método para desplazar hacia la izquierda
+  scrollLeft(carouselIndex: number) {
+    const carousel = this.carousels.toArray()[carouselIndex].nativeElement;
+    carousel.scrollBy({
+      left: -carousel.offsetWidth,
+      behavior: 'smooth'
+    });
+  }
+
+  // Método para desplazar hacia la derecha
+  scrollRight(carouselIndex: number) {
+    const carousel = this.carousels.toArray()[carouselIndex].nativeElement;
+    carousel.scrollBy({
+      left: carousel.offsetWidth,
+      behavior: 'smooth'
+    });
+  }
 
   peliculaService = inject(PeliculaService);
   router = inject(Router);
