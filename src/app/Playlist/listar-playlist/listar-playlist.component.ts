@@ -3,6 +3,7 @@ import { Playlist } from '../interface/Playlist.interface';
 import { UsuarioService } from '../../usuario/servicio/usuario.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-playlist',
@@ -12,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './listar-playlist.component.css'
 })
 export class ListarPlaylistComponent implements OnInit{
+  
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       this.listarPlaylist();
@@ -20,7 +22,7 @@ export class ListarPlaylistComponent implements OnInit{
   
   usuarioService = inject(UsuarioService);
   playlists: Playlist[] = [];
-
+  router = inject(Router)
   listarPlaylist(){
       const userId = localStorage.getItem('userId')?.toString();
       if(userId !== undefined){
@@ -51,6 +53,10 @@ export class ListarPlaylistComponent implements OnInit{
         }
       })
     }
+  }
+
+  verPlaylist(playlistId: number){
+    this.router.navigateByUrl(`/playlist/${playlistId}`);
   }
  
   }

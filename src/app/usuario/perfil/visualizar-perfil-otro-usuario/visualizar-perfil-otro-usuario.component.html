@@ -9,6 +9,7 @@
     <h3>Playlists:</h3>
     <ul *ngIf="usuario.playlists.length > 0; else noPlaylists">
       <li *ngFor="let playlist of usuario.playlists">{{ playlist.nombre }}</li>
+      <button>Ver playlist</button>
     </ul>
     <ng-template #noPlaylists>
       <p>Este usuario no tiene playlists.</p>

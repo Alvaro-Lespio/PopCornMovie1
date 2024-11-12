@@ -63,6 +63,7 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
       }
     });
   }
+  
   //Esto lo usamos mas que nada para cambiar el texto del HTML
   esUsuarioSeguido(): boolean {
     if (typeof window === 'undefined') return false;

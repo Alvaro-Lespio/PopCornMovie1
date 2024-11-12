@@ -4,8 +4,8 @@
     <ul>
       <li *ngFor="let playlist of playlists">
         <h3>{{ playlist.nombre }}</h3>
-        <p>ID de la playlist: {{ playlist.id }}</p>
         <button (click)="eliminarPlaylist(playlist.id)">Eliminar playlist</button>
+        <button (click)="verPlaylist(playlist.id)">Ver playlist</button>
       </li>
     </ul>
   </div>

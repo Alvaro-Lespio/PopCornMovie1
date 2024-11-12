@@ -12,6 +12,7 @@ import { ListarPerfilesComponent } from './usuario/perfil/listar-perfiles/listar
 import { VisualizarPerfilOtroUsuarioComponent } from './usuario/perfil/visualizar-perfil-otro-usuario/visualizar-perfil-otro-usuario.component';
 import { VisualizarPerfilComponent } from './usuario/perfil/visualizar-perfil/visualizar-perfil.component';
 import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
+import { DetallePlaylistComponent } from './Playlist/detalle-playlist/detalle-playlist.component';
 
 
 export const routes: Routes = [
@@ -31,6 +32,10 @@ export const routes: Routes = [
     {
         path:"playlist",
         component:AgregarPlaylistComponent
+    },
+    {
+        path:"playlist/:id",
+        component:DetallePlaylistComponent
     },
     {
         path:"playlistList",

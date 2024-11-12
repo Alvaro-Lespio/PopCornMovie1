@@ -122,7 +122,26 @@ export class UsuarioService {
       });
     });
   }
-  
+
+  getDetailOfPlaylist(userId: string, playlistId: number): Observable<Playlist> {
+    return new Observable<Playlist>((observer) => {
+      this.getUsuarioById(userId).subscribe({
+        next: (user: Usuario) => {
+          const playlist = user.playlists.find(p => p.id === playlistId);
+          if (playlist) {
+            observer.next(playlist); 
+            observer.complete();
+          } else {
+            observer.error(new Error('Playlist no encontrada'));
+          }
+        },
+        error: (e: Error) => {
+          observer.error(e);
+        }
+      });
+    });
+  }
+
 }
 
   
