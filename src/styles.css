@@ -6,9 +6,6 @@
   --color-texto: #fff;
   --color-fondo: #071c44;
 }
-
-
-
 .footer {
   background-color: #020027;
   color: var(--color-texto);
@@ -17,7 +14,7 @@
   position: relative;
   bottom: 0;
   width: 100%;
-  margin-top: 20px;
+  margin-top: auto;
   border-radius: 10px;
 }
 

@@ -1,0 +1,49 @@
+.agregar-playlist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  color: white;
+}
+
+.agregar-playlist-container h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.agregar-playlist-container input[type="text"] {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 0.5rem;
+  box-sizing: border-box;
+}
+
+.agregar-playlist-container .error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  text-align: left;
+  width: 100%;
+}
+
+.agregar-playlist-container button {
+  padding: 1rem;
+  background-color: red;
+  color: white;
+  font-size: 1.2rem;
+  font-family: 'Oswald', sans-serif;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.agregar-playlist-container button:hover {
+  background-color: #b30000;
+}
