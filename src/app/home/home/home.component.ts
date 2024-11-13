@@ -3,7 +3,7 @@ import { LoginUsuarioComponent } from "../../usuario/login-usuario/login-usuario
 import { Pelicula } from '../../peliculas/interface/pelicula.interface';
 import { BusquedaPeliculaComponent } from "../../peliculas/busqueda-pelicula/busqueda-pelicula.component";
 import { ListarPeliculaComponent } from "../../peliculas/listar-pelicula/listar-pelicula.component";
-import { PeliculaService } from '../../peliculas/servicio/pelicula.service';
+import { PeliculaService } from '../../peliculas/Service/pelicula.service';
 
 @Component({
   selector: 'app-home',

@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Playlist } from '../interface/Playlist.interface';
 import { ActivatedRoute } from '@angular/router';
-import { UsuarioService } from '../../usuario/servicio/usuario.service';
-import { PeliculaService } from '../../peliculas/servicio/pelicula.service';
+import { UsuarioService } from '../../usuario/Service/usuario.service';
+import { PeliculaService } from '../../peliculas/Service/pelicula.service';
 import { PlaylistService } from '../Service/playlist.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';

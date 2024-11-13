@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Usuario } from '../../interface/Usuario.interface';
-import { UsuarioService } from '../../servicio/usuario.service';
+import { UsuarioService } from '../../Service/usuario.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';

@@ -14,6 +14,7 @@ import { VisualizarPerfilComponent } from './usuario/perfil/visualizar-perfil/vi
 import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
 import { DetallePlaylistComponent } from './Playlist/detalle-playlist/detalle-playlist.component';
 import { ActualizarPlaylistComponent } from './Playlist/actualizar-playlist/actualizar-playlist.component';
+import { ActualizarPerfilComponent } from './usuario/perfil/actualizar-perfil/actualizar-perfil.component';
 
 
 export const routes: Routes = [
@@ -67,6 +68,10 @@ export const routes: Routes = [
     {
         path: "perfil/:id",
         component: VisualizarPerfilOtroUsuarioComponent
+    },
+    {
+        path: "actualizarPerfil",
+        component: ActualizarPerfilComponent
     },
     {
         path: "perfil",

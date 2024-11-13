@@ -1,5 +1,6 @@
 <div *ngIf="usuario">
   <h2 class="h2">Perfil de {{ usuario.username }}</h2>
+  <button (click)="editarPerfil()">Editar Perfil</button>
   <p class="h2"><strong>Nombre completo:</strong> {{ usuario.nombreCompleto }}</p>
   <p class="h2"><strong>Email:</strong> {{ usuario.email }}</p>
 
@@ -16,7 +17,7 @@
     <li *ngFor="let c of usuario.peliculasCalificadas">Calificacion: {{ c.calificacion }} Pelicula: {{c.nombrePelicula}}</li>
   </ul>
  <ng-template #noCalificaciones>
-    <p>Este usuario no tiene playlists.</p>
+    <p>Este usuario no tiene peliculas calificadas.</p>
   </ng-template>
 </div>
 

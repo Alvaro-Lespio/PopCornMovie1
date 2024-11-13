@@ -2,10 +2,10 @@
   "usuarios": [
     {
       "id": "27ac",
-      "username": "alvaro",
+      "username": "alvaro2",
       "password": "123456",
-      "nombreCompleto": "alvaro",
-      "email": "alvaro@alvaro",
+      "nombreCompleto": "alvaro lespi",
+      "email": "alvarito@alvarito",
       "playlists": [
         {
           "id": 260028,
@@ -44,7 +44,13 @@
       "password": "123456",
       "nombreCompleto": "ivan",
       "email": "ivan@ivan",
-      "playlists": [],
+      "playlists": [
+        {
+          "id": 323971,
+          "nombre": "dsadas",
+          "peliculas": []
+        }
+      ],
       "peliculasCalificadas": [],
       "comentarios": [],
       "usuariosSeguidos": [],

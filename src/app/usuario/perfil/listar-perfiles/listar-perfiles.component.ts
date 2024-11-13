@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { UsuarioService } from '../../servicio/usuario.service';
+import { UsuarioService } from '../../Service/usuario.service';
 import { Router, RouterModule } from '@angular/router';
 import { Usuario } from '../../interface/Usuario.interface';
 import { CommonModule } from '@angular/common';

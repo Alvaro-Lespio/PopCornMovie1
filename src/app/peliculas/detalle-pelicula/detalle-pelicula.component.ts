@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { PeliculaService } from '../servicio/pelicula.service';
+import { PeliculaService } from '../Service/pelicula.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PlaylistService } from '../../Playlist/Service/playlist.service';
-import { UsuarioService } from '../../usuario/servicio/usuario.service';
+import { UsuarioService } from '../../usuario/Service/usuario.service';
 import { Playlist } from '../../Playlist/interface/Playlist.interface';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PeliculaCalificada } from '../../PeliculaCalificada/interface/interface/PeliculaCalificada.interface';

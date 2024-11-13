@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Usuario } from '../../usuario/interface/Usuario.interface';
 import { Observable } from 'rxjs';
-import { UsuarioService } from '../../usuario/servicio/usuario.service';
+import { UsuarioService } from '../../usuario/Service/usuario.service';
 import { Playlist } from '../interface/Playlist.interface';
 
 @Injectable({

@@ -1,6 +1,6 @@
 import { Component, ElementRef, inject, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Pelicula } from '../interface/pelicula.interface';
-import { PeliculaService } from '../servicio/pelicula.service';
+import { PeliculaService } from '../Service/pelicula.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Pelicula } from '../interface/pelicula.interface';
-import { PeliculaService } from '../servicio/pelicula.service';
+import { PeliculaService } from '../Service/pelicula.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({

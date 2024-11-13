@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UsuarioService } from '../../usuario/servicio/usuario.service';
+import { UsuarioService } from '../../usuario/Service/usuario.service';
 import { Playlist } from '../interface/Playlist.interface';
 
 @Component({

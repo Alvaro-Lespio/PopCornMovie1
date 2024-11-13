@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { UsuarioService } from '../../servicio/usuario.service';
+import { UsuarioService } from '../../Service/usuario.service';
 import { Usuario } from '../../interface/Usuario.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -24,7 +24,7 @@ export class VisualizarPerfilComponent implements OnInit {
   usuarioService = inject(UsuarioService);
   usuario: Usuario | null = null;
   userId: string | null = null;
-
+  routes = inject(Router)
   verPerfilUsuario(userId: string): void {
     this.usuarioService.getUsuarioById(userId).subscribe({
       next: (usuario: Usuario) => {
@@ -35,5 +35,9 @@ export class VisualizarPerfilComponent implements OnInit {
         alert('Hubo un error al cargar el perfil del usuario.');
       }
     });
+  }
+
+  editarPerfil(){
+    this.routes.navigateByUrl('actualizarPerfil');
   }
 }
