@@ -1,5 +1,5 @@
 <div *ngIf="usuarios.length > 0; else noUsuarios">
-    <h2>Listado de Usuarios</h2>
+    <h2 class="h2">Listado de Usuarios</h2>
     <ul>
       <li *ngFor="let usuario of usuarios"  style="list-style-type: none;">
         <div *ngIf="usuario.id !== userIdSesion">

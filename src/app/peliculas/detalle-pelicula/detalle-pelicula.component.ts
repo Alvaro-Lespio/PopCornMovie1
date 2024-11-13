@@ -6,6 +6,7 @@ import { PlaylistService } from '../../Playlist/Service/playlist.service';
 import { UsuarioService } from '../../usuario/servicio/usuario.service';
 import { Playlist } from '../../Playlist/interface/Playlist.interface';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PeliculaCalificada } from '../../PeliculaCalificada/interface/interface/PeliculaCalificada.interface';
 
 @Component({
   selector: 'app-detalle-pelicula',
@@ -16,16 +17,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class DetallePeliculaComponent implements OnInit{
 
-  pelicula: any;
-  genresFormatted = '';
-  playlists: Playlist[] = []; 
-
-
   route = inject(ActivatedRoute);
   router = inject(Router);
   playlistService = inject(PlaylistService)  
   peliculaService = inject(PeliculaService);
   usuarioService = inject(UsuarioService);
+
+
+  pelicula: any;
+  genresFormatted = '';
+  playlists: Playlist[] = []; 
+  calificacion: number = 0; 
+  hoverCalificacion: number = 0; 
   playlistId: number | null = null;
   userId : string = '';
   
@@ -51,9 +54,6 @@ export class DetallePeliculaComponent implements OnInit{
     }
   }
 
-
-
-
   volverALista() {
     this.router.navigate(['/listar-pelicula']);
   }
@@ -72,4 +72,30 @@ export class DetallePeliculaComponent implements OnInit{
       console.error('No se ha seleccionado ninguna playlist.');
     }
   }
+
+  
+  calificar(estrella: number) {
+    this.calificacion = estrella;
+  }
+
+  calificarPelicula() {
+      const nuevaCalificacion: PeliculaCalificada = {
+      peliculaId: this.pelicula.id,
+      nombrePelicula: this.pelicula.title,
+      userId: this.userId,
+      calificacion: this.calificacion,
+      fechaDeCalificacion: new Date(),
+    };
+  
+    this.usuarioService.calificarPeliculaEnUsuario(this.userId, nuevaCalificacion).subscribe({
+      next: () => {
+        alert('Calificación guardada exitosamente en el usuario.');
+      },
+      error: (error) => {
+        console.error('Error al guardar la calificación en el usuario:', error);
+      }
+    });
+  }
+
+
 }

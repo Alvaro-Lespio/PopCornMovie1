@@ -77,3 +77,18 @@
   color: var(--color-texto);
   margin-top: 20px;
 }
+
+.estrellas {
+  display: flex;
+  gap: 5px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.estrellas span {
+  color: #d3d3d3; /* Color gris para estrellas no seleccionadas */
+}
+
+.estrellas span.selected {
+  color: gold; /* Color dorado para estrellas seleccionadas */
+}

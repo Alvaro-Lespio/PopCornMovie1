@@ -14,6 +14,7 @@
     <ng-template #noPlaylists>
       <p>Este usuario no tiene playlists.</p>
     </ng-template>
+
     <h3>Seguidores</h3>
     <ul *ngIf="usuario.usuariosSeguidos.length > 0; else noSeguidores">
       <li>{{usuario.usuariosSeguidos.length}}</li>
@@ -21,8 +22,17 @@
     <ng-template #noSeguidores>
       <p>Este usuario no tiene pseguidores.</p>
     </ng-template>
+
+    <h3>Calificaciones:</h3>
+    <ul *ngIf="usuario.peliculasCalificadas.length > 0; else noCalificaciones">
+      <li *ngFor="let c of usuario.peliculasCalificadas">Calificaciones: {{ c.calificacion }} Pelicula: {{c.nombrePelicula}}</li>
+    </ul>
+    <ng-template #noCalificaciones>
+      <p>Este usuario no tiene playlists.</p>
+    </ng-template>
+
   </div>
-  
+
   <div *ngIf="!usuario">
     <p>Cargando perfil...</p>
   </div>

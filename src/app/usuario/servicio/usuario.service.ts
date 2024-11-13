@@ -177,32 +177,44 @@ export class UsuarioService {
   }
 
   
-  calificarPelicula(calificacion: PeliculaCalificada): Observable<PeliculaCalificada> {
-    return this.http.post<PeliculaCalificada>(`${this.baseUrl}/peliculasCalificadas`, calificacion);
+  calificarPeliculaEnUsuario(userId: string, calificacion: PeliculaCalificada): Observable<Usuario> {
+    // Obtener el usuario por ID
+    const userById = this.getUsuarioById(userId);
+  
+    userById.subscribe({
+      next: (user: Usuario) => {
+        // Verificar si ya existe una calificación para la misma película
+        const existingCalificacion = user.peliculasCalificadas.find(c => c.peliculaId === calificacion.peliculaId);
+  
+        if (existingCalificacion) {
+          // Si ya existe, actualiza la calificación y la fecha
+          existingCalificacion.calificacion = calificacion.calificacion;
+          existingCalificacion.fechaDeCalificacion = calificacion.fechaDeCalificacion;
+        } else {
+          // Si no existe, añade la nueva calificación
+          user.peliculasCalificadas.push(calificacion);
+        }
+  
+        // Actualizar el usuario con la nueva calificación
+        this.updateUsuario(user).subscribe({
+          next: () => {
+            alert('Calificación guardada exitosamente.');
+          },
+          error: (error) => {
+            console.error('Error al actualizar el usuario:', error);
+          }
+        });
+      },
+      error: (error) => {
+        console.error('Error al obtener el usuario:', error);
+      }
+    });
+  
+    return userById;
   }
 
-  
-  obtenerCalificacionesPorPelicula(peliculaId: number): Observable<PeliculaCalificada[]> {
-    return this.http.get<PeliculaCalificada[]>(`${this.baseUrl}/peliculasCalificadas?peliculaId=${peliculaId}`);
-  }
-
-  
-  obtenerCalificacionesPorUsuario(userId: string): Observable<PeliculaCalificada[]> {
-    return this.http.get<PeliculaCalificada[]>(`${this.baseUrl}/peliculasCalificadas?userId=${userId}`);
-  }
-
-  
-  actualizarCalificacion(id: number, calificacion: PeliculaCalificada): Observable<PeliculaCalificada> {
-    return this.http.put<PeliculaCalificada>(`${this.baseUrl}/peliculasCalificadas/${id}`, calificacion);
-  }
-
-  
-  eliminarCalificacion(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/peliculasCalificadas/${id}`);
-  }
 
 
-  
 
 
 }

@@ -16,6 +16,35 @@
           ]
         }
       ],
+      "peliculasCalificadas": [
+        {
+          "peliculaId": 1184918,
+          "userId": "27ac",
+          "calificacion": 5,
+          "fechaDeCalificacion": "2024-11-13T02:03:51.343Z"
+        },
+        {
+          "peliculaId": 1034541,
+          "nombrePelicula": "Terrifier 3",
+          "userId": "27ac",
+          "calificacion": 1,
+          "fechaDeCalificacion": "2024-11-13T02:16:29.251Z"
+        }
+      ],
+      "comentarios": [],
+      "usuariosSeguidos": [
+        "c2ba"
+      ],
+      "peliculasVistas": [],
+      "peliculasMeGusta": []
+    },
+    {
+      "id": "c2ba",
+      "username": "ivan",
+      "password": "123456",
+      "nombreCompleto": "ivan",
+      "email": "ivan@ivan",
+      "playlists": [],
       "peliculasCalificadas": [],
       "comentarios": [],
       "usuariosSeguidos": [],

@@ -1,0 +1,10 @@
+.h2{
+    font-family: 'Oswald',sans-serif;
+    color: var(--color-texto);
+  }
+  
+  .h3{
+    font-family: 'Lato';
+    color: var(--color-texto);
+  }
+  
