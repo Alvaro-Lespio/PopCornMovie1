@@ -1,12 +1,14 @@
-<div class="playlist-container">
+<div class="playlist-container"> 
   <h2>Mis Playlists</h2>
   <div *ngIf="playlists.length === 0">No tienes playlists disponibles.</div>
   <ul>
     <li *ngFor="let playlist of playlists">
       <h3>{{ playlist.nombre }}</h3>
-      <button *ngIf="!playlist.esMeGusta" (click)="eliminarPlaylist(playlist.id)">Eliminar playlist</button>
       <button (click)="verPlaylist(playlist.id)">Ver playlist</button>
-      <button *ngIf="!playlist.esMeGusta" (click)="actualizarPlaylist(playlist.id)">Actualizar playlist</button>
+      <ng-container *ngIf="!playlist.esPeliculasVistas">
+        <button *ngIf="!playlist.esMeGusta" (click)="eliminarPlaylist(playlist.id)">Eliminar playlist</button>
+        <button *ngIf="!playlist.esMeGusta" (click)="actualizarPlaylist(playlist.id)">Actualizar playlist</button>
+      </ng-container>
     </li>
   </ul>
 </div>
