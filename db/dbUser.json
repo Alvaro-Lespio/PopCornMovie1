@@ -1,65 +1,77 @@
 {
   "usuarios": [
     {
-      "id": "27ac",
-      "username": "alvaro2",
+      "id": "daaa",
+      "username": "alvaro",
       "password": "123456",
-      "nombreCompleto": "alvaro lespio",
-      "email": "alvarito@alvarito",
+      "nombreCompleto": "alvaro",
+      "email": "alvaro@alvaro",
       "playlists": [
         {
-          "id": 260028,
-          "nombre": "asdsadasd",
+          "id": 828534,
+          "nombre": "Me Gusta",
+          "peliculas": [],
+          "esMeGusta": true
+        },
+        {
+          "id": 660209,
+          "nombre": "cuchi",
           "peliculas": [
-            1034541
+            533535
           ]
-        },
-        {
-          "id": 692820,
-          "nombre": "asda",
-          "peliculas": []
         }
       ],
-      "peliculasCalificadas": [
-        {
-          "peliculaId": 1184918,
-          "userId": "27ac",
-          "calificacion": 5,
-          "fechaDeCalificacion": "2024-11-13T02:03:51.343Z"
-        },
-        {
-          "peliculaId": 1034541,
-          "nombrePelicula": "Terrifier 3",
-          "userId": "27ac",
-          "calificacion": 1,
-          "fechaDeCalificacion": "2024-11-13T02:16:29.251Z"
-        },
-        {
-          "peliculaId": 912649,
-          "nombrePelicula": "Venom: El último baile",
-          "userId": "27ac",
-          "calificacion": 5,
-          "fechaDeCalificacion": "2024-11-13T17:19:28.102Z"
-        }
-      ],
+      "peliculasCalificadas": [],
       "comentarios": [],
-      "usuariosSeguidos": [
-        "c2ba"
-      ],
+      "usuariosSeguidos": [],
       "peliculasVistas": [],
       "peliculasMeGusta": []
     },
     {
-      "id": "c2ba",
+      "id": "077d",
       "username": "ivan",
       "password": "123456",
       "nombreCompleto": "ivan",
       "email": "ivan@ivan",
       "playlists": [
         {
-          "id": 323971,
-          "nombre": "dsadas",
-          "peliculas": []
+          "id": 77205,
+          "nombre": "Me Gusta",
+          "peliculas": [
+            533535,
+            933260
+          ],
+          "esMeGusta": true
+        },
+        {
+          "id": 59064,
+          "nombre": "cuchi",
+          "peliculas": [
+            933260
+          ]
+        }
+      ],
+      "peliculasCalificadas": [],
+      "comentarios": [],
+      "usuariosSeguidos": [],
+      "peliculasVistas": [],
+      "peliculasMeGusta": []
+    },
+    {
+      "id": "538d",
+      "username": "franco",
+      "password": "123456",
+      "nombreCompleto": "franco",
+      "email": "franco@franco",
+      "playlists": [
+        {
+          "id": 104286,
+          "nombre": "Me Gusta",
+          "peliculas": [
+            1034541,
+            933260
+          ],
+          "esMeGusta": true
         }
       ],
       "peliculasCalificadas": [],

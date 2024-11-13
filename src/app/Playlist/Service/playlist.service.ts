@@ -114,6 +114,72 @@ export class PlaylistService {
       });
     });
   }
+
+  addMovieToMeGusta(userId: string, movieId: number): Observable<Usuario> {
+  return new Observable<Usuario>((observer) => {
+    // Obtener el usuario completo
+    this.usuarioService.getUsuarioById(userId).subscribe({
+      next: (user) => {
+        // Encontrar la playlist "Me Gusta" dentro del usuario
+        const playlistMeGusta = user.playlists.find(p => p.esMeGusta);
+
+        if (playlistMeGusta && !playlistMeGusta.peliculas.includes(movieId)) {
+          // Agregar la película a la playlist "Me Gusta"
+          playlistMeGusta.peliculas.push(movieId);
+
+          // Guardar la actualización en el usuario
+          this.usuarioService.updateUsuario(user).subscribe({
+            next: (updatedUser) => {
+              observer.next(updatedUser);
+              observer.complete();
+              alert('Película agregada a Me Gusta.');
+            },
+            error: (e) => observer.error(e)
+          });
+        } else {
+          observer.error(new Error('Película ya está en Me Gusta o playlist no encontrada.'));
+        }
+      },
+      error: (e) => observer.error(e)
+    });
+  });
+}
+
+deleteMovieFromMeGusta(userId: string, movieId: number): Observable<Usuario> {
+  return new Observable<Usuario>((observer) => {
+    // Obtener el usuario completo
+    this.usuarioService.getUsuarioById(userId).subscribe({
+      next: (user) => {
+        // Encontrar la playlist "Me Gusta" dentro del usuario
+        const playlistMeGusta = user.playlists.find(p => p.esMeGusta);
+
+        if (playlistMeGusta) {
+          const movieIndex = playlistMeGusta.peliculas.indexOf(movieId);
+          
+          if (movieIndex !== -1) {
+            // Eliminar la película de la playlist "Me Gusta"
+            playlistMeGusta.peliculas.splice(movieIndex, 1);
+
+            // Guardar la actualización en el usuario
+            this.usuarioService.updateUsuario(user).subscribe({
+              next: (updatedUser) => {
+                observer.next(updatedUser);
+                observer.complete();
+                alert('Película eliminada de Me Gusta.');
+              },
+              error: (e) => observer.error(e)
+            });
+          } else {
+            observer.error(new Error('Película no encontrada en Me Gusta.'));
+          }
+        } else {
+          observer.error(new Error('Playlist Me Gusta no encontrada.'));
+        }
+      },
+      error: (e) => observer.error(e)
+    });
+  });
+}
 }
 
 

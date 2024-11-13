@@ -73,3 +73,6 @@ export class ActualizarPerfilComponent implements OnInit {
     });
   }
 }
+
+
+

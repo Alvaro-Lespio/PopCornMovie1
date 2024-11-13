@@ -4,6 +4,7 @@ import { UsuarioService } from '../../usuario/Service/usuario.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PlaylistService } from '../Service/playlist.service';
 
 @Component({
   selector: 'app-listar-playlist',
@@ -21,8 +22,10 @@ export class ListarPlaylistComponent implements OnInit{
   }
   
   usuarioService = inject(UsuarioService);
+  playlistService = inject(PlaylistService);
   playlists: Playlist[] = [];
   router = inject(Router)
+
   listarPlaylist(){
     const userId = localStorage.getItem('userId')?.toString();
       if(userId !== undefined){
@@ -30,6 +33,7 @@ export class ListarPlaylistComponent implements OnInit{
         this.usuarioService.getPlaylistsOfUser(userId).subscribe({
           next: (playlists: Playlist[]) => {
             this.playlists = playlists;
+            
           },
           error: (e: Error) => {
             console.error('Error al obtener las playlists:', e.message);
@@ -69,6 +73,22 @@ export class ListarPlaylistComponent implements OnInit{
 
   agregarPlaylist(){
     this.router.navigateByUrl('/playlist');
+  }
+  
+  addToMeGusta(movieId: number) {
+    const userId = localStorage.getItem('userId')?.toString();
+    if (userId) {
+      this.playlistService.addMovieToMeGusta(userId, movieId).subscribe({
+        next: () => {
+          alert('Película agregada a "Me Gusta".');
+        },
+        error: (e: Error) => {
+          console.error('Error al agregar a "Me Gusta":', e.message);
+        }
+      });
+    } else {
+      console.error("No se encontró un userId en el localStorage.");
+    }
   }
   }
 

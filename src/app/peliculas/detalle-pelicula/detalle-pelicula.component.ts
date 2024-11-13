@@ -96,6 +96,21 @@ export class DetallePeliculaComponent implements OnInit{
       }
     });
   }
-
+  addToMeGusta(movieId: number) {
+    const userId = localStorage.getItem('userId')?.toString();
+  
+    if (userId) {
+      this.playlistService.addMovieToMeGusta(userId, movieId).subscribe({
+        next: () => {
+          alert('Película añadida a "Me Gusta" exitosamente.');
+        },
+        error: (e: Error) => {
+          console.error('Error al añadir la película:', e.message);
+        }
+      });
+    } else {
+      console.error('No se encontró el ID de usuario en localStorage.');
+    }
+  }
 
 }

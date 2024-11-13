@@ -23,11 +23,24 @@ export class UsuarioService {
   getUsuarioById(id: string | undefined): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.baseUrl}/${id}`);
   }
-
+  generarIdNumerico(): number {
+    return Math.floor(Math.random() * 1000000);
+  }
   // Crear un nuevo usuario
   createUsuario(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.baseUrl, usuario)
+    // Generar la playlist "Me Gusta" única para el usuario
+    const meGustaPlaylist: Playlist = {
+      id: this.generarIdNumerico(), // Usa un timestamp o algún generador de ID único
+      nombre: 'Me Gusta',
+      peliculas: [],
+      esMeGusta: true
+    };
 
+    // Agregar la playlist "Me Gusta" al usuario
+    usuario.playlists = usuario.playlists ? [...usuario.playlists, meGustaPlaylist] : [meGustaPlaylist];
+
+    // Enviar la solicitud de creación del usuario al servidor
+    return this.http.post<Usuario>(this.baseUrl, usuario);
   }
 
   // Actualizar un usuario existente
@@ -213,7 +226,18 @@ export class UsuarioService {
     return userById;
   }
 
-
+  obtenerPlaylistMeGusta(userId: string): Observable<Playlist | undefined> {
+    return new Observable<Playlist | undefined>((observer) => {
+      this.getUsuarioById(userId).subscribe({
+        next: (user) => {
+          const meGusta = user.playlists.find(p => p.esMeGusta);
+          observer.next(meGusta);
+          observer.complete();
+        },
+        error: (e) => observer.error(e)
+      });
+    });
+  }
 
 
 
