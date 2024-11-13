@@ -1,0 +1,84 @@
+.profile-container {
+  width: 400px;
+  padding: 35px;
+  background-color: var(--color-fondo);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin: 0 auto;
+  font-family: 'Oswald',sans-serif
+}
+
+.profile-container h2 {
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.user-info,
+.playlists,
+.ratings {
+  margin-bottom: 20px;
+  font-family: 'Oswald', sans-serif;
+}
+
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--color-button);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+button:hover {
+  background-color: #ff3b3f;
+}
+
+button a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.followers h3,
+.playlists h3,
+.ratings h3 {
+  font-size: 18px;
+  color: #ffffff;
+  border-bottom: 2px solid #ff3b3f;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  font-family: 'Oswald', sans-serif;
+}
+
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+ul li {
+  background-color: #1f4068;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+}
+
+p {
+  color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0.8;
+}

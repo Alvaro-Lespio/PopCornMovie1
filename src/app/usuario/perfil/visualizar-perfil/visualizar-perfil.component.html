@@ -1,25 +1,32 @@
-<div *ngIf="usuario">
-  <h2 class="h2">Perfil de {{ usuario.username }}</h2>
-  <button (click)="editarPerfil()">Editar Perfil</button>
-  <p class="h2"><strong>Nombre completo:</strong> {{ usuario.nombreCompleto }}</p>
-  <p class="h2"><strong>Email:</strong> {{ usuario.email }}</p>
+<div class="profile-container" *ngIf="usuario">
+  <h2 >Perfil de {{ usuario.username }}</h2>
+  <div class="user-info">
+      <p class="p"><strong>Nombre completo:</strong> {{ usuario.nombreCompleto }}</p>
+      <p  class="p"><strong>Email:</strong> {{ usuario.email }}</p>
+      <button (click)="editarPerfil()">Editar Perfil</button>
+  </div>
 
-  <h3 class="h3">Playlists:</h3>
-  <ul *ngIf="usuario.playlists.length > 0; else noPlaylists" class="h2">
+  <div class="playlists">
+    <h3 >Playlists:</h3>
+    <ul *ngIf="usuario.playlists.length > 0; else noPlaylists">
     <li *ngFor="let playlist of usuario.playlists">{{ playlist.nombre }}</li>
-  </ul>
-  <ng-template #noPlaylists>
+    </ul>
+    <ng-template #noPlaylists>
     <p>Este usuario no tiene playlists.</p>
-  </ng-template>
+    </ng-template>
+  </div>
 
-  <h3 class="h3">Peliculas Calificadas:</h3>
-  <ul *ngIf="usuario.peliculasCalificadas.length > 0; else noCalificaciones" class="h2">
+  <div class="ratings">
+    <h3 >Peliculas Calificadas:</h3>
+  <ul *ngIf="usuario.peliculasCalificadas.length > 0; else noCalificaciones">
     <li *ngFor="let c of usuario.peliculasCalificadas">Calificacion: {{ c.calificacion }} Pelicula: {{c.nombrePelicula}}</li>
   </ul>
  <ng-template #noCalificaciones>
     <p>Este usuario no tiene peliculas calificadas.</p>
   </ng-template>
 </div>
+  </div>
+
 
 <div *ngIf="!usuario">
   <p>Cargando perfil...</p>

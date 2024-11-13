@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './visualizar-perfil.component.css'
 })
 export class VisualizarPerfilComponent implements OnInit {
-  ngOnInit(): void {  
+  ngOnInit(): void {
       if (typeof window !== 'undefined') {
         this.userId = localStorage.getItem('userId');
       }

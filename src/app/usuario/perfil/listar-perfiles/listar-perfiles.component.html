@@ -1,7 +1,8 @@
-<div *ngIf="usuarios.length > 0; else noUsuarios">
+<div class="usuarios-container">
+  <div *ngIf="usuarios.length > 0; else noUsuarios">
     <h2 class="h2">Listado de Usuarios</h2>
     <ul>
-      <li *ngFor="let usuario of usuarios"  style="list-style-type: none;">
+      <li *ngFor="let usuario of usuarios">
         <div *ngIf="usuario.id !== userIdSesion">
           {{ usuario.username }}
           <button ><a [routerLink]="['/perfil',usuario.id]">Ver perfil</a></button>
@@ -13,4 +14,6 @@
 <ng-template #noUsuarios>
 <p>No se encontraron usuarios.</p>
 </ng-template>
+</div>
+
 

@@ -1,10 +1,8 @@
 :root {
-  --color-primario: #8866a3;
-  --color-secundario: #2900a6;
-  --color-terciario:  linear-gradient(to bottom, #000000, #555555);
   --color-body:  linear-gradient(to right, #040313, #031A39);
   --color-texto: #fff;
-  --color-fondo: #071c44;
+  --color-fondo: #010916;
+  --color-button: #ff0000;
 }
 .footer {
   background-color: #020027;
@@ -53,4 +51,25 @@
 
 .root{
   background: var(--color-body);
+}
+
+/* Estilo global para estructurar el contenido y el footer */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  background-color: #0a0a23; /* Color de fondo del footer */
+  color: white; /* Color del texto */
+  padding: 1rem;
+  text-align: center;
 }
