@@ -30,6 +30,7 @@ export class DetallePeliculaComponent implements OnInit{
   calificacion: number = 0; 
   hoverCalificacion: number = 0; 
   playlistId: number | null = null;
+  esVista: boolean = false; 
   userId : string = '';
   
   ngOnInit(): void {
@@ -44,6 +45,7 @@ export class DetallePeliculaComponent implements OnInit{
       this.peliculaService.getPeliculaById(+id).subscribe((pelicula) => {
         this.pelicula = pelicula;
         this.genresFormatted = pelicula.genres.map((g: any) => g.name).join(', ');
+        this.checkIfPeliculaVista(+id);
       });
 
       if (this.userId) {
@@ -112,5 +114,36 @@ export class DetallePeliculaComponent implements OnInit{
       console.error('No se encontró el ID de usuario en localStorage.');
     }
   }
+  checkIfPeliculaVista(movieId: number) {
+    this.usuarioService.getPlaylistsOfUser(this.userId).subscribe((playlists) => {
+      const peliculasVistasPlaylist = playlists.find(p => p.esPeliculasVistas);
+      if (peliculasVistasPlaylist) {
+        this.esVista = peliculasVistasPlaylist.peliculas.includes(movieId);
+      }
+    });
+  }
+  addToPeliculaVista(movieId: number) {
+    if (this.esVista) {
+      this.playlistService.addMovieToPeliculasVistas(this.userId, movieId).subscribe({
+        next: () => {
+          alert('Película marcada como vista.');
+        },
+        error: (e: Error) => {
+          console.error('Error al marcar la película como vista:', e.message);
+        }
+      });
+    } else {
+      this.playlistService.deleteMovieFromPeliculasVistas(this.userId, movieId).subscribe({
+        next: () => {
+          alert('Película desmarcada como vista.');
+        },
+        error: (e: Error) => {
+          console.error('Error al desmarcar la película como vista:', e.message);
+        }
+      });
+    }
+  }
+  }
+  
 
-}
+

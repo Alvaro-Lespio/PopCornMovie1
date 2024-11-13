@@ -33,11 +33,20 @@ export class UsuarioService {
       id: this.generarIdNumerico(), // Usa un timestamp o algún generador de ID único
       nombre: 'Me Gusta',
       peliculas: [],
-      esMeGusta: true
+      esMeGusta: true,
+      esPeliculasVistas: false
+    };
+    const peliculasVistasPlaylist: Playlist = {
+      id: this.generarIdNumerico(), // Usa un timestamp o algún generador de ID único
+      nombre: 'Peliculas Vistas',
+      peliculas: [],
+      esMeGusta: false,
+      esPeliculasVistas: true
     };
 
     // Agregar la playlist "Me Gusta" al usuario
     usuario.playlists = usuario.playlists ? [...usuario.playlists, meGustaPlaylist] : [meGustaPlaylist];
+    usuario.playlists = usuario.playlists ? [...usuario.playlists, peliculasVistasPlaylist] : [peliculasVistasPlaylist];
 
     // Enviar la solicitud de creación del usuario al servidor
     return this.http.post<Usuario>(this.baseUrl, usuario);
@@ -232,6 +241,19 @@ export class UsuarioService {
         next: (user) => {
           const meGusta = user.playlists.find(p => p.esMeGusta);
           observer.next(meGusta);
+          observer.complete();
+        },
+        error: (e) => observer.error(e)
+      });
+    });
+  }
+  
+  obtenerPlaylistPeliculasVistas(userId: string): Observable<Playlist | undefined> {
+    return new Observable<Playlist | undefined>((observer) => {
+      this.getUsuarioById(userId).subscribe({
+        next: (user) => {
+          const vista = user.playlists.find(p => p.esPeliculasVistas);
+          observer.next(vista);
           observer.complete();
         },
         error: (e) => observer.error(e)

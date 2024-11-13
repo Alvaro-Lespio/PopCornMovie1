@@ -1,80 +1,39 @@
 {
   "usuarios": [
     {
-      "id": "daaa",
+      "id": "2945",
       "username": "alvaro",
       "password": "123456",
       "nombreCompleto": "alvaro",
       "email": "alvaro@alvaro",
       "playlists": [
         {
-          "id": 828534,
+          "id": 80353,
           "nombre": "Me Gusta",
           "peliculas": [],
-          "esMeGusta": true
+          "esMeGusta": true,
+          "esPeliculasVistas": false
         },
         {
-          "id": 660209,
-          "nombre": "cuchi",
+          "id": 304627,
+          "nombre": "Peliculas Vistas",
           "peliculas": [
+            1184918,
             533535
-          ]
-        }
-      ],
-      "peliculasCalificadas": [],
-      "comentarios": [],
-      "usuariosSeguidos": [],
-      "peliculasVistas": [],
-      "peliculasMeGusta": []
-    },
-    {
-      "id": "077d",
-      "username": "ivan",
-      "password": "123456",
-      "nombreCompleto": "ivan",
-      "email": "ivan@ivan",
-      "playlists": [
-        {
-          "id": 77205,
-          "nombre": "Me Gusta",
-          "peliculas": [
-            533535,
-            933260
           ],
-          "esMeGusta": true
-        },
-        {
-          "id": 59064,
-          "nombre": "cuchi",
-          "peliculas": [
-            933260
-          ]
+          "esMeGusta": false,
+          "esPeliculasVistas": true
         }
       ],
-      "peliculasCalificadas": [],
-      "comentarios": [],
-      "usuariosSeguidos": [],
-      "peliculasVistas": [],
-      "peliculasMeGusta": []
-    },
-    {
-      "id": "538d",
-      "username": "franco",
-      "password": "123456",
-      "nombreCompleto": "franco",
-      "email": "franco@franco",
-      "playlists": [
+      "peliculasCalificadas": [
         {
-          "id": 104286,
-          "nombre": "Me Gusta",
-          "peliculas": [
-            1034541,
-            933260
-          ],
-          "esMeGusta": true
+          "peliculaId": 845781,
+          "nombrePelicula": "Red One",
+          "userId": "2945",
+          "calificacion": 3,
+          "fechaDeCalificacion": "2024-11-13T19:49:19.695Z"
         }
       ],
-      "peliculasCalificadas": [],
       "comentarios": [],
       "usuariosSeguidos": [],
       "peliculasVistas": [],

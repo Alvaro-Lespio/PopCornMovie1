@@ -180,6 +180,73 @@ deleteMovieFromMeGusta(userId: string, movieId: number): Observable<Usuario> {
     });
   });
 }
+addMovieToPeliculasVistas(userId: string, movieId: number): Observable<Usuario> {
+  return new Observable<Usuario>((observer) => {
+    // Obtener el usuario completo
+    this.usuarioService.getUsuarioById(userId).subscribe({
+      next: (user) => {
+        // Encontrar la playlist "Peliculas Vistas" dentro del usuario
+        const playlistPeliculasVistas = user.playlists.find(p => p.esPeliculasVistas);
+
+        if (playlistPeliculasVistas && !playlistPeliculasVistas.peliculas.includes(movieId)) {
+          // Agregar la película a la playlist "Peliculas Vistas"
+          playlistPeliculasVistas.peliculas.push(movieId);
+
+          // Guardar la actualización en el usuario
+          this.usuarioService.updateUsuario(user).subscribe({
+            next: (updatedUser) => {
+              observer.next(updatedUser);
+              observer.complete();
+              alert('Película agregada a Peliculas Vistas.');
+            },
+            error: (e) => observer.error(e)
+          });
+        } else {
+          observer.error(new Error('Película ya está en Peliculas Vistas o playlist no encontrada.'));
+        }
+      },
+      error: (e) => observer.error(e)
+    });
+  });
+}
+
+deleteMovieFromPeliculasVistas(userId: string, movieId: number): Observable<Usuario> {
+  return new Observable<Usuario>((observer) => {
+    // Obtener el usuario completo
+    this.usuarioService.getUsuarioById(userId).subscribe({
+      next: (user) => {
+        // Encontrar la playlist "Me Gusta" dentro del usuario
+        const peliculasVistas = user.playlists.find(p => p.esPeliculasVistas);
+
+        if (peliculasVistas) {
+          const movieIndex = peliculasVistas.peliculas.indexOf(movieId);
+          
+          if (movieIndex !== -1) {
+            // Eliminar la película de la playlist "Me Gusta"
+            peliculasVistas.peliculas.splice(movieIndex, 1);
+
+            // Guardar la actualización en el usuario
+            this.usuarioService.updateUsuario(user).subscribe({
+              next: (updatedUser) => {
+                observer.next(updatedUser);
+                observer.complete();
+                alert('Película eliminada de Me Gusta.');
+              },
+              error: (e) => observer.error(e)
+            });
+          } else {
+            observer.error(new Error('Película no encontrada en Me Gusta.'));
+          }
+        } else {
+          observer.error(new Error('Playlist Me Gusta no encontrada.'));
+        }
+      },
+      error: (e) => observer.error(e)
+    });
+  });
+}
+
+
 }
 
 

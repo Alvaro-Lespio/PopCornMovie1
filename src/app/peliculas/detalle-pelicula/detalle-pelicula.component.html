@@ -21,13 +21,16 @@
         <option *ngIf="!playlist.esMeGusta" [value]="playlist.id">{{ playlist.nombre }}</option>
       </ng-container>
     </select>
-
     <div class="actions">
       <button class="action-btn" (click)="addToPlaylist(pelicula.id)">Añadir a Playlist</button>
     </div>
     <div class="actions">
       <button class="action-btn" (click)="addToMeGusta(pelicula.id)">Añadir a Me Gusta</button>
     </div>
+    <label>
+      <input type="checkbox" [(ngModel)]="esVista" (change)="addToPeliculaVista(pelicula.id)" />
+      Marcar como vista
+    </label>
 
     <div class="movie-rating">
       <label class="label">Calificar esta película:</label>
