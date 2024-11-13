@@ -1,0 +1,71 @@
+.update-profile-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: var(--color-fondo);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.h2 {
+  text-align: center;
+  color: var(--color-texto);
+  margin-bottom: 20px;
+  font-family: 'Oswald',sans-serif
+}
+
+.label {
+  font-weight: bold;
+  color: var(--color-texto);
+  margin-bottom: 5px;
+  display: block;
+  font-family: 'Oswald',sans-serif
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  outline: none;
+}
+
+.error {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--color-button);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff3b3f;
+}
+
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

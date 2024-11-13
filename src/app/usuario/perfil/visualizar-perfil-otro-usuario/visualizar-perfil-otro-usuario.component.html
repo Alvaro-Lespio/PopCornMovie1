@@ -1,38 +1,47 @@
-<div *ngIf="usuario">
+<div *ngIf="usuario" class="profile-container">
     <h2>Perfil de {{ usuario.username }}</h2>
-    <button (click)="alternarSeguir()">
+    <button class="follow-button" (click)="alternarSeguir()">
       {{ esUsuarioSeguido() ? 'Dejar de seguir' : 'Seguir' }}
     </button>
-    <p><strong>Nombre completo:</strong> {{ usuario.nombreCompleto }}</p>
-    <p><strong>Email:</strong> {{ usuario.email }}</p>
-  
-    <h3>Playlists:</h3>
-    <ul *ngIf="usuario.playlists.length > 0; else noPlaylists">
-      <li *ngFor="let playlist of usuario.playlists">{{ playlist.nombre }}</li>
-      <button>Ver playlist</button>
-    </ul>
-    <ng-template #noPlaylists>
-      <p>Este usuario no tiene playlists.</p>
-    </ng-template>
 
-    <h3>Seguidores</h3>
+    <div class="user-info">
+          <p><strong>Nombre completo:</strong> {{ usuario.nombreCompleto }}</p>
+          <p><strong>Email:</strong> {{ usuario.email }}</p>
+    </div>
+
+    <div class="playlists">
+          <h3>Playlists:</h3>
+          <ul *ngIf="usuario.playlists.length > 0; else noPlaylists">
+         <li *ngFor="let playlist of usuario.playlists">{{ playlist.nombre }}</li>
+         <button>Ver playlist</button>
+        </ul>
+         <ng-template #noPlaylists>
+         <p>Este usuario no tiene playlists.</p>
+         </ng-template>
+    </div>
+
+    <div class="followers">
+          <h3>Seguidores</h3>
     <ul *ngIf="usuario.usuariosSeguidos.length > 0; else noSeguidores">
       <li>{{usuario.usuariosSeguidos.length}}</li>
     </ul>
     <ng-template #noSeguidores>
       <p>Este usuario no tiene pseguidores.</p>
     </ng-template>
+    </div>
 
-    <h3>Calificaciones:</h3>
+    <div class="ratings">
+          <h3>Calificaciones:</h3>
     <ul *ngIf="usuario.peliculasCalificadas.length > 0; else noCalificaciones">
       <li *ngFor="let c of usuario.peliculasCalificadas">Calificaciones: {{ c.calificacion }} Pelicula: {{c.nombrePelicula}}</li>
     </ul>
     <ng-template #noCalificaciones>
       <p>Este usuario no tiene peliculas calificadas.</p>
     </ng-template>
-
+    </div>
   </div>
 
   <div *ngIf="!usuario">
     <p>Cargando perfil...</p>
   </div>
+

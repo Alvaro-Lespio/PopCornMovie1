@@ -44,7 +44,7 @@ export const routes: Routes = [
         component:ListarPlaylistComponent
     },
     {
-        path: 'actualizarPlaylist/:id', 
+        path: 'actualizarPlaylist/:id',
         component: ActualizarPlaylistComponent
     },
     {

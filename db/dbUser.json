@@ -4,16 +4,20 @@
       "id": "27ac",
       "username": "alvaro2",
       "password": "123456",
-      "nombreCompleto": "alvaro lespi",
+      "nombreCompleto": "alvaro lespio",
       "email": "alvarito@alvarito",
       "playlists": [
         {
           "id": 260028,
           "nombre": "asdsadasd",
           "peliculas": [
-            933260,
-            1184918
+            1034541
           ]
+        },
+        {
+          "id": 692820,
+          "nombre": "asda",
+          "peliculas": []
         }
       ],
       "peliculasCalificadas": [
@@ -29,6 +33,13 @@
           "userId": "27ac",
           "calificacion": 1,
           "fechaDeCalificacion": "2024-11-13T02:16:29.251Z"
+        },
+        {
+          "peliculaId": 912649,
+          "nombrePelicula": "Venom: El último baile",
+          "userId": "27ac",
+          "calificacion": 5,
+          "fechaDeCalificacion": "2024-11-13T17:19:28.102Z"
         }
       ],
       "comentarios": [],

@@ -1,4 +1,5 @@
-<div *ngIf="playlist">
+<div class="detalle-playlist-container">
+  <div *ngIf="playlist">
     <h2>{{ playlist.nombre }}</h2>
     <ul>
       <li *ngFor="let pelicula of peliculas">
@@ -10,3 +11,5 @@
   <div *ngIf="errorMessage">
     <p>{{ errorMessage }}</p>
 </div>
+</div>
+
