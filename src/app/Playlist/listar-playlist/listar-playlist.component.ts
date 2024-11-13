@@ -66,6 +66,9 @@ export class ListarPlaylistComponent implements OnInit{
   actualizarPlaylist(playlistId: number){
       this.router.navigateByUrl(`/actualizarPlaylist/${playlistId}`);
   }
- 
+
+  agregarPlaylist(){
+    this.router.navigateByUrl('/playlist');
+  }
   }
 

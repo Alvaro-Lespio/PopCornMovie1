@@ -1,5 +1,6 @@
 <div class="playlist-container">
     <h2>Mis Playlists</h2>
+    <button (click)="agregarPlaylist()">Agregar Playlist</button>
     <div *ngIf="playlists.length === 0">No tienes playlists disponibles.</div>
     <ul>
       <li *ngFor="let playlist of playlists">

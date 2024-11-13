@@ -42,3 +42,19 @@
 .color2{
   color: black;
 }
+
+/* Estilo para el botón de Cerrar Sesión */
+.logout-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background-color: darkred;
+}

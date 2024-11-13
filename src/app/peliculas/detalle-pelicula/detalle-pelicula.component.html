@@ -1,4 +1,6 @@
+<div class="back-button" (click)="volverALista()">←</div>
 <div *ngIf="pelicula" class="movie-detail-container">
+  
   <div class="movie-poster">
     <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
   </div>
@@ -20,7 +22,6 @@
 
     <div class="actions">
       <button class="action-btn" (click)="addToPlaylist(pelicula.id)">Añadir a Playlist</button>
-      <button class="action-btn" (click)="volverALista()">Volver a la Lista</button>
     </div>
 
     <div class="movie-rating">

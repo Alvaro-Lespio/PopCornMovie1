@@ -1,26 +1,38 @@
-/* .h2{
-  font-family: 'Oswald',sans-serif;
-  color: var(--color-texto);
-}
-
-.p{
-  font-family: 'Lato';
-  color: white;
-}
-
-.label{
-  font-family: 'Oswald',sans-serif;
-  color: var(--color-texto);
-} */
 .movie-detail-container {
   display: flex;
   gap: 20px;
   padding: 20px;
   color: white;
+  position: relative;
+}
+
+.back-button {
+  position: absolute; /* Fijo para que esté visible al desplazarse */
+  top: 60px; /* Ajusta este valor según la altura de tu navbar */
+  left: 25px;
+  font-size: 16px;
+  padding: 8px 12px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  z-index: 10; /* Para asegurar que esté encima del contenido pero debajo del navbar */
+}
+
+.back-button:hover {
+  background-color: #666;
 }
 
 .movie-poster img {
-  width: 250px;
+  margin-top: 42px;
+  width: 350px;
   border-radius: 8px;
 }
 
