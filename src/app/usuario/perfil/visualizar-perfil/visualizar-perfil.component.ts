@@ -41,4 +41,9 @@ export class VisualizarPerfilComponent implements OnInit {
   editarPerfil(){
     this.routes.navigateByUrl('actualizarPerfil');
   }
+
+  verPlaylist(playlistId:number){
+    this.routes.navigateByUrl(`playlist/${playlistId}`);
+  }
+
 }

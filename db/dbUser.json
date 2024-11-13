@@ -39,7 +39,9 @@
         }
       ],
       "comentarios": [],
-      "usuariosSeguidos": [],
+      "usuariosSeguidos": [
+        "438d"
+      ],
       "peliculasVistas": [],
       "peliculasMeGusta": []
     },
@@ -63,6 +65,13 @@
           "peliculas": [],
           "esMeGusta": false,
           "esPeliculasVistas": true
+        },
+        {
+          "id": 244075,
+          "nombre": "cuchi",
+          "peliculas": [
+            1184918
+          ]
         }
       ],
       "peliculasCalificadas": [],

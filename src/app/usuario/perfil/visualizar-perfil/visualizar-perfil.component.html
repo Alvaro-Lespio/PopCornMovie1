@@ -12,7 +12,9 @@
       <ng-container *ngFor="let playlist of usuario.playlists">
         <li *ngIf="playlist.nombre !== 'Me Gusta' && playlist.nombre !== 'Peliculas Vistas'">
           {{ playlist.nombre }}
+          <button (click)="verPlaylist(playlist.id)">Ver playlist</button>
         </li>
+       
       </ng-container>
     </ul>
     <ng-template #noPlaylists>
