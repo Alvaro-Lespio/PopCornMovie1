@@ -4,6 +4,7 @@ import { Usuario } from '../interface/Usuario.interface';
 import { Observable } from 'rxjs';
 import { Playlist } from '../../Playlist/interface/Playlist.interface';
 import { environment } from '../../../environments/environment.development';
+import { PeliculaCalificada } from '../../PeliculaCalificada/interface/interface/PeliculaCalificada.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -174,6 +175,35 @@ export class UsuarioService {
 
     return userById;
   }
+
+  
+  calificarPelicula(calificacion: PeliculaCalificada): Observable<PeliculaCalificada> {
+    return this.http.post<PeliculaCalificada>(`${this.baseUrl}/peliculasCalificadas`, calificacion);
+  }
+
+  
+  obtenerCalificacionesPorPelicula(peliculaId: number): Observable<PeliculaCalificada[]> {
+    return this.http.get<PeliculaCalificada[]>(`${this.baseUrl}/peliculasCalificadas?peliculaId=${peliculaId}`);
+  }
+
+  
+  obtenerCalificacionesPorUsuario(userId: string): Observable<PeliculaCalificada[]> {
+    return this.http.get<PeliculaCalificada[]>(`${this.baseUrl}/peliculasCalificadas?userId=${userId}`);
+  }
+
+  
+  actualizarCalificacion(id: number, calificacion: PeliculaCalificada): Observable<PeliculaCalificada> {
+    return this.http.put<PeliculaCalificada>(`${this.baseUrl}/peliculasCalificadas/${id}`, calificacion);
+  }
+
+  
+  eliminarCalificacion(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/peliculasCalificadas/${id}`);
+  }
+
+
+  
+
 
 }
 
