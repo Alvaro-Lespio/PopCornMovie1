@@ -50,7 +50,6 @@ export class ActualizarPlaylistComponent implements OnInit{
 
     const nuevoNombre = this.formulario.value.nombre || '';
 
-    // Llamar al servicio para actualizar el nombre de la playlist
     this.usuarioService.updatePlaylistFromUser(this.userId, Number(this.playlistId), nuevoNombre).subscribe({
       next: () => {
         this.formulario.reset();

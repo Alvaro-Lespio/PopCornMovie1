@@ -1,30 +1,68 @@
 {
   "usuarios": [
     {
-      "id": "5c24",
-      "username": "alvaro",
+      "id": "8781",
+      "username": "alvaro2",
       "password": "123456",
       "nombreCompleto": "alvaro",
       "email": "alvaro@alvaro",
       "playlists": [
         {
-          "id": 575406,
+          "id": 872230,
           "nombre": "Me Gusta",
           "peliculas": [],
           "esMeGusta": true,
           "esPeliculasVistas": false
         },
         {
-          "id": 542277,
+          "id": 617002,
           "nombre": "Peliculas Vistas",
-          "peliculas": [],
+          "peliculas": [
+            1118031
+          ],
           "esMeGusta": false,
           "esPeliculasVistas": true
         },
         {
-          "id": 863400,
-          "nombre": "dsadas",
+          "id": 684298,
+          "nombre": "hola",
           "peliculas": []
+        }
+      ],
+      "peliculasCalificadas": [
+        {
+          "peliculaId": 1184918,
+          "nombrePelicula": "Robot salvaje",
+          "userId": "8781",
+          "calificacion": 3,
+          "fechaDeCalificacion": "2024-11-13T22:45:58.335Z"
+        }
+      ],
+      "comentarios": [],
+      "usuariosSeguidos": [],
+      "peliculasVistas": [],
+      "peliculasMeGusta": []
+    },
+    {
+      "id": "438d",
+      "username": "ivan",
+      "password": "123456",
+      "nombreCompleto": "ivan",
+      "email": "ivan@ivan",
+      "playlists": [
+        {
+          "id": 484130,
+          "nombre": "Me Gusta",
+          "peliculas": [],
+          "esMeGusta": true,
+          "esPeliculasVistas": false
+        },
+        {
+          "id": 302603,
+          "nombre": "Peliculas Vistas",
+          "peliculas": [],
+          "esMeGusta": false,
+          "esPeliculasVistas": true
         }
       ],
       "peliculasCalificadas": [],

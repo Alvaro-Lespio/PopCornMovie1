@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {  Routes } from '@angular/router';
 import { HomeComponent } from './home/home/home.component';
 import { LoginUsuarioComponent } from './usuario/login-usuario/login-usuario.component';
 import { RegistrarUsuarioComponent } from './usuario/registrar-usuario/registrar-usuario.component';
@@ -15,6 +15,9 @@ import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-p
 import { DetallePlaylistComponent } from './Playlist/detalle-playlist/detalle-playlist.component';
 import { ActualizarPlaylistComponent } from './Playlist/actualizar-playlist/actualizar-playlist.component';
 import { ActualizarPerfilComponent } from './usuario/perfil/actualizar-perfil/actualizar-perfil.component';
+
+
+
 
 
 export const routes: Routes = [
@@ -83,3 +86,6 @@ export const routes: Routes = [
         redirectTo:'home'
     }
 ];
+
+
+

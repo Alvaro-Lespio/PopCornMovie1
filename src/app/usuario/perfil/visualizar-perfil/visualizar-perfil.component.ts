@@ -29,6 +29,7 @@ export class VisualizarPerfilComponent implements OnInit {
     this.usuarioService.getUsuarioById(userId).subscribe({
       next: (usuario: Usuario) => {
         this.usuario = usuario;
+        
       },
       error: (e: Error) => {
         console.error('Error al cargar el perfil del usuario:', e.message);

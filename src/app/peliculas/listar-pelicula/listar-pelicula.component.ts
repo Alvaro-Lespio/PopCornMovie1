@@ -46,9 +46,9 @@ export class ListarPeliculaComponent implements OnInit{
   ngOnInit(): void {
     if(!this.peliculas){
       this.cargarPeliculasPopulares();
-  this.cargarPeliculasEnCartelera();
-  this.cargarPeliculasMejorCalificadas();
-  this.cargarPeliculasProximas();
+      this.cargarPeliculasEnCartelera();
+      this.cargarPeliculasMejorCalificadas();
+      this.cargarPeliculasProximas();
   }}
 
   verDetalle(id: number){

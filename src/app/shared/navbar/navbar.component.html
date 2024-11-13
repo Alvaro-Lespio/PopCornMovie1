@@ -1,9 +1,9 @@
 <nav class="nav">
   <ul class="left">
-    <li><a routerLink="home"><span class="color1">PopCorn</span><span class="color2">Movie</span></a></li>
+    <li><a (click)="irAHome()"><span class="color1">PopCorn</span><span class="color2">Movie</span></a></li>
   </ul>
   <ul class="right">
-    <li><a routerLink="home">Home</a></li>
+    <li><a (click)="irAHome()">Home</a></li>
     <li *ngIf="usuarioLogueado()"><a routerLink="playlistList">Playlist</a></li>
     <li *ngIf="usuarioLogueado()"><a routerLink="listarPerfiles">Amigos</a></li>
     <li *ngIf="usuarioLogueado()"><a routerLink="perfil">perfil</a></li>
