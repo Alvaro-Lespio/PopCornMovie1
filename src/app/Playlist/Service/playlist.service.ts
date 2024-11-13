@@ -75,6 +75,45 @@ export class PlaylistService {
     });
   }
 
+  deleteMovieToPlaylist(userId: string, playlistId: number, movieId: number): Observable<Usuario>{
+    return new Observable<Usuario>((observer) => {
+      this.usuarioService.getUsuarioById(userId).subscribe({
+        next: (user) => {
+          const playlist = user.playlists.find(p => p.id === playlistId);
+  
+          if (playlist) {
+            const movieIndex = playlist.peliculas.indexOf(movieId);
+            
+            if (movieIndex !== -1) {
+              playlist.peliculas.splice(movieIndex, 1); 
+  
+              this.usuarioService.updateUsuario(user).subscribe({
+                next: (updatedUser) => {
+                  observer.next(updatedUser);
+                  observer.complete();
+                  alert('Película eliminada exitosamente de la playlist.');
+                },
+                error: (e: Error) => {
+                  console.error('Error al actualizar la playlist:', e.message);
+                  observer.error(e);
+                }
+              });
+            } else {
+              console.error('Película no encontrada en la playlist.');
+              observer.error(new Error('Película no encontrada en la playlist.'));
+            }
+          } else {
+            console.error('Playlist no encontrada.');
+            observer.error(new Error('Playlist no encontrada.'));
+          }
+        },
+        error: (e: Error) => {
+          console.error('Error al obtener el usuario:', e.message);
+          observer.error(e);
+        }
+      });
+    });
+  }
 }
 
 

@@ -85,6 +85,24 @@ export class DetallePlaylistComponent implements OnInit {
       });
     }
   }
+
+  eliminarPelicula(peliculaId:number){
+    if (!this.userId || !this.playlist) {
+      this.errorMessage = 'No se puede eliminar la película. Usuario o playlist no definidos.';
+      return;
+    }
+  
+    this.playlistService.deleteMovieToPlaylist(this.userId, this.playlist.id, peliculaId).subscribe({
+      next: () => { 
+        this.peliculas = this.peliculas.filter(pelicula => pelicula.id !== peliculaId);
+        alert('Película eliminada exitosamente de la playlist.');
+      },
+      error: (error) => {
+        this.errorMessage = 'Error al eliminar la película de la playlist. Inténtalo de nuevo.';
+        console.error('Error al eliminar la película:', error);
+      }
+    });
+  }
 }
 
 

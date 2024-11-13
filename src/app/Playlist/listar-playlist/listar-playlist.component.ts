@@ -24,7 +24,7 @@ export class ListarPlaylistComponent implements OnInit{
   playlists: Playlist[] = [];
   router = inject(Router)
   listarPlaylist(){
-      const userId = localStorage.getItem('userId')?.toString();
+    const userId = localStorage.getItem('userId')?.toString();
       if(userId !== undefined){
         console.log("El user id es: ", userId);
         this.usuarioService.getPlaylistsOfUser(userId).subscribe({
@@ -56,7 +56,15 @@ export class ListarPlaylistComponent implements OnInit{
   }
 
   verPlaylist(playlistId: number){
-    this.router.navigateByUrl(`/playlist/${playlistId}`);
+    if (!isNaN(playlistId)) {
+      this.router.navigateByUrl(`/playlist/${playlistId}`);
+    } else {
+      console.error('El ID de la playlist es inválido:', playlistId);
+    }
+  }
+
+  actualizarPlaylist(playlistId: number){
+      this.router.navigateByUrl(`/actualizarPlaylist/${playlistId}`);
   }
  
   }

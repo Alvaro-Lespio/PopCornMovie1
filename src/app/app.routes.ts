@@ -13,6 +13,7 @@ import { VisualizarPerfilOtroUsuarioComponent } from './usuario/perfil/visualiza
 import { VisualizarPerfilComponent } from './usuario/perfil/visualizar-perfil/visualizar-perfil.component';
 import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
 import { DetallePlaylistComponent } from './Playlist/detalle-playlist/detalle-playlist.component';
+import { ActualizarPlaylistComponent } from './Playlist/actualizar-playlist/actualizar-playlist.component';
 
 
 export const routes: Routes = [
@@ -40,6 +41,10 @@ export const routes: Routes = [
     {
         path:"playlistList",
         component:ListarPlaylistComponent
+    },
+    {
+        path: 'actualizarPlaylist/:id', 
+        component: ActualizarPlaylistComponent
     },
     {
 

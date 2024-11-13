@@ -3,6 +3,7 @@
     <ul>
       <li *ngFor="let pelicula of peliculas">
         {{ pelicula.title }}
+        <button (click)="eliminarPelicula(pelicula.id)">Eliminar Pelicula</button>
       </li>
     </ul>
   </div>

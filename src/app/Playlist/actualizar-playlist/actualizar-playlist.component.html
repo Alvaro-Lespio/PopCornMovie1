@@ -1,0 +1,13 @@
+<div class="agregar-playlist-container">
+    <h2 class="h2">Actualizar Playlist</h2>
+    <form [formGroup]="formulario" (ngSubmit)="updatePlaylist()">
+      <div>
+        <label class="label" for="nombre">Nombre nuevo de la Playlist</label>
+        <input type="text" id="nombre" formControlName="nombre" required />
+        <div *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched">
+          <small class="error">El nombre de la playlist es requerido y debe tener al menos 3 caracteres.</small>
+        </div>
+      </div>
+      <button class="button" type="submit" [disabled]="formulario.invalid">Actualizar Playlist</button>
+    </form>
+  </div>

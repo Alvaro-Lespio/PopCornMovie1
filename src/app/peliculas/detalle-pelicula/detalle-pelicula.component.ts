@@ -31,8 +31,13 @@ export class DetallePeliculaComponent implements OnInit{
   
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    
     if (id) {
-      this.userId = localStorage.getItem('userId') || '';
+      
+      if (typeof window !== 'undefined') {
+        this.userId = localStorage.getItem('userId') || '';
+      }
+      
       this.peliculaService.getPeliculaById(+id).subscribe((pelicula) => {
         this.pelicula = pelicula;
         this.genresFormatted = pelicula.genres.map((g: any) => g.name).join(', ');
