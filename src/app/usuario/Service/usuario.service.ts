@@ -79,7 +79,7 @@ export class UsuarioService {
         // Actualizar el usuario con la nueva playlist
         this.updateUsuario(user).subscribe({
           next: () => {
-            alert('Playlist agregada exitosamente.')
+            console.log('Playlist agregada exitosamente.')
           },
           error: (e: Error) => {
             // Manejar errores en la actualización del usuario
@@ -180,7 +180,7 @@ export class UsuarioService {
           // Guardar los cambios del usuario
           this.updateUsuario(user).subscribe({
             next: () => {
-              alert('Nombre de la playlist actualizado exitosamente.');
+              console.log('Nombre de la playlist actualizado exitosamente.');
             },
             error: (e: Error) => {
               console.error('Error al actualizar el usuario:', e.message);
@@ -247,7 +247,7 @@ export class UsuarioService {
       });
     });
   }
-  
+
   obtenerPlaylistPeliculasVistas(userId: string): Observable<Playlist | undefined> {
     return new Observable<Playlist | undefined>((observer) => {
       this.getUsuarioById(userId).subscribe({

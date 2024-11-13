@@ -54,7 +54,8 @@ export class ActualizarPlaylistComponent implements OnInit{
     this.usuarioService.updatePlaylistFromUser(this.userId, Number(this.playlistId), nuevoNombre).subscribe({
       next: () => {
         this.formulario.reset();
-        alert('Playlist actualizada exitosamente.');
+        console.log('Playlist actualizada exitosamente.');
+        this.listarPlaylist();
       },
       error: (e: Error) => {
         console.error('Error al actualizar la playlist:', e.message);
@@ -62,5 +63,8 @@ export class ActualizarPlaylistComponent implements OnInit{
       }
     });
   }
-    
+
+  listarPlaylist(){
+    this.router.navigateByUrl('playlistList');
+  }
 }

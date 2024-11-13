@@ -1,39 +1,33 @@
 {
   "usuarios": [
     {
-      "id": "2945",
+      "id": "5c24",
       "username": "alvaro",
       "password": "123456",
       "nombreCompleto": "alvaro",
       "email": "alvaro@alvaro",
       "playlists": [
         {
-          "id": 80353,
+          "id": 575406,
           "nombre": "Me Gusta",
           "peliculas": [],
           "esMeGusta": true,
           "esPeliculasVistas": false
         },
         {
-          "id": 304627,
+          "id": 542277,
           "nombre": "Peliculas Vistas",
-          "peliculas": [
-            1184918,
-            533535
-          ],
+          "peliculas": [],
           "esMeGusta": false,
           "esPeliculasVistas": true
-        }
-      ],
-      "peliculasCalificadas": [
+        },
         {
-          "peliculaId": 845781,
-          "nombrePelicula": "Red One",
-          "userId": "2945",
-          "calificacion": 3,
-          "fechaDeCalificacion": "2024-11-13T19:49:19.695Z"
+          "id": 863400,
+          "nombre": "dsadas",
+          "peliculas": []
         }
       ],
+      "peliculasCalificadas": [],
       "comentarios": [],
       "usuariosSeguidos": [],
       "peliculasVistas": [],
