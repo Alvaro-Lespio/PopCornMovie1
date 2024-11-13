@@ -73,3 +73,52 @@ html, body {
   padding: 1rem;
   text-align: center;
 }
+
+/* Estilo para pantallas pequeñas */
+@media (max-width: 600px) {
+  /* Ajusta el contenedor principal */
+  .contenedor-principal {
+    padding: 10px;
+    width: 100%;
+  }
+
+  /* Acomoda el menú de navegación */
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Estilos para el formulario de búsqueda */
+  .formulario-busqueda {
+    width: 100%;
+  }
+
+  /* Ajuste de imagen del logo */
+  .logo {
+    width: 80%;
+    margin: auto;
+  }
+
+  /* Modifica el tamaño de las tarjetas de películas */
+  .tarjeta-pelicula {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+/* Estilo para pantallas medianas */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .mi-clase {
+    font-size: 16px;
+    padding: 15px;
+  }
+}
+
+/* Estilo para pantallas grandes */
+@media (min-width: 1025px) {
+  .mi-clase {
+    font-size: 18px;
+    padding: 20px;
+  }
+}

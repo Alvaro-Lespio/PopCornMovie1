@@ -33,17 +33,16 @@
 }
 
 .nav li a:hover {
-  color: var(--color-terciario);
+  color: #F9CE4E;
 }
 
 .color1{
   color: white;
 }
 .color2{
-  color: black;
+  color: #F9CE4E;
 }
 
-/* Estilo para el botón de Cerrar Sesión */
 .logout-btn {
   background-color: red;
   color: white;
