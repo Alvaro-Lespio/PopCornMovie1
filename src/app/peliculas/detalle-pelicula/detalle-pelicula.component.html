@@ -1,4 +1,4 @@
-<div *ngIf="pelicula">
+<!-- <div *ngIf="pelicula">
   <h2 class="h2">{{ pelicula.title | uppercase }}</h2>
   <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
   <p class="p"><strong>Resumen:</strong> {{ pelicula.overview }}</p>
@@ -15,4 +15,32 @@
   </select>
 
   <button (click)="addToPlaylist(pelicula.id)">Añadir a Playlist</button>
+</div> -->
+<div *ngIf="pelicula" class="movie-detail-container">
+  <div class="movie-poster">
+    <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
+  </div>
+
+  <div class="movie-info">
+    <h2 class="movie-title">{{ pelicula.title | uppercase }}</h2>
+    <div class="movie-rating">
+      <span>{{ pelicula.vote_average}}</span>/10
+      <span>{{ pelicula.vote_count }} votos</span>
+    </div>
+    <p class="movie-genre">{{ genresFormatted }}</p>
+    <p class="movie-runtime">{{ pelicula.runtime }} min</p>
+    <p class="movie-description">{{ pelicula.overview }}</p>
+
+    <label class="label" for="playlistSelect">Seleccionar Playlist:</label>
+    <select id="playlistSelect" [(ngModel)]="playlistId">
+      <option *ngFor="let playlist of playlists" [value]="playlist.id">{{ playlist.nombre }}</option>
+    </select>
+
+    <div class="actions">
+      <button class="action-btn" (click)="addToPlaylist(pelicula.id)">Añadir a Playlist</button>
+      <button class="action-btn" (click)="volverALista()">Volver a la Lista</button>
+    </div>
+
+
+  </div>
 </div>

@@ -1,4 +1,4 @@
-.h2{
+/* .h2{
   font-family: 'Oswald',sans-serif;
   color: var(--color-texto);
 }
@@ -11,4 +11,69 @@
 .label{
   font-family: 'Oswald',sans-serif;
   color: var(--color-texto);
+} */
+.movie-detail-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  color: white;
+}
+
+.movie-poster img {
+  width: 250px;
+  border-radius: 8px;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+}
+
+.movie-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  color: var(--color-texto);
+}
+
+.movie-rating {
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.movie-genre, .movie-runtime {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.movie-description {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.action-btn {
+  background-color: #444;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.label {
+  font-family: 'Oswald', sans-serif;
+  color: var(--color-texto);
+  margin-top: 20px;
 }
