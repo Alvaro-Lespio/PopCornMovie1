@@ -10,6 +10,7 @@
 .carousel {
   display: flex;
   overflow-x: scroll;
+  overflow-y: hidden;
   scroll-behavior: smooth;
   gap: 15px;
   width: calc(100% - 60px); /* Ajusta según el tamaño de los botones */
