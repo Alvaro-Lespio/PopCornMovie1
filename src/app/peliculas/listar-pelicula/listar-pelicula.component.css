@@ -13,6 +13,17 @@
   scroll-behavior: smooth;
   gap: 15px;
   width: calc(100% - 60px); /* Ajusta según el tamaño de los botones */
+  padding: 0 20px; /* Añadido para centrar mejor el contenido */
+}
+
+/* Oculta las barras de desplazamiento en Webkit (Chrome, Safari) */
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Oculta las barras de desplazamiento en Firefox */
+.carousel {
+  scrollbar-width: none;
 }
 
 .carousel-btn {
@@ -29,11 +40,11 @@
 }
 
 .carousel-btn.left {
-  left: 0;
+  left: 10px;
 }
 
 .carousel-btn.right {
-  right: 0;
+  right: 10px;
 }
 
 /* Grid para resultados filtrados */
