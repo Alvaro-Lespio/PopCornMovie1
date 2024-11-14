@@ -2,13 +2,16 @@
   <div *ngIf="usuarios.length > 0; else noUsuarios">
     <h2 class="h2">Listado de Usuarios</h2>
     <ul>
-      <ng-container *ngFor="let usuario of usuarios">
-        <li *ngIf="usuario.id !== userIdSesion">
-          <div>
-            {{ usuario.username }}
-            <button><a [routerLink]="['/perfil', usuario.id]">Ver perfil</a></button>
-          </div>
-        </li>
+      <ng-container>
+        @for (usuario of usuarios; track $index) {
+          <li *ngIf="usuario.id !== userIdSesion">
+            <div>
+              {{ usuario.username }}
+              <button><a [routerLink]="['/perfil', usuario.id]">Ver perfil</a></button>
+            </div>
+          </li>
+
+        }
       </ng-container>
     </ul>
 </div>

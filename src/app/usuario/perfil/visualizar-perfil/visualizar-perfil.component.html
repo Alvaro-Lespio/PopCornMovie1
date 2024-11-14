@@ -1,4 +1,5 @@
-<div class="profile-container" *ngIf="usuario">
+<div class="profile-container">
+  @if (usuario) {
   <h2 >Perfil de {{ usuario.username }}</h2>
   <div class="user-info">
       <p class="p"><strong>Nombre completo:</strong> {{ usuario.nombreCompleto }}</p>
@@ -9,12 +10,15 @@
   <div class="playlists">
     <h3 >Playlists:</h3>
     <ul *ngIf="usuario.playlists.length > 0; else noPlaylists">
-      <ng-container *ngFor="let playlist of usuario.playlists">
-        <li *ngIf="playlist.nombre !== 'Me Gusta' && playlist.nombre !== 'Peliculas Vistas'">
+      <ng-container>
+        @for (playlist of usuario.playlists; track $index) {
+          <li *ngIf="playlist.nombre !== 'Me Gusta' && playlist.nombre !== 'Peliculas Vistas'">
           {{ playlist.nombre }}
           <button (click)="verPlaylist(playlist.id)">Ver playlist</button>
         </li>
-       
+        }
+
+
       </ng-container>
     </ul>
     <ng-template #noPlaylists>
@@ -25,15 +29,22 @@
   <div class="ratings">
     <h3 >Peliculas Calificadas:</h3>
   <ul *ngIf="usuario.peliculasCalificadas.length > 0; else noCalificaciones">
-    <li *ngFor="let c of usuario.peliculasCalificadas">Calificacion: {{ c.calificacion }} Pelicula: {{c.nombrePelicula}} Comentario:{{c.texto}}</li>
+    <li>
+      @for (c of usuario.peliculasCalificadas; track $index) {
+        Calificacion: {{ c.calificacion }} Pelicula: {{c.nombrePelicula}} Comentario:{{c.texto}}
+      }
+    </li>
   </ul>
  <ng-template #noCalificaciones>
     <p class="p">Este usuario no tiene peliculas calificadas.</p>
   </ng-template>
 </div>
+  }
   </div>
 
 
-<div *ngIf="!usuario">
-  <p class="p">Cargando perfil...</p>
+<div>
+  @if (!usuario) {
+    <p class="p">Cargando perfil...</p>
+  }
 </div>

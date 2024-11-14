@@ -1,16 +1,22 @@
 <div class="detalle-playlist-container">
-  <div *ngIf="playlist">
-    <h2>{{ playlist.nombre }}</h2>
-    <ul>
-      <li *ngFor="let pelicula of peliculas">
-        {{ pelicula.title }}
-        <button *ngIf="esActivo" (click)="eliminarPelicula(pelicula.id)">Eliminar Pelicula</button>
-      </li>
-    </ul>
+  <div>
+    @if (playlist) {
+      <h2>{{ playlist.nombre }}</h2>
+      <ul>
+        <li>
+          @for (pelicula of peliculas; track $index) {
+            {{ pelicula.title }}
+            <button *ngIf="esActivo" (click)="eliminarPelicula(pelicula.id)">Eliminar Pelicula</button>
+          }
+        </li>
+      </ul>
+    }
   </div>
-  <div *ngIf="errorMessage">
-    <p class="p">{{ errorMessage }}</p>
-</div>
+  <div>
+    @if (errorMessage) {
+      <p class="p">{{ errorMessage }}</p>
+    }
+  </div>
 </div>
 
 
