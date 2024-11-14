@@ -9,7 +9,6 @@
     <li *ngIf="usuarioLogueado()"><a routerLink="perfil">Perfil</a></li>
     <li *ngIf="!usuarioLogueado()"><a routerLink="login">Iniciar Sesión</a></li>
     <li *ngIf="!usuarioLogueado()"><a routerLink="registrarse">Registrarse</a></li>
-    <li><a routerLink="">Sobre nosotros</a></li>
     <li *ngIf="usuarioLogueado()"><button (click)="cerrarSesion()" class="logout-btn">Cerrar Sesión</button></li>
   </ul>
 </nav>

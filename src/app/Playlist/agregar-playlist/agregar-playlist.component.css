@@ -1,3 +1,23 @@
+body, html {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: #2c2f33;
+}
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-body);
+}
 .agregar-playlist-container {
   display: flex;
   flex-direction: column;

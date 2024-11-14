@@ -1,3 +1,23 @@
+body, html {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: #2c2f33; /* Color de fondo */
+}
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-body); /* Ajusta según el color de fondo que prefieras */
+}
 .agregar-playlist-container {
   width: 400px;
   padding: 40px;
