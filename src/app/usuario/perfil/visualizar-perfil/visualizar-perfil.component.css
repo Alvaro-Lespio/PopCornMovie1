@@ -1,37 +1,56 @@
-.profile-container {
+/* Asegura que el contenedor principal esté centrado */
+ body, html {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: #2c2f33; /* Color de fondo */
+}
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-body); /* Ajusta según el color de fondo que prefieras */
+}
 
+/* Contenedor centrado para el perfil */
+.profile-container {
   width: 400px;
   padding: 35px;
   background-color: var(--color-fondo);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   text-align: center;
-  margin-left: 45rem;
-  margin-top: 5rem;
 }
 
+/* Estilos de texto */
+.profile-container h2, .playlists h3, .ratings h3 {
+  font-family: 'Oswald', sans-serif;
+  color: #ffffff;
+}
 
 .profile-container h2 {
   font-size: 24px;
-  color: #ffffff;
   margin-bottom: 20px;
-  font-family: 'Oswald',sans-serif ;
 }
-
 
 .user-info {
   margin-bottom: 20px;
-  font-family: 'Oswald',sans-serif
+  font-family: 'Oswald', sans-serif;
 }
 
 .user-info p {
   font-size: 16px;
   margin: 10px 0;
-  font-family: 'Oswald',sans-serif
 }
 
-
-button {
+/* Estilos de los botones */
+button, .playlist-button {
   width: 100%;
   padding: 10px;
   background-color: var(--color-button);
@@ -41,25 +60,18 @@ button {
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  font-family: 'Oswald', sans-serif;
   transition: background-color 0.3s;
 }
 
-button:hover {
+button:hover, .playlist-button:hover {
   background-color: #ff3b3f;
 }
 
+/* Estilos para las listas de playlists y calificaciones */
 .playlists, .ratings {
   margin-top: 20px;
   text-align: center;
-}
-
-.playlists h3, .ratings h3 {
-  font-size: 18px;
-  color: #ffffff;
-  border-bottom: 2px solid #ff3b3f;
-  padding-bottom: 5px;
-  margin-bottom: 10px;
-  font-family: 'Oswald',sans-serif
 }
 
 .playlists ul, .ratings ul {
@@ -68,17 +80,17 @@ button:hover {
 }
 
 .playlists ul li, .ratings ul li {
-  background-color: #1f4068;
+  background-color: var(--color-fondo);
   padding: 10px;
   margin-bottom: 5px;
   border-radius: 5px;
   color: #ffffff;
   font-size: 14px;
   text-align: center;
-  font-family: 'Oswald',sans-serif
+  font-family: 'Oswald', sans-serif;
 }
 
-
+/* Estilos de texto adicional */
 .p {
   color: #ffffff;
   font-size: 14px;

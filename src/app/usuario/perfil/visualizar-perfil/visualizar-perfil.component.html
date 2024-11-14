@@ -13,12 +13,11 @@
       <ng-container>
         @for (playlist of usuario.playlists; track $index) {
           <li *ngIf="playlist.nombre !== 'Me Gusta' && playlist.nombre !== 'Peliculas Vistas'">
+          <button class="playlist-button" (click)="verPlaylist(playlist.id)">
           {{ playlist.nombre }}
-          <button (click)="verPlaylist(playlist.id)">Ver playlist</button>
+          </button>
         </li>
         }
-
-
       </ng-container>
     </ul>
     <ng-template #noPlaylists>
