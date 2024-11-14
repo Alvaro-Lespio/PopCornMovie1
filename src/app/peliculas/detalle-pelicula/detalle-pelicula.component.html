@@ -1,69 +1,62 @@
+<div class="back-button" (click)="volverALista()">←</div>
+<div *ngIf="pelicula" class="movie-detail-container">
 
-  <div class="back-button" (click)="volverALista()">←</div>
-  <div *ngIf="pelicula" class="movie-detail-container">
-
-    <div class="movie-poster">
-      <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
-    </div>
-
-    <div class="movie-info">
-      <h2 class="movie-title">{{ pelicula.title | uppercase }}</h2>
-      <div class="movie-rating">
-        <span>{{ pelicula.vote_average}}</span>/10
-        <span>{{ pelicula.vote_count }} votos</span>
-      </div>
-      <p class="movie-genre">{{ genresFormatted }}</p>
-      <p class="movie-runtime">{{ pelicula.runtime }} min</p>
-      <p class="movie-description">{{ pelicula.overview }}</p>
-      <div>
-        @if (userId) {
-          <label class="label" for="playlistSelect">Seleccionar Playlist:</label>
-          <select id="playlistSelect" [(ngModel)]="playlistId">
-            <ng-container>
-              @for (playlist of playlists; track $index) {
-                @if (!playlist.esPeliculasVistas && !playlist.esMeGusta) {
-                  <option [value]="playlist.id">{{ playlist.nombre }}</option>
-                }
-              }
-            </ng-container>
-          </select>
-          <div class="actions">
-            <button class="action-btn" (click)="agregarAPlaylist(pelicula.id)">Añadir a Playlist</button>
-          </div>
-          <div class="actions">
-            <button class="action-btn" (click)="agregarAMeGusta(pelicula.id)">Añadir a Me Gusta</button>
-          </div>
-          <label>
-            <input type="checkbox" [(ngModel)]="esVista" (change)="agregarAPeliculaVista(pelicula.id)" />
-            Marcar como vista
-          </label>
-
-          <div class="movie-rating">
-            <label class="label">Calificar esta película:</label>
-            <div class="estrellas">
-              @for (estrella of [1, 2, 3, 4, 5]; track $index) {
-                <span (click)="calificar(estrella)"
-                  (mouseover)="hoverCalificacion = estrella" (mouseleave)="hoverCalificacion = 0"
-                  [class.selected]="estrella <= (hoverCalificacion || calificacion)">
-                  ★
-                </span>
-
-              }
-            </div>
-
-            <label class="label" for="textoCalificacion">Escribe tu comentario:</label>
-            <textarea id="textoCalificacion" [(ngModel)]="texto" rows="3" placeholder="Escribe tu comentario aquí"></textarea>
-
-            <button class="action-btn" (click)="calificarPelicula()">Guardar Calificación</button>
-          </div>
-          <div class="exito-mensaje">
-            @if (exitoMensaje) {
-              {{exitoMensaje}}
-            }
-          </div>
-        }
-    </div>
-    </div>
+  <div class="movie-poster">
+    <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
   </div>
 
+  <div class="movie-info">
+    <h2 class="movie-title">{{ pelicula.title | uppercase }}</h2>
+    <div class="movie-rating">
+      <span>{{ pelicula.vote_average}}</span>/10
+      <span>{{ pelicula.vote_count }} votos</span>
+    </div>
+    <p class="movie-genre">{{ genresFormatted }}</p>
+    <p class="movie-runtime">{{ pelicula.runtime }} min</p>
+    <p class="movie-description">{{ pelicula.overview }}</p>
 
+    <section *ngIf="userId" class="user-actions">
+      <div class="playlist-section">
+        <label class="label" for="playlistSelect">Seleccionar Playlist:</label>
+        <select id="playlistSelect" [(ngModel)]="playlistId" class="playlist-select">
+          <ng-container *ngFor="let playlist of playlists; let i = index">
+            <ng-container *ngIf="!playlist.esPeliculasVistas && !playlist.esMeGusta">
+              <option [value]="playlist.id">{{ playlist.nombre }}</option>
+            </ng-container>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="action-buttons">
+        <button class="action-btn" (click)="agregarAPlaylist(pelicula.id)">Añadir a Playlist</button>
+        <button class="action-btn" (click)="agregarAMeGusta(pelicula.id)">Añadir a Me Gusta</button>
+        <label class="vista-checkbox">
+          <input type="checkbox" [(ngModel)]="esVista" (change)="agregarAPeliculaVista(pelicula.id)" />
+          Marcar como vista
+        </label>
+      </div>
+
+      <div class="rating-section">
+        <label class="label">Calificar esta película:</label>
+        <div class="estrellas">
+          <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let i = index">
+            <span (click)="calificar(estrella)"
+                  (mouseover)="hoverCalificacion = estrella" (mouseleave)="hoverCalificacion = 0"
+                  [class.selected]="estrella <= (hoverCalificacion || calificacion)">
+              ★
+            </span>
+          </ng-container>
+        </div>
+
+        <label class="label" for="textoCalificacion">Escribe tu comentario:</label>
+        <textarea id="textoCalificacion" [(ngModel)]="texto" rows="5" placeholder="Escribe tu comentario aquí" class="comment-textarea"></textarea>
+
+        <button class="action-btn" (click)="calificarPelicula()">Guardar Calificación</button>
+      </div>
+
+      <div class="exito-mensaje" *ngIf="exitoMensaje">
+        {{ exitoMensaje }}
+      </div>
+    </section>
+  </div>
+</div>

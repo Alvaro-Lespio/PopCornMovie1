@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuarioService } from '../../Service/usuario.service';
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ import { Usuario } from '../../interface/Usuario.interface';
   styleUrl: './actualizar-perfil.component.css'
 })
 export class ActualizarPerfilComponent implements OnInit {
+ 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') || '';
     if (this.userId) {
@@ -29,7 +30,7 @@ export class ActualizarPerfilComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al cargar los datos del usuario:', error);
-          alert('Hubo un error al cargar los datos del usuario.');
+          
         }
       });
     }
@@ -63,7 +64,7 @@ export class ActualizarPerfilComponent implements OnInit {
 
     this.usuarioService.actualizarUsuario(usuarioActualizado).subscribe({
       next: () => {
-        alert('Perfil actualizado exitosamente.');
+       
         this.router.navigateByUrl('/perfil');
       },
       error: (error) => {

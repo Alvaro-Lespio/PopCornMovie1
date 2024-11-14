@@ -110,7 +110,7 @@ export class UsuarioService {
         // Actualizar el usuario con la lista de playlists modificada
         this.actualizarUsuario(user).subscribe({
           next: () => {
-            alert('Playlist eliminada exitosamente.')
+            
           },
           error: (e: Error) => {
             console.error('Error:', e.message);
@@ -210,8 +210,14 @@ export class UsuarioService {
   
         if (existingCalificacion) {
           // Si ya existe, actualiza la calificación y la fecha
-          existingCalificacion.calificacion = calificacion.calificacion;
-          existingCalificacion.fechaDeCalificacion = calificacion.fechaDeCalificacion;
+          if (calificacion.calificacion !== null && calificacion.calificacion !== undefined) {
+            existingCalificacion.calificacion = calificacion.calificacion;
+          }
+          if (calificacion.texto !== null && calificacion.texto !== undefined) {
+            existingCalificacion.texto = calificacion.texto;
+          }
+          existingCalificacion.fechaDeCalificacion = new Date();
+          
         } else {
           // Si no existe, añade la nueva calificación
           user.peliculasCalificadas.push(calificacion);
@@ -220,10 +226,12 @@ export class UsuarioService {
         // Actualizar el usuario con la nueva calificación
         this.actualizarUsuario(user).subscribe({
           next: () => {
-            alert('Calificación guardada exitosamente.');
+            
+            
           },
           error: (error) => {
             console.error('Error al actualizar el usuario:', error);
+            
           }
         });
       },

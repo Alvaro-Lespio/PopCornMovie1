@@ -55,3 +55,4 @@ export class VisualizarPerfilComponent implements OnInit {
     this.routes.navigateByUrl(`playlist/${playlistId}`);
   }
   }
+  

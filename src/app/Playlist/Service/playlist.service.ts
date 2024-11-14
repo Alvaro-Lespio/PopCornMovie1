@@ -14,7 +14,7 @@ export class PlaylistService {
   baseUrl = "http://localhost:3000/usuarios";
 
   constructor() { }
-
+  exitoMensaje: string = '';
 
 getPlaylistPorId(userId: string | null, playlistId: number): Observable<Playlist | null> {
     return new Observable<Playlist | null>((observer) => {
@@ -48,13 +48,11 @@ agregarPeliculaAPlaylist(userId: string, playlistId: number, movieId: number): O
             if (!playlist.peliculas.includes(movieId)) {
               playlist.peliculas.push(movieId);
             } else {
-              alert('La película ya está en la playlist.');
             }
             this.usuarioService.actualizarUsuario(user).subscribe({
               next: (updatedUser) => {
                 observer.next(updatedUser);
                 observer.complete();
-                alert('Película agregada exitosamente a la playlist.');
               },
               error: (e: Error) => {
                 console.error('Error al actualizar la playlist:', e.message);
@@ -89,7 +87,7 @@ eliminarPeliculaDePlaylist(userId: string, playlistId: number, movieId: number):
                 next: (updatedUser) => {
                   observer.next(updatedUser);
                   observer.complete();
-                  alert('Película eliminada exitosamente de la playlist.');
+                  
                 },
                 error: (e: Error) => {
                   console.error('Error al actualizar la playlist:', e.message);
@@ -125,7 +123,7 @@ eliminarPeliculaDePlaylist(userId: string, playlistId: number, movieId: number):
               next: (updatedUser) => {
                 observer.next(updatedUser);
                 observer.complete();
-                alert('Película agregada a Me Gusta.');
+                
               },
               error: (e) => observer.error(e)
             });
@@ -153,7 +151,7 @@ eliminarPeliculaDeMeGusta(userId: string, movieId: number): Observable<Usuario> 
                 next: (updatedUser) => {
                   observer.next(updatedUser);
                   observer.complete();
-                  alert('Película eliminada de Me Gusta.');
+                  
                 },
                 error: (e) => observer.error(e)
               });
@@ -180,7 +178,7 @@ agregarPeliculaAPeliculasVistas(userId: string, movieId: number): Observable<Usu
               next: (updatedUser) => {
                 observer.next(updatedUser);
                 observer.complete();
-                alert('Película agregada a Peliculas Vistas.');
+               
               },
               error: (e) => observer.error(e)
             });
@@ -208,7 +206,6 @@ agregarPeliculaAPeliculasVistas(userId: string, movieId: number): Observable<Usu
                 next: (updatedUser) => {
                   observer.next(updatedUser);
                   observer.complete();
-                  alert('Película eliminada de Me Gusta.');
                 },
                 error: (e) => observer.error(e)
               });
@@ -224,14 +221,7 @@ agregarPeliculaAPeliculasVistas(userId: string, movieId: number): Observable<Usu
     });
   }
 
-
 }
-
-
-
-
-
-
 
 
 

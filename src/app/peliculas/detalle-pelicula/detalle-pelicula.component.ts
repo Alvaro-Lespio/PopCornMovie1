@@ -7,6 +7,7 @@ import { UsuarioService } from '../../usuario/Service/usuario.service';
 import { Playlist } from '../../Playlist/interface/Playlist.interface';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PeliculaCalificada } from '../../PeliculaCalificada/interface/interface/PeliculaCalificada.interface';
+import { Usuario } from '../../usuario/interface/Usuario.interface';
 
 @Component({
   selector: 'app-detalle-pelicula',
@@ -56,6 +57,7 @@ export class DetallePeliculaComponent implements OnInit{
   esVista: boolean = false;
   userId : string = '';
   texto:string = '';
+  usuario !: Usuario;
 
   volverALista() {
     this.router.navigate(['/listar-pelicula']);
@@ -73,7 +75,6 @@ export class DetallePeliculaComponent implements OnInit{
       this.playlistService.agregarPeliculaAPlaylist(this.userId, this.playlistId, movieId).subscribe({
         next: () => {
           this.mostrarMensaje('Película añadida a la playlist exitosamente.');
-          alert('Película añadida a la playlist exitosamente.');
         },
         error: (e: Error) => {
           console.error('Error al añadir la película:', e.message);
@@ -88,26 +89,36 @@ export class DetallePeliculaComponent implements OnInit{
   calificar(estrella: number) {
     this.calificacion = estrella;
   }
-  calificarTexto(textoInput:string){
-    //Funcion aca
-  }
-  calificarPelicula() {
-      const nuevaCalificacion: PeliculaCalificada = {
-      peliculaId: this.pelicula.id,
-      nombrePelicula: this.pelicula.title,
-      userId: this.userId,
-      calificacion: this.calificacion,
-      texto:this.texto,
-      fechaDeCalificacion: new Date(),
-    };
 
-    this.usuarioService.calificarPeliculaEnUsuario(this.userId, nuevaCalificacion).subscribe({
-      next: () => {
-        this.mostrarMensaje('Película calificada.');
-      },
-      error: (error) => {
-        console.error('Error al guardar la calificación en el usuario:', error);
-      }
+  calificarPelicula() {
+    
+    this.usuarioService.getUsuarioPorId(this.userId).subscribe((usuario) => {
+      const peliculaCalificadaExistente = usuario.peliculasCalificadas.find(
+        (p) => p.peliculaId === this.pelicula.id
+      );
+  
+      
+      const nuevaCalificacion: PeliculaCalificada = {
+        peliculaId: this.pelicula.id,
+        nombrePelicula: this.pelicula.title,
+        userId: this.userId,
+        calificacion: this.calificacion || peliculaCalificadaExistente?.calificacion || 0, 
+        texto: this.texto || peliculaCalificadaExistente?.texto || '', 
+        fechaDeCalificacion: new Date(),
+      };
+  
+      
+      this.usuarioService.calificarPeliculaEnUsuario(this.userId, nuevaCalificacion).subscribe({
+        next: () => {
+          this.usuarioService.getUsuarioPorId(this.userId).subscribe((usuarioActualizado) => {
+            this.usuario = usuarioActualizado;
+          });
+          this.mostrarMensaje('Película calificada.');
+        },
+        error: (error) => {
+          console.error('Error al guardar la calificación en el usuario:', error);
+        },
+      });
     });
   }
 
@@ -120,6 +131,7 @@ export class DetallePeliculaComponent implements OnInit{
           this.mostrarMensaje('Película añadida a "Me Gusta" exitosamente.');
         },
         error: (e: Error) => {
+          
           console.error('Error al añadir la película:', e.message);
         }
       });

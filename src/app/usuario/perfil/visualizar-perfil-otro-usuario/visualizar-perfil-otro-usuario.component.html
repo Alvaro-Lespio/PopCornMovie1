@@ -43,11 +43,14 @@
     <div class="ratings">
           <h3>Calificaciones:</h3>
     <ul *ngIf="usuario.peliculasCalificadas.length > 0; else noCalificaciones">
-      <li>
+      
         @for (c of usuario.peliculasCalificadas; track $index) {
-          Calificaciones: {{ c.calificacion }} Pelicula: {{c.nombrePelicula}} Comentario: {{c.texto}}
+          <li>
+            <div><span class="info-label">Pelicula: </span><span class="info-value">{{c.nombrePelicula}}</span></div>
+            <div><span class="info-label">Calificacion: </span><span class="info-value">{{c.calificacion}}</span></div>
+            <div><span class="info-label">Comentario: </span><span class="info-value">{{c.texto}}</span></div>
+          </li>
         }
-      </li>
     </ul>
     <ng-template #noCalificaciones>
       <p>Este usuario no tiene peliculas calificadas.</p>

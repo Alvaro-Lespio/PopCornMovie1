@@ -7,74 +7,57 @@
   font-family: 'Oswald', sans-serif;
 }
 
-.back-button {
-  position: absolute;
-  top: 60px;
-  left: 25px;
-  font-size: 16px;
-  padding: 8px 12px;
-  background-color: var(--color-button);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'Oswald', sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  z-index: 10;
-}
-
-.back-button:hover {
-  background-color: #666;
-}
-
-.movie-poster img {
-  margin-top: 42px;
-  width: 350px;
-  border-radius: 8px;
-}
-
 .movie-info {
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 500px;
-  font-family: 'Oswald', sans-serif;
 }
 
-.movie-title {
-  font-family: 'Oswald', sans-serif;
-  font-size: 24px;
-  color: var(--color-texto);
+.user-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.movie-rating {
-  font-family: 'Oswald', sans-serif;
-  font-size: 18px;
+.playlist-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.playlist-select {
+  width: 100%;
+  max-width: 250px; 
+}
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.vista-checkbox {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
-.movie-genre, .movie-runtime {
-  font-family: 'Oswald', sans-serif;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.movie-description {
-  font-family: 'Oswald', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.actions {
+.rating-section {
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  margin-top: 20px;
+}
+
+.estrellas {
+  display: flex;
+  gap: 5px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.comment-textarea {
+  width: 100%;
+  height: 100px; /* Ajusta el tamaño del área de texto */
 }
 
 .action-btn {
@@ -85,13 +68,6 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
-.label {
-  font-family: 'Oswald', sans-serif;
-  color: var(--color-texto);
-  margin-top: 20px;
-}
-
 .estrellas {
   display: flex;
   gap: 5px;
@@ -100,18 +76,24 @@
 }
 
 .estrellas span {
-  color: #d3d3d3;
+  color: #d3d3d3; 
+  transition: color 0.3s;
 }
 
-.estrellas span.selected {
-  color: gold;
+.estrellas span.selected,
+.estrellas span:hover,
+.estrellas span:hover ~ span {
+  color: gold; 
 }
 
-.exito-mensaje {
-  color: #28a745;
+.estrellas span:hover ~ span {
+  color: #d3d3d3; 
+}
+.exito-mensaje{
   padding: 10px;
   border-radius: 5px;
   text-align: center;
   margin-bottom: 15px;
   font-family: 'Oswald', sans-serif;
+  color: rgb(31, 206, 31);
 }

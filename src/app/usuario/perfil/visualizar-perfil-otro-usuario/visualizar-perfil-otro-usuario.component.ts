@@ -50,7 +50,7 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
       },
       error: (e: Error) => {
         console.error('Error al cargar el perfil del usuario:', e.message);
-        alert('Hubo un error al cargar el perfil del usuario.');
+        
       }
     });
   }
@@ -67,7 +67,7 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
     
     this.usuarioService.actualizarUsuario(this.usuario).subscribe({
       next: () => {
-        alert(siguiendo ? 'Dejaste de seguir al usuario' : 'Ahora estás siguiendo al usuario');
+        
       },
       error: (e: Error) => {
         console.error('Error al actualizar el seguimiento:', e.message);
