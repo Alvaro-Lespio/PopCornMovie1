@@ -16,6 +16,9 @@ import { Pelicula } from '../../peliculas/interface/pelicula.interface';
   styleUrl: './detalle-playlist.component.css'
 })
 export class DetallePlaylistComponent implements OnInit {
+  ngOnInit(): void {
+    this.cargarPlaylist();
+  }
   private route = inject(ActivatedRoute);
   private playlistService = inject(PlaylistService);
   private peliculaService = inject(PeliculaService);
@@ -25,13 +28,9 @@ export class DetallePlaylistComponent implements OnInit {
   errorMessage: string | null = null;
   userId: string | null = null;
   playlistUser: Playlist | null = null;
-  isOwner: boolean = false
-  ngOnInit(): void {
-    this.cargarPlaylist();
-  }
+  esActivo: boolean = false
 
-  private cargarPlaylist() {
-    // Obtiene el userId del parámetro o del localStorage
+  cargarPlaylist() {
     const routeUserId = this.route.snapshot.paramMap.get('userId');
     const localUserId = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('userId') : null;
 
@@ -42,8 +41,7 @@ export class DetallePlaylistComponent implements OnInit {
       return;
     }
 
-    // Define si el usuario autenticado es el propietario de la playlist
-    this.isOwner = this.userId === localUserId;
+    this.esActivo = this.userId === localUserId;
 
     this.route.paramMap.subscribe({
       next: (param) => {
@@ -59,10 +57,10 @@ export class DetallePlaylistComponent implements OnInit {
           return;
         }
        
-        this.playlistService.getPlaylistById(this.userId, playlistId).subscribe({
+        this.playlistService.getPlaylistPorId(this.userId, playlistId).subscribe({
           next: (playlist) => {
             this.playlist = playlist;
-            this.loadPeliculas();
+            this.cargarPeliculas();
           },
           error: (error) => {
             this.errorMessage = 'Error al cargar la playlist. Por favor, inténtalo de nuevo más tarde.';
@@ -84,10 +82,10 @@ export class DetallePlaylistComponent implements OnInit {
       return;
     }
 
-    this.playlistService.getPlaylistById(userId!, playlistId).subscribe({
+    this.playlistService.getPlaylistPorId(userId!, playlistId).subscribe({
       next: (playlist) => {
         this.playlistUser = playlist;
-        this.loadPeliculas();
+        this.cargarPeliculas();
       },
       error: (error) => {
         this.errorMessage = 'Error al cargar la playlist. Por favor, inténtalo de nuevo más tarde.';
@@ -96,11 +94,11 @@ export class DetallePlaylistComponent implements OnInit {
     });
   }
 
-  private loadPeliculas(){
+  cargarPeliculas(){
     if (this.playlist) {
       this.peliculas = [];
       this.playlist.peliculas.forEach((peliculaId) => {
-        this.peliculaService.getPeliculaById(peliculaId).subscribe({
+        this.peliculaService.getPeliculaPorId(peliculaId).subscribe({
           next: (pelicula) => {
             this.peliculas.push(pelicula);
           },
@@ -119,7 +117,7 @@ export class DetallePlaylistComponent implements OnInit {
       return;
     }
   
-    this.playlistService.deleteMovieToPlaylist(userId, this.playlist.id, peliculaId).subscribe({
+    this.playlistService.eliminarPeliculaDePlaylist(userId, this.playlist.id, peliculaId).subscribe({
       next: () => { 
         this.peliculas = this.peliculas.filter(pelicula => pelicula.id !== peliculaId);
         alert('Película eliminada exitosamente de la playlist.');

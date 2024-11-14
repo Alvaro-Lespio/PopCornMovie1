@@ -1,10 +1,9 @@
 <form class="form" [formGroup]="formulario">
   <div class="divP">
     <div class="busqueda-y-filtro">
-      <!-- Campo de búsqueda -->
+
       <input type="text" formControlName="query" placeholder="Buscar película..." />
 
-      <!-- Select para géneros -->
       <select formControlName="genero">
         <option value="" disabled selected>Filtrar por género</option>
         @for (gen of generos; track $index) {
@@ -12,17 +11,14 @@
         }
       </select>
 
-      <!-- Campo para año -->
       <input type="text" formControlName="año" placeholder="Año" />
 
-      <!-- Select para popularidad -->
       <select formControlName="popularidad">
         <option value="" disabled selected>Filtrar por popularidad</option>
         <option value="popularity.desc">Más populares</option>
         <option value="vote_average.desc">Mejor calificadas</option>
       </select>
 
-      <!-- Botón de búsqueda -->
       <button type="button" (click)="buscarPeliculas()">Buscar</button>
     </div>
   </div>

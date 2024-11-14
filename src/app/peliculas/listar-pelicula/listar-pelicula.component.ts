@@ -12,18 +12,24 @@ import { Router } from '@angular/router';
   styleUrl: './listar-pelicula.component.css'
 })
 export class ListarPeliculaComponent implements OnInit{
-  @Input() peliculas: Pelicula[] | null = null; // Recibe las películas a mostrar
+  @Input() peliculas: Pelicula[] | null = null; 
+  ngOnInit(): void {
+    if(!this.peliculas){
+      this.cargarPeliculasPopulares();
+      this.cargarPeliculasEnCartelera();
+      this.cargarPeliculasMejorCalificadas();
+      this.cargarPeliculasProximas();
+  }}
 
   peliculasPopulares: Pelicula[] = [];
   peliculasEnCartelera: Pelicula[] = [];
   peliculasMejorCalificadas: Pelicula[] = [];
   peliculasProximas: Pelicula[] = [];
 
-  // Selecciona todos los elementos de carrusel en el HTML
+  
   @ViewChildren('carousel') carousels!: QueryList<ElementRef>;
 
-  // Método para desplazar hacia la izquierda
-  scrollLeft(carouselIndex: number) {
+  scrollearIzquierda(carouselIndex: number) {
     const carousel = this.carousels.toArray()[carouselIndex].nativeElement;
     carousel.scrollBy({
       left: -carousel.offsetWidth,
@@ -31,8 +37,7 @@ export class ListarPeliculaComponent implements OnInit{
     });
   }
 
-  // Método para desplazar hacia la derecha
-  scrollRight(carouselIndex: number) {
+  scrollearDerecha(carouselIndex: number) {
     const carousel = this.carousels.toArray()[carouselIndex].nativeElement;
     carousel.scrollBy({
       left: carousel.offsetWidth,
@@ -43,13 +48,6 @@ export class ListarPeliculaComponent implements OnInit{
   peliculaService = inject(PeliculaService);
   router = inject(Router);
 
-  ngOnInit(): void {
-    if(!this.peliculas){
-      this.cargarPeliculasPopulares();
-      this.cargarPeliculasEnCartelera();
-      this.cargarPeliculasMejorCalificadas();
-      this.cargarPeliculasProximas();
-  }}
 
   verDetalle(id: number){
     this.router.navigate(['detalle', id]);

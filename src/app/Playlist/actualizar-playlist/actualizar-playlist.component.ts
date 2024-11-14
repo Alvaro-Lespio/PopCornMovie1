@@ -41,7 +41,7 @@ export class ActualizarPlaylistComponent implements OnInit{
     nombre: ['', [Validators.required, Validators.minLength(3)]]
   });
 
-  updatePlaylist() {
+  actualizarPlaylist() {
     if (this.formulario.invalid) return;
 
      this.userId = localStorage.getItem('userId')?.toString();
@@ -50,7 +50,7 @@ export class ActualizarPlaylistComponent implements OnInit{
 
     const nuevoNombre = this.formulario.value.nombre || '';
 
-    this.usuarioService.updatePlaylistFromUser(this.userId, Number(this.playlistId), nuevoNombre).subscribe({
+    this.usuarioService.actualizarPlaylistDeUsuario(this.userId, Number(this.playlistId), nuevoNombre).subscribe({
       next: () => {
         this.formulario.reset();
         console.log('Playlist actualizada exitosamente.');

@@ -44,7 +44,7 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
   peliculaService = inject(PeliculaService)
 
   verPerfilUsuario(userId: string): void {
-    this.usuarioService.getUsuarioById(userId).subscribe({
+    this.usuarioService.getUsuarioPorId(userId).subscribe({
       next: (usuario: Usuario) => {
         this.usuario = usuario;
       },
@@ -65,7 +65,7 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
       : [...this.usuario.usuariosSeguidos, userIdSesion];
 
     
-    this.usuarioService.updateUsuario(this.usuario).subscribe({
+    this.usuarioService.actualizarUsuario(this.usuario).subscribe({
       next: () => {
         alert(siguiendo ? 'Dejaste de seguir al usuario' : 'Ahora estás siguiendo al usuario');
       },
@@ -75,7 +75,7 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
     });
   }
   
-  //Esto lo usamos mas que nada para cambiar el texto del HTML
+  
   esUsuarioSeguido(): boolean {
     if (typeof window === 'undefined') return false;
     const userIdSesion = localStorage.getItem('userId');

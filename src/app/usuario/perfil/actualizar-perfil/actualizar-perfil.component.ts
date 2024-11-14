@@ -17,7 +17,7 @@ export class ActualizarPerfilComponent implements OnInit {
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') || '';
     if (this.userId) {
-      this.usuarioService.getUsuarioById(this.userId).subscribe({
+      this.usuarioService.getUsuarioPorId(this.userId).subscribe({
         next: (usuario: Usuario) => {
           this.usuario = usuario;
           this.formulario.patchValue({
@@ -61,7 +61,7 @@ export class ActualizarPerfilComponent implements OnInit {
       email: this.formulario.value.email || this.usuario.email
     };
 
-    this.usuarioService.updateUsuario(usuarioActualizado).subscribe({
+    this.usuarioService.actualizarUsuario(usuarioActualizado).subscribe({
       next: () => {
         alert('Perfil actualizado exitosamente.');
         this.router.navigateByUrl('/perfil');

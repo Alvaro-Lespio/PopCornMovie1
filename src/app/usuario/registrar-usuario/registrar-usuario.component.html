@@ -1,9 +1,9 @@
  <div class="register-container">
   <h2 class="h2">Registro</h2>
-  <form [formGroup]="formulario" (ngSubmit)="registerUsuario()">
+  <form [formGroup]="formulario" (ngSubmit)="registroUsuario()">
     <div>
       <label class="label" for="username">Usuario</label>
-      <input type="text" id="username" formControlName="username" (input)="checkUsernameExists()" required />
+      <input type="text" id="username" formControlName="username" (input)="chequearSiUsernameExiste()" required />
       <div *ngIf="formulario.get('username')?.invalid && formulario.get('username')?.touched">
         <small class="error">El nombre de usuario es requerido y debe tener al menos 3 caracteres.</small>
       </div>

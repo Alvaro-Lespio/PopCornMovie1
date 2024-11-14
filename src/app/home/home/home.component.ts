@@ -16,10 +16,6 @@ import { filter } from 'rxjs';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  resultadosBusqueda: Pelicula[] | null = null;
-  private router = inject(Router);
-  constructor(private peliculaService: PeliculaService) {}
-
   
   ngOnInit(): void {
     this.router.events.pipe(
@@ -28,6 +24,9 @@ export class HomeComponent implements OnInit {
       this.resultadosBusqueda = null;
     });
   }
+
+  resultadosBusqueda: Pelicula[] | null = null;
+  private router = inject(Router);
   
   // Método que se ejecuta cuando se realiza una búsqueda o se aplican filtros
   actualizarResultadosBusqueda(peliculas: Pelicula[]) {

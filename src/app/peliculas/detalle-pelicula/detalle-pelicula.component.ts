@@ -17,6 +17,29 @@ import { PeliculaCalificada } from '../../PeliculaCalificada/interface/interface
 })
 export class DetallePeliculaComponent implements OnInit{
 
+  ngOnInit(){
+    const id = this.route.snapshot.paramMap.get('id');
+    
+    if (id) {
+      
+      if (typeof window !== 'undefined') {
+        this.userId = localStorage.getItem('userId') || '';
+      }
+      
+      this.peliculaService.getPeliculaPorId(+id).subscribe((pelicula) => {
+        this.pelicula = pelicula;
+        this.genresFormatted = pelicula.genres.map((g: any) => g.name).join(', ');
+        this.verificarSiPeliculaVista(+id);
+      });
+
+      if (this.userId) {
+        this.usuarioService.getPlaylistsDeUsuario(this.userId).subscribe((playlists) => {
+          this.playlists = playlists;
+        });
+      }
+    }
+  }
+
   route = inject(ActivatedRoute);
   router = inject(Router);
   playlistService = inject(PlaylistService)  
@@ -32,37 +55,15 @@ export class DetallePeliculaComponent implements OnInit{
   playlistId: number | null = null;
   esVista: boolean = false; 
   userId : string = '';
-  
-  ngOnInit(){
-    const id = this.route.snapshot.paramMap.get('id');
-    
-    if (id) {
-      
-      if (typeof window !== 'undefined') {
-        this.userId = localStorage.getItem('userId') || '';
-      }
-      
-      this.peliculaService.getPeliculaById(+id).subscribe((pelicula) => {
-        this.pelicula = pelicula;
-        this.genresFormatted = pelicula.genres.map((g: any) => g.name).join(', ');
-        this.checkIfPeliculaVista(+id);
-      });
-
-      if (this.userId) {
-        this.usuarioService.getPlaylistsOfUser(this.userId).subscribe((playlists) => {
-          this.playlists = playlists;
-        });
-      }
-    }
-  }
+  texto:string = '';
 
   volverALista() {
     this.router.navigate(['/listar-pelicula']);
   }
   
-  addToPlaylist(movieId: number) {
+  agregarAPlaylist(movieId: number) {
     if (this.playlistId !== null) {
-      this.playlistService.addMovieToPlaylist(this.userId, this.playlistId, movieId).subscribe({
+      this.playlistService.agregarPeliculaAPlaylist(this.userId, this.playlistId, movieId).subscribe({
         next: () => {
          alert('Película añadida a la playlist exitosamente.');
         },
@@ -79,13 +80,16 @@ export class DetallePeliculaComponent implements OnInit{
   calificar(estrella: number) {
     this.calificacion = estrella;
   }
-
+  calificarTexto(textoInput:string){
+    //Funcion aca
+  }
   calificarPelicula() {
       const nuevaCalificacion: PeliculaCalificada = {
       peliculaId: this.pelicula.id,
       nombrePelicula: this.pelicula.title,
       userId: this.userId,
       calificacion: this.calificacion,
+      texto:this.texto,
       fechaDeCalificacion: new Date(),
     };
   
@@ -98,11 +102,12 @@ export class DetallePeliculaComponent implements OnInit{
       }
     });
   }
-  addToMeGusta(movieId: number) {
+
+  agregarAMeGusta(movieId: number) {
     const userId = localStorage.getItem('userId')?.toString();
   
     if (userId) {
-      this.playlistService.addMovieToMeGusta(userId, movieId).subscribe({
+      this.playlistService.agregarPeliculaAMeGusta(userId, movieId).subscribe({
         next: () => {
           alert('Película añadida a "Me Gusta" exitosamente.');
         },
@@ -114,17 +119,18 @@ export class DetallePeliculaComponent implements OnInit{
       console.error('No se encontró el ID de usuario en localStorage.');
     }
   }
-  checkIfPeliculaVista(movieId: number) {
-    this.usuarioService.getPlaylistsOfUser(this.userId).subscribe((playlists) => {
+  verificarSiPeliculaVista(movieId: number) {
+    this.usuarioService.getPlaylistsDeUsuario(this.userId).subscribe((playlists) => {
       const peliculasVistasPlaylist = playlists.find(p => p.esPeliculasVistas);
       if (peliculasVistasPlaylist) {
         this.esVista = peliculasVistasPlaylist.peliculas.includes(movieId);
       }
     });
   }
-  addToPeliculaVista(movieId: number) {
+
+  agregarAPeliculaVista(movieId: number) {
     if (this.esVista) {
-      this.playlistService.addMovieToPeliculasVistas(this.userId, movieId).subscribe({
+      this.playlistService.agregarPeliculaAPeliculasVistas(this.userId, movieId).subscribe({
         next: () => {
           alert('Película marcada como vista.');
         },
@@ -133,7 +139,7 @@ export class DetallePeliculaComponent implements OnInit{
         }
       });
     } else {
-      this.playlistService.deleteMovieFromPeliculasVistas(this.userId, movieId).subscribe({
+      this.playlistService.elimiarPeliculaDePeliculasVistas(this.userId, movieId).subscribe({
         next: () => {
           alert('Película desmarcada como vista.');
         },

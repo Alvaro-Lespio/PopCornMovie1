@@ -5,7 +5,7 @@ import { map, Observable } from 'rxjs';
 import { Pelicula } from '../interface/pelicula.interface';
 
 interface ApiResponse {
-  results: Pelicula[];  // La propiedad 'results' contiene el arreglo de películas
+  results: Pelicula[];  
 }
 
 @Injectable({
@@ -16,7 +16,7 @@ http = inject(HttpClient)
 urlBase = environment.tmdbBaseUrl
 apiKey = environment.tmdbApiKey
 
-//generos por id en api
+
 generos: { [key: string]: number } = {
   Accion: 28,
   Aventura: 12,
@@ -62,10 +62,7 @@ getPeliculasProximas(): Observable<Pelicula[]> {
 }
 
   //Obtener detalles de una pelicula por ID
-  // getPeliculaById(id: number): Observable<Pelicula>{
-  //   return this.http.get<Pelicula>(`${this.urlBase}/movie/${id}?api_key=${this.apiKey}`)
-  // }
-  getPeliculaById(id: number): Observable<any> {
+  getPeliculaPorId(id: number): Observable<any> {
     return this.http.get<any>(`${this.urlBase}/movie/${id}?api_key=${this.apiKey}&language=es&media_type=movie`)
   }
 
@@ -83,8 +80,7 @@ getPeliculasProximas(): Observable<Pelicula[]> {
   //filtrar peliculas por genero, año o popularidad
   filtrarPeliculas(filtros: { genero?: string; año?: string; popularidad?: string }): Observable<Pelicula[]> {
     let url = `${this.urlBase}/discover/movie?api_key=${this.apiKey}&language=es&media_type=movie`;
-  
-    // Verifica y convierte el género a su ID si corresponde
+
     const generoId = filtros.genero ? this.obtenerIdGenero(filtros.genero) : undefined;
   
     if (generoId) {

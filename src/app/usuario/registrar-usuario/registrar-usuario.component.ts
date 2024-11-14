@@ -27,7 +27,7 @@ export class RegistrarUsuarioComponent{
     email: ['', [Validators.required, Validators.email]]
   });
   
-  checkUsernameExists() {
+  chequearSiUsernameExiste() {
     const username = this.formulario.value.username || '';
     if (username.length >= 3) {
       this.usuarioService.getUsuarios().subscribe(
@@ -43,7 +43,7 @@ export class RegistrarUsuarioComponent{
     }
   }
 
-  registerUsuario() {
+  registroUsuario() {
     if (this.formulario.invalid) return;
     const usuario: Usuario = { 
       username: this.formulario.value.username || '',
@@ -58,7 +58,7 @@ export class RegistrarUsuarioComponent{
       peliculasMeGusta: []
     };
 
-    this.usuarioService.createUsuario(usuario).subscribe({
+    this.usuarioService.crearUsuario(usuario).subscribe({
       next: (nuevoUsuario: Usuario) => {
         if(nuevoUsuario.id !== undefined){
           localStorage.setItem('userId', nuevoUsuario.id.toString());

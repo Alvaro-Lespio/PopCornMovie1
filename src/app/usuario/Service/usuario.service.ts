@@ -20,14 +20,14 @@ export class UsuarioService {
   }
 
   // Obtener un usuario por ID
-  getUsuarioById(id: string | null): Observable<Usuario> {
+  getUsuarioPorId(id: string | null): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.baseUrl}/${id}`);
   }
   generarIdNumerico(): number {
     return Math.floor(Math.random() * 1000000);
   }
   // Crear un nuevo usuario
-  createUsuario(usuario: Usuario): Observable<Usuario> {
+  crearUsuario(usuario: Usuario): Observable<Usuario> {
     // Generar la playlist "Me Gusta" única para el usuario
     const meGustaPlaylist: Playlist = {
       id: this.generarIdNumerico(), // Usa un timestamp o algún generador de ID único
@@ -53,22 +53,22 @@ export class UsuarioService {
   }
 
   // Actualizar un usuario existente
-  updateUsuario(usuario: Usuario): Observable<Usuario> {
+  actualizarUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.baseUrl}/${usuario.id}`, usuario)
   }
 
   // Eliminar un usuario por ID
-  deleteUsuario(id: number): Observable<void> {
+  eliminarUsuario(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
 
   // Agregar una playlist a un usuario
-  addPlaylistToUser(userId: string | null, playlist: Playlist): Observable<Usuario> {
+  agregarPlaylistAUsuario(userId: string | null, playlist: Playlist): Observable<Usuario> {
 
 
     // Obtener el usuario por su ID
-    const userById = this.getUsuarioById(userId);
+    const userById = this.getUsuarioPorId(userId);
 
     // Suscribirse al observable para obtener el usuario
     userById.subscribe({
@@ -77,7 +77,7 @@ export class UsuarioService {
         user.playlists.push(playlist);
 
         // Actualizar el usuario con la nueva playlist
-        this.updateUsuario(user).subscribe({
+        this.actualizarUsuario(user).subscribe({
           next: () => {
             console.log('Playlist agregada exitosamente.')
           },
@@ -97,9 +97,9 @@ export class UsuarioService {
   }
 
   // Eliminar una playlist de un usuario
-  removePlaylistFromUser(userId: string, playlistId: number): Observable<Usuario> {
+  eliminarPlaylistDeUsuario(userId: string, playlistId: number): Observable<Usuario> {
     // Obtener el usuario por su ID
-    const userById = this.getUsuarioById(userId);
+    const userById = this.getUsuarioPorId(userId);
 
     // Suscribirse al observable para obtener el usuario
     userById.subscribe({
@@ -108,7 +108,7 @@ export class UsuarioService {
         user.playlists = user.playlists.filter(p => p.id !== playlistId);
 
         // Actualizar el usuario con la lista de playlists modificada
-        this.updateUsuario(user).subscribe({
+        this.actualizarUsuario(user).subscribe({
           next: () => {
             alert('Playlist eliminada exitosamente.')
           },
@@ -127,11 +127,11 @@ export class UsuarioService {
   }
 
   //Listar playlist
-  getPlaylistsOfUser(userId: string | null): Observable<Playlist[]> {
+  getPlaylistsDeUsuario(userId: string | null): Observable<Playlist[]> {
     // Crear un nuevo Observable que emitirá las playlists del usuario
     return new Observable<Playlist[]>((observer) => {
       // Obtener el usuario por su ID
-      this.getUsuarioById(userId).subscribe({
+      this.getUsuarioPorId(userId).subscribe({
         next: (user: Usuario) => {
           //Emitir las playlists del usuario
           observer.next(user.playlists);
@@ -146,9 +146,9 @@ export class UsuarioService {
     });
   }
 
-  getDetailOfPlaylist(userId: string, playlistId: number): Observable<Playlist> {
+  getDetallesDePlaylist(userId: string, playlistId: number): Observable<Playlist> {
     return new Observable<Playlist>((observer) => {
-      this.getUsuarioById(userId).subscribe({
+      this.getUsuarioPorId(userId).subscribe({
         next: (user: Usuario) => {
           const playlist = user.playlists.find(p => p.id === playlistId);
           if (playlist) {
@@ -166,8 +166,8 @@ export class UsuarioService {
   }
 
   // Actualizar una playlist de un usuario
-  updatePlaylistFromUser(userId: string, playlistId: number, nuevoNombre: string): Observable<Usuario> {
-    const userById = this.getUsuarioById(userId);
+  actualizarPlaylistDeUsuario(userId: string, playlistId: number, nuevoNombre: string): Observable<Usuario> {
+    const userById = this.getUsuarioPorId(userId);
 
     userById.subscribe({
       next: (user: Usuario) => {
@@ -178,7 +178,7 @@ export class UsuarioService {
           playlist.nombre = nuevoNombre;
 
           // Guardar los cambios del usuario
-          this.updateUsuario(user).subscribe({
+          this.actualizarUsuario(user).subscribe({
             next: () => {
               console.log('Nombre de la playlist actualizado exitosamente.');
             },
@@ -201,7 +201,7 @@ export class UsuarioService {
   
   calificarPeliculaEnUsuario(userId: string, calificacion: PeliculaCalificada): Observable<Usuario> {
     // Obtener el usuario por ID
-    const userById = this.getUsuarioById(userId);
+    const userById = this.getUsuarioPorId(userId);
   
     userById.subscribe({
       next: (user: Usuario) => {
@@ -218,7 +218,7 @@ export class UsuarioService {
         }
   
         // Actualizar el usuario con la nueva calificación
-        this.updateUsuario(user).subscribe({
+        this.actualizarUsuario(user).subscribe({
           next: () => {
             alert('Calificación guardada exitosamente.');
           },
@@ -237,7 +237,7 @@ export class UsuarioService {
 
   obtenerPlaylistMeGusta(userId: string): Observable<Playlist | undefined> {
     return new Observable<Playlist | undefined>((observer) => {
-      this.getUsuarioById(userId).subscribe({
+      this.getUsuarioPorId(userId).subscribe({
         next: (user) => {
           const meGusta = user.playlists.find(p => p.esMeGusta);
           observer.next(meGusta);
@@ -250,7 +250,7 @@ export class UsuarioService {
 
   obtenerPlaylistPeliculasVistas(userId: string): Observable<Playlist | undefined> {
     return new Observable<Playlist | undefined>((observer) => {
-      this.getUsuarioById(userId).subscribe({
+      this.getUsuarioPorId(userId).subscribe({
         next: (user) => {
           const vista = user.playlists.find(p => p.esPeliculasVistas);
           observer.next(vista);

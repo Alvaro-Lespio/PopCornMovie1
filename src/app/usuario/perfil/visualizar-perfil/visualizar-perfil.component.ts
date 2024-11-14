@@ -35,7 +35,7 @@ export class VisualizarPerfilComponent implements OnInit {
   usuarioService = inject(UsuarioService);
 
   verPerfilUsuario(userId: string): void {
-    this.usuarioService.getUsuarioById(userId).subscribe({
+    this.usuarioService.getUsuarioPorId(userId).subscribe({
       next: (usuario: Usuario) => {
         this.usuario = usuario;
 

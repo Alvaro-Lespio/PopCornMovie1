@@ -30,7 +30,7 @@ export class ListarPlaylistComponent implements OnInit{
     const userId = localStorage.getItem('userId')?.toString();
       if(userId !== undefined){
         console.log("El user id es: ", userId);
-        this.usuarioService.getPlaylistsOfUser(userId).subscribe({
+        this.usuarioService.getPlaylistsDeUsuario(userId).subscribe({
           next: (playlists: Playlist[]) => {
             this.playlists = playlists;
             
@@ -47,7 +47,7 @@ export class ListarPlaylistComponent implements OnInit{
   eliminarPlaylist(playlistId:number){
     const userId = localStorage.getItem('userId')?.toString();
     if(userId !== undefined){
-      this.usuarioService.removePlaylistFromUser(userId,playlistId).subscribe({
+      this.usuarioService.eliminarPlaylistDeUsuario(userId,playlistId).subscribe({
         next :()=>{
           this.playlists = this.playlists.filter(playlist => playlist.id !== playlistId);
           alert('Eliminado')
@@ -78,7 +78,7 @@ export class ListarPlaylistComponent implements OnInit{
   addToMeGusta(movieId: number) {
     const userId = localStorage.getItem('userId')?.toString();
     if (userId) {
-      this.playlistService.addMovieToMeGusta(userId, movieId).subscribe({
+      this.playlistService.agregarPeliculaAMeGusta(userId, movieId).subscribe({
         next: () => {
           alert('Película agregada a "Me Gusta".');
         },

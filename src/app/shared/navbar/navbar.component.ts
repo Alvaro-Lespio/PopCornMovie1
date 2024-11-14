@@ -11,7 +11,6 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
   router = inject(Router)
-  //se fija si hay un usuario o no
   usuarioLogueado() {
     if (typeof window !== 'undefined' && localStorage) {
         return localStorage.getItem('userId');
@@ -19,13 +18,12 @@ export class NavbarComponent {
     return null;
 }
 
-  //cerrar sesion
   cerrarSesion(){
     localStorage.clear();
     this.router.navigateByUrl('home');
   }
 
-  //
+  
   irAHome() {
     this.router.navigateByUrl('/home').then(() => {
       window.location.reload(); 

@@ -16,7 +16,6 @@ export class BusquedaPeliculaComponent {
   peliculaService = inject(PeliculaService);
   fb = inject(FormBuilder);
 
-  // Formulario reactivo para búsqueda y filtros
   formulario = this.fb.nonNullable.group(
     {
       query: [''],
@@ -27,17 +26,15 @@ export class BusquedaPeliculaComponent {
   )
 
   // Lista de géneros disponibles
-  generos = Object.keys(this.peliculaService.generos);  // Accede a los nombres de géneros
+  generos = Object.keys(this.peliculaService.generos); 
 
   buscarPeliculas() {
     const query = this.formulario.get('query')?.value;
     if (query) {
-      // Buscar por palabra clave
       this.peliculaService.buscarPelicula(query).subscribe((resultados) => {
         this.onBuscar.emit(resultados);
       });
     } else {
-      // Aplicar filtro si no hay palabra clave
       this.aplicarFiltro();
     }
   }
@@ -50,8 +47,6 @@ export class BusquedaPeliculaComponent {
       año: año || undefined,
       popularidad: popularidad || undefined
     };
-  
-    // Llama a filtrarPeliculas pasando los filtros tal cual
     this.peliculaService.filtrarPeliculas(filtros).subscribe((peliculas) => {
       this.onBuscar.emit(peliculas);
     });

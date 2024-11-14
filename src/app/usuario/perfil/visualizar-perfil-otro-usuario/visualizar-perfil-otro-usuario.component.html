@@ -38,7 +38,7 @@
     <div class="ratings">
           <h3>Calificaciones:</h3>
     <ul *ngIf="usuario.peliculasCalificadas.length > 0; else noCalificaciones">
-      <li *ngFor="let c of usuario.peliculasCalificadas">Calificaciones: {{ c.calificacion }} Pelicula: {{c.nombrePelicula}}</li>
+      <li *ngFor="let c of usuario.peliculasCalificadas">Calificaciones: {{ c.calificacion }} Pelicula: {{c.nombrePelicula}} Comentario: {{c.texto}}</li>
     </ul>
     <ng-template #noCalificaciones>
       <p>Este usuario no tiene peliculas calificadas.</p>

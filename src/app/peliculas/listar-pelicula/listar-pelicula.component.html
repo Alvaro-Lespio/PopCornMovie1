@@ -22,7 +22,7 @@
   ]">
     <h2 class="h2">{{ categoria.titulo }}</h2>
     <div class="carousel-container">
-      <button class="carousel-btn left" (click)="scrollLeft(categoria.index)">←</button>
+      <button class="carousel-btn left" (click)="scrollearIzquierda(categoria.index)">←</button>
       <div class="carousel" #carousel>
         <div *ngFor="let pelicula of categoria.peliculas" class="movie-card" (click)="verDetalle(pelicula.id)">
           <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" alt="{{ pelicula.title }}" />
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <button class="carousel-btn right" (click)="scrollRight(categoria.index)">→</button>
+      <button class="carousel-btn right" (click)="scrollearDerecha(categoria.index)">→</button>
     </div>
   </div>
 </ng-template>
