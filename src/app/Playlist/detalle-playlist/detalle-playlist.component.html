@@ -3,12 +3,13 @@
     @if (playlist) {
       <h2>{{ playlist.nombre }}</h2>
       <ul>
-        <li>
+
           @for (pelicula of peliculas; track $index) {
-            {{ pelicula.title }}
-            <button *ngIf="esActivo" (click)="eliminarPelicula(pelicula.id)">Eliminar Pelicula</button>
+            <li>
+                 {{ pelicula.title }}
+                 <button *ngIf="esActivo" (click)="eliminarPelicula(pelicula.id)">Eliminar Pelicula</button>
+            </li>
           }
-        </li>
       </ul>
     }
   </div>
