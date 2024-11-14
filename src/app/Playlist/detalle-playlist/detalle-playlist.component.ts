@@ -25,18 +25,25 @@ export class DetallePlaylistComponent implements OnInit {
   errorMessage: string | null = null;
   userId: string | null = null;
   playlistUser: Playlist | null = null;
+  isOwner: boolean = false
   ngOnInit(): void {
     this.cargarPlaylist();
   }
 
   private cargarPlaylist() {
     // Obtiene el userId del parámetro o del localStorage
-    let userId = this.route.snapshot.paramMap.get('userId') || localStorage.getItem('userId');
+    const routeUserId = this.route.snapshot.paramMap.get('userId');
+    const localUserId = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('userId') : null;
+
+    this.userId = routeUserId || localUserId;
     
-    if (!userId) {
+    if (!this.userId) {
       this.errorMessage = 'Usuario no autenticado.';
       return;
     }
+
+    // Define si el usuario autenticado es el propietario de la playlist
+    this.isOwner = this.userId === localUserId;
 
     this.route.paramMap.subscribe({
       next: (param) => {
@@ -52,7 +59,7 @@ export class DetallePlaylistComponent implements OnInit {
           return;
         }
        
-        this.playlistService.getPlaylistById(userId, playlistId).subscribe({
+        this.playlistService.getPlaylistById(this.userId, playlistId).subscribe({
           next: (playlist) => {
             this.playlist = playlist;
             this.loadPeliculas();
@@ -105,13 +112,14 @@ export class DetallePlaylistComponent implements OnInit {
     }
   }
 
-  eliminarPelicula(peliculaId:number){
-    if (!this.userId || !this.playlist) {
+  eliminarPelicula(peliculaId: number) {
+    const userId = localStorage.getItem('userId');
+    if (!userId || !this.playlist) {
       this.errorMessage = 'No se puede eliminar la película. Usuario o playlist no definidos.';
       return;
     }
   
-    this.playlistService.deleteMovieToPlaylist(this.userId, this.playlist.id, peliculaId).subscribe({
+    this.playlistService.deleteMovieToPlaylist(userId, this.playlist.id, peliculaId).subscribe({
       next: () => { 
         this.peliculas = this.peliculas.filter(pelicula => pelicula.id !== peliculaId);
         alert('Película eliminada exitosamente de la playlist.');

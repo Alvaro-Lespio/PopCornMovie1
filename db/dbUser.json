@@ -2,10 +2,10 @@
   "usuarios": [
     {
       "id": "8781",
-      "username": "alvaro2",
-      "password": "123456",
-      "nombreCompleto": "alvaro",
-      "email": "alvaro@alvaro",
+      "username": "alvaro3",
+      "password": "1234567",
+      "nombreCompleto": "alvaroasdsa",
+      "email": "alvaro@alvaroasd",
       "playlists": [
         {
           "id": 872230,
@@ -19,15 +19,18 @@
           "nombre": "Peliculas Vistas",
           "peliculas": [
             1118031,
-            698687
+            698687,
+            1184918
           ],
           "esMeGusta": false,
           "esPeliculasVistas": true
         },
         {
-          "id": 684298,
-          "nombre": "hola",
-          "peliculas": []
+          "id": 731679,
+          "nombre": "cuchi",
+          "peliculas": [
+            933260
+          ]
         }
       ],
       "peliculasCalificadas": [
@@ -35,13 +38,21 @@
           "peliculaId": 1184918,
           "nombrePelicula": "Robot salvaje",
           "userId": "8781",
-          "calificacion": 3,
-          "fechaDeCalificacion": "2024-11-13T22:45:58.335Z"
+          "calificacion": 5,
+          "fechaDeCalificacion": "2024-11-14T01:36:11.058Z"
+        },
+        {
+          "peliculaId": 933260,
+          "nombrePelicula": "La sustancia",
+          "userId": "8781",
+          "calificacion": 5,
+          "fechaDeCalificacion": "2024-11-14T01:40:22.572Z"
         }
       ],
       "comentarios": [],
       "usuariosSeguidos": [
-        "438d"
+        "438d",
+        "9ceb"
       ],
       "peliculasVistas": [],
       "peliculasMeGusta": []
@@ -80,6 +91,45 @@
           "peliculas": [
             533535
           ]
+        }
+      ],
+      "peliculasCalificadas": [
+        {
+          "peliculaId": 533535,
+          "nombrePelicula": "Deadpool y Lobezno",
+          "userId": "438d",
+          "calificacion": 5,
+          "fechaDeCalificacion": "2024-11-14T01:42:13.764Z"
+        }
+      ],
+      "comentarios": [],
+      "usuariosSeguidos": [
+        "8781",
+        "9ceb"
+      ],
+      "peliculasVistas": [],
+      "peliculasMeGusta": []
+    },
+    {
+      "id": "9ceb",
+      "username": "pedro",
+      "password": "123456",
+      "nombreCompleto": "pedro",
+      "email": "pedro@pedro",
+      "playlists": [
+        {
+          "id": 862493,
+          "nombre": "Me Gusta",
+          "peliculas": [],
+          "esMeGusta": true,
+          "esPeliculasVistas": false
+        },
+        {
+          "id": 42283,
+          "nombre": "Peliculas Vistas",
+          "peliculas": [],
+          "esMeGusta": false,
+          "esPeliculasVistas": true
         }
       ],
       "peliculasCalificadas": [],

@@ -33,7 +33,7 @@ export class DetallePeliculaComponent implements OnInit{
   esVista: boolean = false; 
   userId : string = '';
   
-  ngOnInit(): void {
+  ngOnInit(){
     const id = this.route.snapshot.paramMap.get('id');
     
     if (id) {

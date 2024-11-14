@@ -16,7 +16,7 @@ export class PlaylistService {
   constructor() { }
 
 
-  getPlaylistById(userId: string, playlistId: number): Observable<Playlist | null> {
+  getPlaylistById(userId: string | null, playlistId: number): Observable<Playlist | null> {
     return new Observable<Playlist | null>((observer) => {
       this.usuarioService.getUsuarioById(userId).subscribe({
         next: (user) => {

@@ -20,7 +20,7 @@ export class UsuarioService {
   }
 
   // Obtener un usuario por ID
-  getUsuarioById(id: string | undefined): Observable<Usuario> {
+  getUsuarioById(id: string | null): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.baseUrl}/${id}`);
   }
   generarIdNumerico(): number {
@@ -64,7 +64,7 @@ export class UsuarioService {
 
 
   // Agregar una playlist a un usuario
-  addPlaylistToUser(userId: string | undefined, playlist: Playlist): Observable<Usuario> {
+  addPlaylistToUser(userId: string | null, playlist: Playlist): Observable<Usuario> {
 
 
     // Obtener el usuario por su ID
@@ -127,7 +127,7 @@ export class UsuarioService {
   }
 
   //Listar playlist
-  getPlaylistsOfUser(userId: string | undefined): Observable<Playlist[]> {
+  getPlaylistsOfUser(userId: string | null): Observable<Playlist[]> {
     // Crear un nuevo Observable que emitirá las playlists del usuario
     return new Observable<Playlist[]>((observer) => {
       // Obtener el usuario por su ID

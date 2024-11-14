@@ -18,7 +18,7 @@
     <label class="label" for="playlistSelect">Seleccionar Playlist:</label>
     <select id="playlistSelect" [(ngModel)]="playlistId">
       <ng-container *ngFor="let playlist of playlists">
-        <option *ngIf="!playlist.esMeGusta" [value]="playlist.id">{{ playlist.nombre }}</option>
+        <option *ngIf="!playlist.esPeliculasVistas && !playlist.esMeGusta" [value]="playlist.id">{{ playlist.nombre }}</option>
       </ng-container>
     </select>
     <div class="actions">
