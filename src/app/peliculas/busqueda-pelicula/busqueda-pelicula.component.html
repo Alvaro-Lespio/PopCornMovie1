@@ -5,7 +5,7 @@
       <input type="text" formControlName="query" placeholder="Buscar película..." />
 
       <select formControlName="genero">
-        <option value="" disabled selected>Filtrar por género</option>
+        <option value="">Sin filtro de género</option>
         @for (gen of generos; track $index) {
         <option [value]="gen">{{gen}}</option>
         }
@@ -14,7 +14,7 @@
       <input type="text" formControlName="año" placeholder="Año" />
 
       <select formControlName="popularidad">
-        <option value="" disabled selected>Filtrar por popularidad</option>
+        <option value="">Sin filtro de popularidad</option>
         <option value="popularity.desc">Más populares</option>
         <option value="vote_average.desc">Mejor calificadas</option>
       </select>

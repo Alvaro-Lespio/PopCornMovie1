@@ -19,13 +19,13 @@ export class DetallePeliculaComponent implements OnInit{
 
   ngOnInit(){
     const id = this.route.snapshot.paramMap.get('id');
-    
+
     if (id) {
-      
+
       if (typeof window !== 'undefined') {
         this.userId = localStorage.getItem('userId') || '';
       }
-      
+
       this.peliculaService.getPeliculaPorId(+id).subscribe((pelicula) => {
         this.pelicula = pelicula;
         this.genresFormatted = pelicula.genres.map((g: any) => g.name).join(', ');
@@ -42,30 +42,38 @@ export class DetallePeliculaComponent implements OnInit{
 
   route = inject(ActivatedRoute);
   router = inject(Router);
-  playlistService = inject(PlaylistService)  
+  playlistService = inject(PlaylistService)
   peliculaService = inject(PeliculaService);
   usuarioService = inject(UsuarioService);
 
-
+  exitoMensaje: string = '';
   pelicula: any;
   genresFormatted = '';
-  playlists: Playlist[] = []; 
-  calificacion: number = 0; 
-  hoverCalificacion: number = 0; 
+  playlists: Playlist[] = [];
+  calificacion: number = 0;
+  hoverCalificacion: number = 0;
   playlistId: number | null = null;
-  esVista: boolean = false; 
+  esVista: boolean = false;
   userId : string = '';
   texto:string = '';
 
   volverALista() {
     this.router.navigate(['/listar-pelicula']);
   }
-  
+
+  mostrarMensaje(mensaje: string) {
+    this.exitoMensaje = mensaje;
+    setTimeout(() => {
+      this.exitoMensaje = '';
+    }, 4000);
+  }
+
   agregarAPlaylist(movieId: number) {
     if (this.playlistId !== null) {
       this.playlistService.agregarPeliculaAPlaylist(this.userId, this.playlistId, movieId).subscribe({
         next: () => {
-         alert('Película añadida a la playlist exitosamente.');
+          this.mostrarMensaje('Película añadida a la playlist exitosamente.');
+          alert('Película añadida a la playlist exitosamente.');
         },
         error: (e: Error) => {
           console.error('Error al añadir la película:', e.message);
@@ -76,7 +84,7 @@ export class DetallePeliculaComponent implements OnInit{
     }
   }
 
-  
+
   calificar(estrella: number) {
     this.calificacion = estrella;
   }
@@ -92,10 +100,10 @@ export class DetallePeliculaComponent implements OnInit{
       texto:this.texto,
       fechaDeCalificacion: new Date(),
     };
-  
+
     this.usuarioService.calificarPeliculaEnUsuario(this.userId, nuevaCalificacion).subscribe({
       next: () => {
-        alert('Calificación guardada exitosamente en el usuario.');
+        this.mostrarMensaje('Película calificada.');
       },
       error: (error) => {
         console.error('Error al guardar la calificación en el usuario:', error);
@@ -105,11 +113,11 @@ export class DetallePeliculaComponent implements OnInit{
 
   agregarAMeGusta(movieId: number) {
     const userId = localStorage.getItem('userId')?.toString();
-  
+
     if (userId) {
       this.playlistService.agregarPeliculaAMeGusta(userId, movieId).subscribe({
         next: () => {
-          alert('Película añadida a "Me Gusta" exitosamente.');
+          this.mostrarMensaje('Película añadida a "Me Gusta" exitosamente.');
         },
         error: (e: Error) => {
           console.error('Error al añadir la película:', e.message);
@@ -132,7 +140,7 @@ export class DetallePeliculaComponent implements OnInit{
     if (this.esVista) {
       this.playlistService.agregarPeliculaAPeliculasVistas(this.userId, movieId).subscribe({
         next: () => {
-          alert('Película marcada como vista.');
+          this.mostrarMensaje('Película marcada como vista.');
         },
         error: (e: Error) => {
           console.error('Error al marcar la película como vista:', e.message);
@@ -150,6 +158,6 @@ export class DetallePeliculaComponent implements OnInit{
     }
   }
   }
-  
+
 
 
