@@ -19,6 +19,14 @@
           }
         </div>
       </div>
+
+      <div class="error-mensaje">
+        @if (errorMensaje) {
+          {{ errorMensaje }}
+        }
+
+      </div>
+
       <button type="submit" [disabled]="formulario.invalid">Iniciar Sesión</button>
     </form>
   </div>

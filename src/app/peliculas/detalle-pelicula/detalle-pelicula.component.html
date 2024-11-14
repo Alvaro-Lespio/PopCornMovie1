@@ -56,7 +56,11 @@
 
             <button class="action-btn" (click)="calificarPelicula()">Guardar Calificación</button>
           </div>
-
+          <div class="exito-mensaje">
+            @if (exitoMensaje) {
+              {{exitoMensaje}}
+            }
+          </div>
         }
     </div>
     </div>

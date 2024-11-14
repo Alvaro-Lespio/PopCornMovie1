@@ -22,6 +22,8 @@ export class LoginUsuarioComponent {
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
+  errorMensaje: string | null = null;
+
   loginUsuario() {
     if (this.formulario.invalid) return;
 
@@ -34,21 +36,21 @@ export class LoginUsuarioComponent {
         );
 
         if (usuarioEncontrado) {
-          alert('Inicio de sesión exitoso');
+          this.errorMensaje=null;
           if(usuarioEncontrado.id !== undefined){
             localStorage.setItem('userId',usuarioEncontrado.id.toString())
           }else{
             return console.log("login userId error")
           }
-          
+
           this.router.navigateByUrl("home");
         } else {
-          alert('Usuario o contraseña incorrectos');
+          this.errorMensaje = 'Usuario o contraseña incorrectos';
         }
       },
       error: (e: Error) => {
         console.error('Error al intentar iniciar sesión:', e);
-        alert('Hubo un error al intentar iniciar sesión.');
+        this.errorMensaje = 'Hubo un error al intentar iniciar sesión.';
       }
     });
   }
