@@ -4,8 +4,10 @@
       <div>
         <label class="label" for="nombre">Nombre de la Playlist</label>
         <input type="text" id="nombre" formControlName="nombre" required />
-        <div *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched">
-          <small class="error">El nombre de la playlist es requerido y debe tener al menos 3 caracteres.</small>
+        <div>
+          @if (formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched) {
+            <small class="error">El nombre de la playlist es requerido y debe tener al menos 3 caracteres.</small>
+          }
         </div>
       </div>
       <button class="button" type="submit" [disabled]="formulario.invalid">Añadir Playlist</button>
