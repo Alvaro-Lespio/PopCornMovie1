@@ -1,9 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Usuario } from '../../interface/Usuario.interface';
 import { UsuarioService } from '../../Service/usuario.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PlaylistService } from '../../../Playlist/Service/playlist.service';
+import { PeliculaService } from '../../../peliculas/Service/pelicula.service';
+import { Pelicula } from '../../../peliculas/interface/pelicula.interface';
+import { Playlist } from '../../../Playlist/interface/Playlist.interface';
 
 @Component({
   selector: 'app-visualizar-perfil-otro-usuario',
@@ -30,7 +34,14 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
   usuarioService = inject(UsuarioService);
   usuario: Usuario | null = null;
   userId: string | null = null;
+  peliculas: Pelicula[] = [];
+  errorMessage: string | null = null;
+  playlistUser: Playlist | null = null;
+
   activatedRoute = inject(ActivatedRoute)
+  routes = inject(Router)
+  playlistService = inject(PlaylistService)
+  peliculaService = inject(PeliculaService)
 
   verPerfilUsuario(userId: string): void {
     this.usuarioService.getUsuarioById(userId).subscribe({
@@ -70,5 +81,10 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
     const userIdSesion = localStorage.getItem('userId');
     return this.usuario?.usuariosSeguidos.includes(userIdSesion || '') || false;
   }
+  
+  verPlaylist(playlistId:number,usuarioId:string |undefined){
+      this.routes.navigateByUrl(`playlist/${usuarioId}/${playlistId}`);
+  }
+
 }
 

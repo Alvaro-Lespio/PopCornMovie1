@@ -18,7 +18,8 @@
           "id": 617002,
           "nombre": "Peliculas Vistas",
           "peliculas": [
-            1118031
+            1118031,
+            698687
           ],
           "esMeGusta": false,
           "esPeliculasVistas": true
@@ -71,6 +72,13 @@
           "nombre": "cuchi",
           "peliculas": [
             1184918
+          ]
+        },
+        {
+          "id": 325012,
+          "nombre": "asdsadasd",
+          "peliculas": [
+            533535
           ]
         }
       ],

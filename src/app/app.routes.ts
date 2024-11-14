@@ -43,6 +43,10 @@ export const routes: Routes = [
         component:DetallePlaylistComponent
     },
     {
+        path: "playlist/:userId/:id",
+        component: DetallePlaylistComponent
+    },
+    {
         path:"playlistList",
         component:ListarPlaylistComponent
     },

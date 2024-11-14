@@ -24,15 +24,16 @@ export class DetallePlaylistComponent implements OnInit {
   peliculas: Pelicula[] = [];
   errorMessage: string | null = null;
   userId: string | null = null;
-
+  playlistUser: Playlist | null = null;
   ngOnInit(): void {
-    this.initializeComponent();
+    this.cargarPlaylist();
   }
 
-  private initializeComponent(): void {
-    this.userId = localStorage.getItem('userId');
-
-    if (!this.userId) {
+  private cargarPlaylist() {
+    // Obtiene el userId del parámetro o del localStorage
+    let userId = this.route.snapshot.paramMap.get('userId') || localStorage.getItem('userId');
+    
+    if (!userId) {
       this.errorMessage = 'Usuario no autenticado.';
       return;
     }
@@ -40,7 +41,6 @@ export class DetallePlaylistComponent implements OnInit {
     this.route.paramMap.subscribe({
       next: (param) => {
         const playlistIdStr = param.get('id');
-        console.log(playlistIdStr);
         if (!playlistIdStr) {
           this.errorMessage = 'ID de playlist no válido.';
           return;
@@ -52,7 +52,7 @@ export class DetallePlaylistComponent implements OnInit {
           return;
         }
        
-        this.playlistService.getPlaylistById(this.userId!, playlistId).subscribe({
+        this.playlistService.getPlaylistById(userId, playlistId).subscribe({
           next: (playlist) => {
             this.playlist = playlist;
             this.loadPeliculas();
@@ -70,7 +70,26 @@ export class DetallePlaylistComponent implements OnInit {
     });
   }
 
-  private loadPeliculas(): void {
+ 
+  public verPlaylistOtroUsuario( playlistId: number, userId: string | undefined) {
+    if (isNaN(playlistId)) {
+      this.errorMessage = 'ID de playlist no válido.';
+      return;
+    }
+
+    this.playlistService.getPlaylistById(userId!, playlistId).subscribe({
+      next: (playlist) => {
+        this.playlistUser = playlist;
+        this.loadPeliculas();
+      },
+      error: (error) => {
+        this.errorMessage = 'Error al cargar la playlist. Por favor, inténtalo de nuevo más tarde.';
+        console.error('Error al obtener la playlist:', error);
+      } 
+    });
+  }
+
+  private loadPeliculas(){
     if (this.playlist) {
       this.peliculas = [];
       this.playlist.peliculas.forEach((peliculaId) => {
