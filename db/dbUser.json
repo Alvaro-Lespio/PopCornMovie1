@@ -1,5 +1,60 @@
 {
   "usuarios": [
-    
+    {
+      "id": "d24f",
+      "username": "alvaro",
+      "password": "1234567",
+      "nombreCompleto": "asdad",
+      "email": "a@a",
+      "playlists": [
+        {
+          "id": 639041,
+          "nombre": "Me Gusta",
+          "peliculas": [],
+          "esMeGusta": true,
+          "esPeliculasVistas": false
+        },
+        {
+          "id": 391426,
+          "nombre": "Peliculas Vistas",
+          "peliculas": [],
+          "esMeGusta": false,
+          "esPeliculasVistas": true
+        }
+      ],
+      "peliculasCalificadas": [],
+      "comentarios": [],
+      "usuariosSeguidos": [],
+      "peliculasVistas": [],
+      "peliculasMeGusta": []
+    },
+    {
+      "id": "d6c9",
+      "username": "alvaro1",
+      "password": "1234567",
+      "nombreCompleto": "sadasd",
+      "email": "as@as",
+      "playlists": [
+        {
+          "id": 596066,
+          "nombre": "Me Gusta",
+          "peliculas": [],
+          "esMeGusta": true,
+          "esPeliculasVistas": false
+        },
+        {
+          "id": 635701,
+          "nombre": "Peliculas Vistas",
+          "peliculas": [],
+          "esMeGusta": false,
+          "esPeliculasVistas": true
+        }
+      ],
+      "peliculasCalificadas": [],
+      "comentarios": [],
+      "usuariosSeguidos": [],
+      "peliculasVistas": [],
+      "peliculasMeGusta": []
+    }
   ]
 }

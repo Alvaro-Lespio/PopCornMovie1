@@ -19,6 +19,7 @@ export class RegistrarUsuarioComponent{
   router = inject(Router);
 
   usernameExists: boolean = false;
+  emailExists: boolean = false;
 
   formulario = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -32,7 +33,7 @@ export class RegistrarUsuarioComponent{
     if (username.length >= 3) {
       this.usuarioService.getUsuarios().subscribe(
         (usuarios: Usuario[]) => {
-          this.usernameExists = usuarios.some(user => user.username === username);
+          this.usernameExists = usuarios.some(user => user.username === username);   
         },
         () => {
           this.usernameExists = false;
@@ -40,6 +41,22 @@ export class RegistrarUsuarioComponent{
       );
     } else {
       this.usernameExists = false;
+    }
+  }
+
+  chequearSiemailExiste() {
+    const email = this.formulario.value.email || '';
+    if (email.length >0) {
+      this.usuarioService.getUsuarios().subscribe(
+        (usuarios: Usuario[]) => {
+          this.emailExists = usuarios.some(user => user.email === email);   
+        },
+        () => {
+          this.emailExists = false;
+        }
+      );
+    } else {
+      this.emailExists = false;
     }
   }
 

@@ -14,6 +14,7 @@
           <small class="error">El nombre de usuario ya existe. Por favor, elija otro.</small>
         }
       </div>
+      
     </div>
     <div>
       <label class="label" for="password">Contraseña</label>
@@ -30,10 +31,16 @@
     </div>
     <div>
       <label class="label" for="email">Correo Electrónico</label>
-      <input type="email" id="email" formControlName="email" required />
+      <input type="email" id="email" formControlName="email" required (input)="chequearSiemailExiste()" required/>
+
       <div>
         @if (formulario.get('email')?.invalid && formulario.get('email')?.touched) {
           <small class="error">Debe ser un correo electrónico válido.</small>
+        }
+      </div>
+      <div>
+        @if (emailExists) {
+          <small class="error">El email ya existe. Por favor, elija otro.</small>
         }
       </div>
     </div>
