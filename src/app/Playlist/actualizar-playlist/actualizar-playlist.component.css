@@ -92,3 +92,22 @@ body, html {
   background-color: #ccc;
   cursor: not-allowed;
 }
+.back-button {
+  position: absolute;
+  top: 35px;
+  left: 10px;
+  background-color: red;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  margin: auto;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+}

@@ -25,6 +25,10 @@ export class AgregarPlaylistComponent {
     nombre: ['', [Validators.required, Validators.minLength(3)]]
   });
 
+  volverAplaylists() {
+    this.router.navigate(['/playlistList']);
+  }
+
   agregarPlaylist() {
     if (this.formulario.invalid) return;
     const userId = localStorage.getItem('userId')?.toString();
@@ -34,13 +38,13 @@ export class AgregarPlaylistComponent {
       nombre: this.formulario.value.nombre || '',
       peliculas : []
     };
-    
+
     if(userId === undefined) return console.log('UserId Undefined');
     console.log('El user id es: ',userId);
     this.usuarioService.agregarPlaylistAUsuario(userId, nuevaPlaylist).subscribe({
       next: () => {
         this.formulario.reset();
-        this.listarPlaylist(); 
+        this.listarPlaylist();
       },
       error: (e: Error) => {
         console.error('Error al agregar la playlist:', e.message);

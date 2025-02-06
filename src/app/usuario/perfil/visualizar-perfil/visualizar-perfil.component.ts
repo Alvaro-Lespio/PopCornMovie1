@@ -25,14 +25,16 @@ export class VisualizarPerfilComponent implements OnInit {
     this.verPerfilUsuario(this.userId)
 
   }
-  
+
   usuario: Usuario | null = null;
   userId: string | null = null;
   playlistUser: Playlist | null = null;
- 
+
 
   routes = inject(Router)
   usuarioService = inject(UsuarioService);
+
+
 
   verPerfilUsuario(userId: string): void {
     this.usuarioService.getUsuarioPorId(userId).subscribe({
@@ -55,4 +57,4 @@ export class VisualizarPerfilComponent implements OnInit {
     this.routes.navigateByUrl(`playlist/${playlistId}`);
   }
   }
-  
+

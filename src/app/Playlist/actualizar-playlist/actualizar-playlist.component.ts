@@ -19,7 +19,7 @@ export class ActualizarPlaylistComponent implements OnInit{
       {
         next:(param) => {
           this.playlistId = Number(param.get('id'))
-          
+
         },
         error:(e:Error)=>{
             console.log(e.message)
@@ -27,6 +27,7 @@ export class ActualizarPlaylistComponent implements OnInit{
       }
     )
   }
+
 
   fb = inject(FormBuilder);
   usuarioService = inject(UsuarioService);
@@ -36,6 +37,11 @@ export class ActualizarPlaylistComponent implements OnInit{
 
   playlistId : number | null = null;
   userId : string | undefined = undefined;
+
+
+  volverAplaylists() {
+    this.router.navigate(['/playlistList']);
+  }
 
   formulario = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]]

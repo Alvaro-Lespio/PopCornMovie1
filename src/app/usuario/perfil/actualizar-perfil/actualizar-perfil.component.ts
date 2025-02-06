@@ -14,7 +14,7 @@ import { Usuario } from '../../interface/Usuario.interface';
   styleUrl: './actualizar-perfil.component.css'
 })
 export class ActualizarPerfilComponent implements OnInit {
- 
+
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') || '';
     if (this.userId) {
@@ -30,7 +30,7 @@ export class ActualizarPerfilComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al cargar los datos del usuario:', error);
-          
+
         }
       });
     }
@@ -49,7 +49,11 @@ export class ActualizarPerfilComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]]
   });
 
-  
+
+  volverAperfil() {
+    this.router.navigate(['/perfil']);
+  }
+
 
   actualizarPerfil() {
     if (this.formulario.invalid) return;
@@ -64,7 +68,7 @@ export class ActualizarPerfilComponent implements OnInit {
 
     this.usuarioService.actualizarUsuario(usuarioActualizado).subscribe({
       next: () => {
-       
+
         this.router.navigateByUrl('/perfil');
       },
       error: (error) => {
