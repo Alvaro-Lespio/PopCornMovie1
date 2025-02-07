@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Playlist } from '../interface/Playlist.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from '../../usuario/Service/usuario.service';
 import { PeliculaService } from '../../peliculas/Service/pelicula.service';
 import { PlaylistService } from '../Service/playlist.service';
@@ -23,6 +23,7 @@ export class DetallePlaylistComponent implements OnInit {
   private playlistService = inject(PlaylistService);
   private peliculaService = inject(PeliculaService);
 
+  router = inject(Router);
   playlist: Playlist | null = null;
   peliculas: Pelicula[] = [];
   errorMessage: string | null = null;
@@ -30,12 +31,16 @@ export class DetallePlaylistComponent implements OnInit {
   playlistUser: Playlist | null = null;
   esActivo: boolean = false
 
+  volverAplaylists() {
+    this.router.navigate(['/playlistList']);
+  }
+
   cargarPlaylist() {
     const routeUserId = this.route.snapshot.paramMap.get('userId');
     const localUserId = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('userId') : null;
 
     this.userId = routeUserId || localUserId;
-    
+
     if (!this.userId) {
       this.errorMessage = 'Usuario no autenticado.';
       return;
@@ -56,7 +61,7 @@ export class DetallePlaylistComponent implements OnInit {
           this.errorMessage = 'ID de playlist no válido.';
           return;
         }
-       
+
         this.playlistService.getPlaylistPorId(this.userId, playlistId).subscribe({
           next: (playlist) => {
             this.playlist = playlist;
@@ -75,7 +80,7 @@ export class DetallePlaylistComponent implements OnInit {
     });
   }
 
- 
+
   public verPlaylistOtroUsuario( playlistId: number, userId: string | undefined) {
     if (isNaN(playlistId)) {
       this.errorMessage = 'ID de playlist no válido.';
@@ -90,7 +95,7 @@ export class DetallePlaylistComponent implements OnInit {
       error: (error) => {
         this.errorMessage = 'Error al cargar la playlist. Por favor, inténtalo de nuevo más tarde.';
         console.error('Error al obtener la playlist:', error);
-      } 
+      }
     });
   }
 
@@ -116,9 +121,9 @@ export class DetallePlaylistComponent implements OnInit {
       this.errorMessage = 'No se puede eliminar la película. Usuario o playlist no definidos.';
       return;
     }
-  
+
     this.playlistService.eliminarPeliculaDePlaylist(userId, this.playlist.id, peliculaId).subscribe({
-      next: () => { 
+      next: () => {
         this.peliculas = this.peliculas.filter(pelicula => pelicula.id !== peliculaId);
         alert('Película eliminada exitosamente de la playlist.');
       },

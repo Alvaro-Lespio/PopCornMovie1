@@ -43,6 +43,10 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
   playlistService = inject(PlaylistService)
   peliculaService = inject(PeliculaService)
 
+  volverAusuarios() {
+    this.routes.navigate(['/listarPerfiles']);
+  }
+
   verPerfilUsuario(userId: string): void {
     this.usuarioService.getUsuarioPorId(userId).subscribe({
       next: (usuario: Usuario) => {
@@ -50,7 +54,7 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
       },
       error: (e: Error) => {
         console.error('Error al cargar el perfil del usuario:', e.message);
-        
+
       }
     });
   }
@@ -64,24 +68,24 @@ export class VisualizarPerfilOtroUsuarioComponent implements OnInit {
       ? this.usuario.usuariosSeguidos.filter(id => id !== userIdSesion)
       : [...this.usuario.usuariosSeguidos, userIdSesion];
 
-    
+
     this.usuarioService.actualizarUsuario(this.usuario).subscribe({
       next: () => {
-        
+
       },
       error: (e: Error) => {
         console.error('Error al actualizar el seguimiento:', e.message);
       }
     });
   }
-  
-  
+
+
   esUsuarioSeguido(): boolean {
     if (typeof window === 'undefined') return false;
     const userIdSesion = localStorage.getItem('userId');
     return this.usuario?.usuariosSeguidos.includes(userIdSesion || '') || false;
   }
-  
+
   verPlaylist(playlistId:number,usuarioId:string |undefined){
       this.routes.navigateByUrl(`playlist/${usuarioId}/${playlistId}`);
   }

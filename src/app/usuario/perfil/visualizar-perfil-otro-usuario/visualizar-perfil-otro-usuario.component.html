@@ -1,4 +1,5 @@
 <div class="profile-container">
+  <div class="back-button" (click)="volverAusuarios()">←</div>
   @if (usuario) {
     <h2>Perfil de {{ usuario.username }}</h2>
     <button class="follow-button" (click)="alternarSeguir()">
@@ -43,7 +44,7 @@
     <div class="ratings">
           <h3>Calificaciones:</h3>
     <ul *ngIf="usuario.peliculasCalificadas.length > 0; else noCalificaciones">
-      
+
         @for (c of usuario.peliculasCalificadas; track $index) {
           <li>
             <div><span class="info-label">Pelicula: </span><span class="info-value">{{c.nombrePelicula}}</span></div>
